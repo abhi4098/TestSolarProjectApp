@@ -61,6 +61,7 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
+    String test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
