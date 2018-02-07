@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SolarProjectLoginActivity"
+            android:name=".ui.activities.SplashActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,6 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activities.SolarProjectLoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.InformationActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

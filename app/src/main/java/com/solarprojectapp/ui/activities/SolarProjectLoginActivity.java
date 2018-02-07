@@ -1,4 +1,4 @@
-package com.solarprojectapp;
+package com.solarprojectapp.ui.activities;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -29,6 +29,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.solarprojectapp.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +59,7 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private AutoCompleteTextView mEmailView;
+    private EditText mEmailView;
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
@@ -68,7 +70,7 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solar_project_login);
         // Set up the login form.
-        mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
+        mEmailView = (EditText) findViewById(R.id.email);
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -263,7 +265,7 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
             cursor.moveToNext();
         }
 
-        addEmailsToAutoComplete(emails);
+       // addEmailsToAutoComplete(emails);
     }
 
     @Override
@@ -271,7 +273,7 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
 
     }
 
-    private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
+   /* private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<>(SolarProjectLoginActivity.this,
@@ -280,7 +282,7 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
         mEmailView.setAdapter(adapter);
     }
 
-
+*/
     private interface ProfileQuery {
         String[] PROJECTION = {
                 ContactsContract.CommonDataKinds.Email.ADDRESS,
