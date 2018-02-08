@@ -5,6 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/resister_button_color</item>
 
     </style>
 
@@ -16,6 +17,7 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
     <style name="MyToolBar" parent="AppTheme">
         <item name="android:color">#0ba3ad</item>
         <item name="android:textColorSecondary">#ffffff</item>
@@ -32,6 +34,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">#000000</item>
     </style>
+
     <style name="Divider_white">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

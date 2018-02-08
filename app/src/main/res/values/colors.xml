@@ -3,4 +3,20 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="lighter_gray">#cdcdcd</color>
+    <color name="off_white">#EFEFEF</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="text_color">#757577</color>
+    <color name="theme_primary_dark">#1ea9e1</color>
+    <color name="button_color">#1abc9c</color>
+    <color name="resister_button_color">#1ea9e1</color>
+    <color name="bottom_bar">#2b2b2b</color>
+    <color name="silver">#C0C0C0</color>
+    <color name="solar_blue">#1c7cb2</color>
+    <color name="solar_pink">#ea466b</color>
+    <color name="solar_yellow">#fcb261</color>
+    <color name="complaint_background">#fdf6f5</color>
+
+
 </resources>
