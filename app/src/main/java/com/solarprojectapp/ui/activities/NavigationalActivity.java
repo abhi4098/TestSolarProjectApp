@@ -1,5 +1,6 @@
 package com.solarprojectapp.ui.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,7 +21,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.solarprojectapp.R;
+import com.solarprojectapp.ui.fragments.MyProfileFragment;
 import com.solarprojectapp.ui.fragments.ProfileHomePageFragment;
+import com.solarprojectapp.utils.PrefUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,6 +37,7 @@ public class NavigationalActivity extends AppCompatActivity
 
     /*@BindView(R.id.back_icon)
     ImageView ivBackIcon;*/
+    NavigationView navigationView;
 
     @BindView(R.id.tv_app_title)
     TextView tvAppTitle;
@@ -53,8 +57,9 @@ public class NavigationalActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        setUserLoggedIn();
     }
 
 
@@ -69,15 +74,7 @@ public class NavigationalActivity extends AppCompatActivity
 
 
     }
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -105,24 +102,78 @@ public class NavigationalActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        Fragment fragment = null;
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_dashboard) {
+            fragment = new ProfileHomePageFragment();
+            //ivBackIcon.setVisibility(View.INVISIBLE);
             tvAppTitle.setText(item.getTitle());
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_profile) {
 
-        } else if (id == R.id.nav_slideshow) {
+            Intent i = new Intent(NavigationalActivity.this, MyProfileActivity.class);
+            startActivity(i);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
 
-        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_logout) {
+            callRestart();
+
+        } /*else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
-        }
+        }*/
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        if (fragment != null) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+
+        }
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        }  else if (getFragmentManager().getBackStackEntryCount() == 0)
+        {
+
+            MenuItem itemid = navigationView.getMenu().findItem(R.id.nav_dashboard);
+            if (getFragmentManager().findFragmentById(R.id.fragment_container) == null) {
+                onNavigationItemSelected(itemid);
+            }
+            Log.e("abhi", "onBackPressed: "+getFragmentManager().getBackStackEntryCount() );
+            tvAppTitle.setText("DASHBOARD");
+            super.onBackPressed();
+
+
+        }
+        else
+        {
+            Log.e("abhi", "onBackPressed:else "+getFragmentManager().getBackStackEntryCount() );
+            getFragmentManager().popBackStack();
+
+        }
+    }
+
+    private void callRestart() {
+
+        PrefUtils.storeUserLoggedIn(false, this);
+        Intent intent = new Intent(getApplicationContext(), SolarProjectLoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+        finish();
+    }
+
+    private void setUserLoggedIn() {
+        PrefUtils.storeUserLoggedIn(true, this);
     }
 }

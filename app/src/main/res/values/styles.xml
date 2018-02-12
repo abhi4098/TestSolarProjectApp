@@ -6,12 +6,20 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/resister_button_color</item>
+        <item name="android:activatedBackgroundIndicator">@drawable/drawer_list_selector</item>
+        <item name="colorControlHighlight">@color/white</item>
 
     </style>
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="NavigationDrawerStyle">
+        <item name="android:textSize">15sp</item><!-- text size in menu-->
+        <!--<item name="android:listPreferredItemHeightSmall">40dp</item>&lt;!&ndash; item size in menu&ndash;&gt;
+        <item name="listPreferredItemHeightSmall">40dp</item> item size in menu-->
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

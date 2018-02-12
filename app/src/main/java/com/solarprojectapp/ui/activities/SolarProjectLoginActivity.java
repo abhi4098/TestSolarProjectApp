@@ -28,6 +28,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.solarprojectapp.R;
@@ -65,6 +66,7 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
     private View mProgressView;
     private View mLoginFormView;
     String test;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,15 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
         setContentView(R.layout.activity_solar_project_login);
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.email);
+        spinner = (Spinner) findViewById(R.id.spinner2);
+        List<String> list = new ArrayList<String>();
+        list.add("list 1");
+        list.add("list 2");
+        list.add("list 3");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(dataAdapter);
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -93,6 +104,7 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
                // attemptLogin();
                 Intent i = new Intent(SolarProjectLoginActivity.this, NavigationalActivity.class);
                 startActivity(i);
+                finish();
             }
         });
 
