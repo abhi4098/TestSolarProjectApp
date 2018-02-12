@@ -43,6 +43,7 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View view) {
+
         super.onBackPressed();
 
     }

@@ -59,6 +59,7 @@ public class NavigationalActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(0).setChecked(true);
         setUserLoggedIn();
     }
 
@@ -73,8 +74,15 @@ public class NavigationalActivity extends AppCompatActivity
         tvAppTitle.setText("DASHBOARD");
 
 
+
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        navigationView.getMenu().getItem(0).setChecked(true);
+        Log.e("abhi", "onResume: ....................." );
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

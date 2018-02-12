@@ -92,7 +92,8 @@
                             android:id="@+id/circularProfilePic"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/login_background"
+
+                            android:src="@drawable/profile_image"
                             />
 
                     </FrameLayout>
