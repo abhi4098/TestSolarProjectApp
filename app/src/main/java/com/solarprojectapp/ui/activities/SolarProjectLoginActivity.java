@@ -20,10 +20,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -76,13 +78,36 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
         mEmailView = (EditText) findViewById(R.id.email);
         spinner = (Spinner) findViewById(R.id.spinner2);
         List<String> list = new ArrayList<String>();
-        list.add("list 1");
-        list.add("list 2");
-        list.add("list 3");
+        list.add("Select");
+        list.add("Admin");
+        list.add("Customer");
+        list.add("Technical Partner");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String itemSelected = (String) spinner.getSelectedItem();
+                Log.e("abhi", "onItemSelected: ........."+itemSelected );
+                if (!itemSelected.equals("Select"))
+
+                {
+
+                    Intent j = new Intent(SolarProjectLoginActivity.this, NavigationalActivity.class);
+                    j.putExtra("LOGIN_TYPE", itemSelected);
+                    startActivity(j);
+                    finish();
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
@@ -102,9 +127,9 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
             @Override
             public void onClick(View view) {
                // attemptLogin();
-                Intent i = new Intent(SolarProjectLoginActivity.this, NavigationalActivity.class);
+               /* Intent i = new Intent(SolarProjectLoginActivity.this, NavigationalActivity.class);
                 startActivity(i);
-                finish();
+                finish();*/
             }
         });
 

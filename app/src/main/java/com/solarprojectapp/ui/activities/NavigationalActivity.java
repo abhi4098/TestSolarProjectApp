@@ -22,7 +22,9 @@ import android.widget.TextView;
 
 import com.solarprojectapp.R;
 import com.solarprojectapp.ui.fragments.MyProfileFragment;
+import com.solarprojectapp.ui.fragments.ProfileCustomerPageFragment;
 import com.solarprojectapp.ui.fragments.ProfileHomePageFragment;
+import com.solarprojectapp.ui.fragments.ProfileTechnicalFragment;
 import com.solarprojectapp.utils.PrefUtils;
 
 import butterknife.BindView;
@@ -30,13 +32,14 @@ import butterknife.ButterKnife;
 
 public class NavigationalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    String loginType;
 
-    Fragment profileHomePageFragment;
+    Fragment profileHomePageFragment,profileCustomerFragment,profileTechnicalFragment;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    /*@BindView(R.id.back_icon)
-    ImageView ivBackIcon;*/
+    @BindView(R.id.back_icon)
+    ImageView ivBackIcon;
     NavigationView navigationView;
 
     @BindView(R.id.tv_app_title)
@@ -49,6 +52,8 @@ public class NavigationalActivity extends AppCompatActivity
         ButterKnife.bind(this);
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
        // setSupportActionBar(toolbar);
+        ivBackIcon.setVisibility(View.INVISIBLE);
+        loginType= getIntent().getStringExtra("LOGIN_TYPE");
         setFragment();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -65,12 +70,30 @@ public class NavigationalActivity extends AppCompatActivity
 
 
     public void setFragment() {
+        if (loginType.equals("Admin")) {
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        profileHomePageFragment = new ProfileHomePageFragment();
-        fragmentTransaction.add(R.id.fragment_container, profileHomePageFragment, "PROFILE").addToBackStack(null);
-        fragmentTransaction.commit();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            profileHomePageFragment = new ProfileHomePageFragment();
+            fragmentTransaction.add(R.id.fragment_container, profileHomePageFragment, "PROFILE").addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+        else if (loginType.equals("Customer"))
+        {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            profileCustomerFragment = new ProfileCustomerPageFragment();
+            fragmentTransaction.add(R.id.fragment_container, profileCustomerFragment, "PROFILE").addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+        else
+        {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            profileTechnicalFragment = new ProfileTechnicalFragment();
+            fragmentTransaction.add(R.id.fragment_container, profileTechnicalFragment, "PROFILE").addToBackStack(null);
+            fragmentTransaction.commit();
+        }
         tvAppTitle.setText("DASHBOARD");
 
 
