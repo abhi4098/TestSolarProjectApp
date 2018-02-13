@@ -249,7 +249,7 @@
   android:textColor="@color/black"
   android:textSize="15sp"
   android:layout_gravity="center_horizontal"
-  android:text="MyWay Solar is leading brand in development,EPC and OM Services in the photovoltaic market. "
+  android:temyWayyWay Solar is leading brand in development,EPC and OM Services in the photovoltaic market. "
   />
 
 <LinearLayout
