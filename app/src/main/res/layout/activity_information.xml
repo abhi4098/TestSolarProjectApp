@@ -20,6 +20,7 @@
         android:text="Skip"
         android:background="@color/solar_pink"
         android:id="@+id/skip"
+        android:textColor="@color/white"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="5dp"
         android:layout_alignParentEnd="true"

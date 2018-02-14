@@ -137,9 +137,20 @@ public class NavigationalActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_dashboard) {
-            fragment = new ProfileHomePageFragment();
-            //ivBackIcon.setVisibility(View.INVISIBLE);
-            tvAppTitle.setText(item.getTitle());
+            if (loginType.equals("Admin")) {
+
+                fragment = new ProfileHomePageFragment();
+            }
+            else if (loginType.equals("Customer"))
+            {
+                fragment = new ProfileCustomerPageFragment();
+            }
+            else
+            {
+                fragment = new ProfileTechnicalFragment();
+            }
+            tvAppTitle.setText("DASHBOARD");
+
         } else if (id == R.id.nav_profile) {
 
             Intent i = new Intent(NavigationalActivity.this, MyProfileActivity.class);

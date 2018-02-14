@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.VideoView;
@@ -19,6 +20,7 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
     Context mContext;
     Button skip;
     VideoView videoview;
+    boolean canceled = false;
     Uri uri;
     private static int SPLASH_TIME_OUT = 25000;
 
@@ -50,14 +52,19 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(InformationActivity.this, SolarProjectLoginActivity.class);
-                startActivity(i);
-                finish();
+                Log.e("abhi", "run:outside "+canceled );
+                if (!canceled) {
+                    Log.e("abhi", "run:inside "+canceled );
+                    Intent i = new Intent(InformationActivity.this, SolarProjectLoginActivity.class);
+                    startActivity(i);
+                    finish();
+                }
             }
         }, SPLASH_TIME_OUT);
     }
     @Override
     public void onClick(View view) {
+        canceled =true;
         Intent i = new Intent(InformationActivity.this, SolarProjectLoginActivity.class);
         startActivity(i);
         finish();

@@ -90,7 +90,7 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 String itemSelected = (String) spinner.getSelectedItem();
-                Log.e("abhi", "onItemSelected: ........."+itemSelected );
+                Log.e("abhi", "onItemSelected:llllllllllllll ........."+itemSelected );
                 if (!itemSelected.equals("Select"))
 
                 {

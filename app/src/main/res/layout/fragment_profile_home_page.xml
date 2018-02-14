@@ -156,26 +156,39 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
+        <ProgressBar
+            android:id="@+id/progress_bar_blue"
+            android:layout_width="fill_parent"
+            android:max="100"
             android:layout_height="8dp"
+            android:background="@drawable/blue_progress"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             android:layout_marginTop="20dp"
-            android:background="@color/solar_blue"/>
-        <TextView
-            android:layout_width="match_parent"
+            style="@style/CustomProgressBarHorizontalBlue"
+            android:progress="1"/>
+
+        <ProgressBar
+            android:id="@+id/progress_bar_pink"
+            android:layout_width="fill_parent"
+            android:max="100"
+            android:maxHeight="10dp"
+            android:background="@drawable/pink_progress"
             android:layout_height="8dp"
             android:layout_marginStart="25dp"
-            android:layout_marginEnd="130dp"
-            android:background="@color/solar_pink"/>
-        <TextView
-            android:layout_width="match_parent"
+            android:layout_marginEnd="25dp"
+            style="@style/CustomProgressBarHorizontalPink"
+            android:progress="1"/>
+        <ProgressBar
+            android:id="@+id/progress_bar_yellow"
+            android:layout_width="fill_parent"
+            android:max="100"
+            android:background="@drawable/yellow_progress"
             android:layout_height="8dp"
             android:layout_marginStart="25dp"
-            android:layout_marginEnd="200dp"
-            android:background="@color/solar_yellow"/>
+            android:layout_marginEnd="25dp"
+            style="@style/CustomProgressBarHorizontalYellow"
+            android:progress="1"/>
 
     </LinearLayout>
 

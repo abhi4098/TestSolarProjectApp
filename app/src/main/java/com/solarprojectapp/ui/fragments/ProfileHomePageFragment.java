@@ -2,11 +2,13 @@ package com.solarprojectapp.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,18 @@ import butterknife.OnClick;
 
 public class ProfileHomePageFragment extends Fragment {
     private static final String TAG = "ProfileHomePageFragment";
+
+
+    @BindView(R.id.progress_bar_blue)
+    ProgressBar progressBlue;
+    @BindView(R.id.progress_bar_pink)
+    ProgressBar progressPink;
+    @BindView(R.id.progress_bar_yellow)
+    ProgressBar progressYellow;
+    private int progressStatus = 0;
+
+    private Handler handler = new Handler();
+
     /*private RetrofitInterface.UserWalletClient UserWalletAdapter;
     private RetrofitInterface.UserTransactionsClient MyTransactionAdapter;
     private RetrofitInterface.UserReceivedMoneyRequestClient UserReceivedMoneyRequestAdapter;
@@ -96,6 +110,77 @@ public class ProfileHomePageFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile_home_page, container, false);
         ButterKnife.bind(this, view);
+        // Start long running operation in a background thread
+       // progressBlue.setMax(100); // 100 maximum value for the progress value
+       // progressBlue.setProgress(50); // 50 default progress value for the progress bar
+        new Thread(new Runnable() {
+            public void run() {
+                while (progressStatus < 100) {
+                    progressStatus += 5;
+                    //Update progress bar with completion of operation
+                    handler.post(new Runnable() {
+                        public void run() {
+                            progressBlue.setProgress(progressStatus);
+
+                        }
+                    });
+                    try {
+                        // Sleep for 200 milliseconds.
+                        //Just to display the progress slowly
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            public void run() {
+                while (progressStatus < 50) {
+                    progressStatus += 5;
+                    //Update progress bar with completion of operation
+                    handler.post(new Runnable() {
+                        public void run() {
+                            progressPink.setProgress(progressStatus);
+
+                        }
+                    });
+                    try {
+                        // Sleep for 200 milliseconds.
+                        //Just to display the progress slowly
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+
+        new Thread(new Runnable() {
+            public void run() {
+                while (progressStatus < 20) {
+                    progressStatus += 2;
+                    //Update progress bar with completion of operation
+                    handler.post(new Runnable() {
+                        public void run() {
+                            progressYellow.setProgress(progressStatus);
+
+                        }
+                    });
+                    try {
+                        // Sleep for 200 milliseconds.
+                        //Just to display the progress slowly
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+
        /* setUpRestAdapter();
         getUserTransactions();
         getReceivedMoneyRequests();*/

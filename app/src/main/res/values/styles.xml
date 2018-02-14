@@ -49,5 +49,23 @@
         <item name="android:background">#ffffff</item>
     </style>
 
+
+    <style name="CustomProgressBarHorizontalBlue" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/blue_progress</item>
+        <item name="android:minHeight">10dip</item>
+        <item name="android:maxHeight">20dip</item>
+    </style>
+
+    <style name="CustomProgressBarHorizontalPink" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/pink_progress</item>
+        <item name="android:minHeight">10dip</item>
+        <item name="android:maxHeight">20dip</item>
+    </style>
+
+    <style name="CustomProgressBarHorizontalYellow" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/yellow_progress</item>
+        <item name="android:minHeight">10dip</item>
+        <item name="android:maxHeight">20dip</item>
+    </style>
 </resources>
 
