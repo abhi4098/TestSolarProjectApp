@@ -27,24 +27,39 @@ import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.solarprojectapp.R;
+import com.solarprojectapp.api.ApiAdapter;
+import com.solarprojectapp.api.RetrofitInterface;
+import com.solarprojectapp.generated.model.LoginResponse;
+import com.solarprojectapp.utils.LoadingDialog;
+import com.solarprojectapp.utils.NetworkUtils;
+import com.solarprojectapp.utils.PrefUtils;
+import com.solarprojectapp.utils.SnakBarUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static android.Manifest.permission.READ_CONTACTS;
+import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
 
 /**
  * A login screen that offers login via email/password.
  */
 public class SolarProjectLoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
-
+    private RetrofitInterface.UserLoginClient UserLoginAdapter;
+    String email;
+    String password= "";
+    String loginType;
     /**
      * Id to identity READ_CONTACTS permission request.
      */
@@ -77,6 +92,7 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
         // Set up the login form.
         mEmailView = (EditText) findViewById(R.id.email);
         spinner = (Spinner) findViewById(R.id.spinner2);
+        setUpRestAdapter();
         List<String> list = new ArrayList<String>();
         list.add("Select");
         list.add("Admin");
@@ -126,15 +142,18 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-               // attemptLogin();
-               /* Intent i = new Intent(SolarProjectLoginActivity.this, NavigationalActivity.class);
-                startActivity(i);
-                finish();*/
+                attemptLogin();
+
             }
         });
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+    private void setUpRestAdapter() {
+        UserLoginAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.UserLoginClient.class, MAIN_BASE_URL, this);
+
     }
 
     private void populateAutoComplete() {
@@ -196,29 +215,29 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
         mPasswordView.setError(null);
 
         // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        email = mEmailView.getText().toString();
+        password = mPasswordView.getText().toString();
 
         boolean cancel = false;
         View focusView = null;
 
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        /*if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
-        }
+        }*/
 
         // Check for a valid email address.
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
             cancel = true;
-        } else if (!isEmailValid(email)) {
+        } /*else if (!isEmailValid(email)) {
             mEmailView.setError(getString(R.string.error_invalid_email));
             focusView = mEmailView;
             cancel = true;
-        }
+        }*/
 
         if (cancel) {
             // There was an error; don't attempt login and focus the first
@@ -227,20 +246,73 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
         } else {
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            //showProgress(true);
+            getLoginDetails();
         }
     }
 
-    private boolean isEmailValid(String email) {
+   /* private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
         return email.contains("@");
-    }
+    }*/
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
         return password.length() > 4;
+    }
+
+    private void getLoginDetails() {
+        LoadingDialog.showLoadingDialog(this,"Loading...");
+        Call<LoginResponse> call = UserLoginAdapter.userLogIn( email,password,"memberlogin");
+        if (NetworkUtils.isNetworkConnected(this)) {
+            call.enqueue(new Callback<LoginResponse>() {
+
+                @Override
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+
+                    if (response.isSuccessful()) {
+
+                        if (response.body().getSuccess().equals("true")) {
+
+                            for (int i=0; i<response.body().getLoginData().size();i++) {
+                                loginType = response.body().getLoginData().get(i).getUsertype();
+                                PrefUtils.storeUserName(response.body().getLoginData().get(i).getUsername(), SolarProjectLoginActivity.this);
+                                PrefUtils.storeUserPassword(response.body().getLoginData().get(i).getPassword(), SolarProjectLoginActivity.this);
+                                PrefUtils.storeUserStatus(response.body().getLoginData().get(i).getUserStatus(), SolarProjectLoginActivity.this);
+                                PrefUtils.storeFkId(response.body().getLoginData().get(i).getFkLoggedid(), SolarProjectLoginActivity.this);
+                                PrefUtils.storeUserType(response.body().getLoginData().get(i).getUsertype(), SolarProjectLoginActivity.this);
+                            }
+                            Log.e("abhi", "onResponse:user name "+PrefUtils.getUserName(SolarProjectLoginActivity.this) );
+                            Log.e("abhi", "onResponse:user password "+PrefUtils.getUserPasspord(SolarProjectLoginActivity.this) );
+                            Log.e("abhi", "onResponse:user status "+PrefUtils.getUserStatus(SolarProjectLoginActivity.this) );
+                            Log.e("abhi", "onResponse: user fkid"+PrefUtils.getFkId(SolarProjectLoginActivity.this) );
+                            Log.e("abhi", "onResponse: user user type"+PrefUtils.getUserType(SolarProjectLoginActivity.this) );
+                            Intent intent = new Intent(SolarProjectLoginActivity.this, NavigationalActivity.class);
+                            intent.putExtra("LOGIN_TYPE", loginType);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(),response.body().getMsg(),Toast.LENGTH_SHORT).show();
+                        }
+                        LoadingDialog.cancelLoading();
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<LoginResponse> call, Throwable t) {
+                    Log.e("abhi", "onFailure: ---------------" +t.getLocalizedMessage());
+                    LoadingDialog.cancelLoading();
+                }
+
+
+            });
+
+        } else {
+            SnakBarUtils.networkConnected(this);
+        }
     }
 
     /**

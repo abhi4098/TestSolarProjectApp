@@ -12,12 +12,12 @@ public class PrefUtils {
    /* public static String KEY_AUTH_TOKEN = "user_auth_token";
     public static String LOGGED_IN_USER_GENDER = "user_gender";*/
     public static String KEY_USER_LOGGED_IN = "user_logged_in";
-   /* public static String KEY_USER_LOGGED_DATE = "user_loginDate";
-    public static String LOGGED_IN_USER_FIRST_NAME = "user_first_name";
-    public static String LOGGED_IN_USER_LAST_NAME = "user_last_name";
-    public static String KEY_USER_PASSWORD = "user_password";
-    public static String KEY_USER_PHONE = "user_phone";
-    public static String LOGGED_IN_USER_EMAIL = "user_email";
+    public static String USER_STATUS = "user_status";
+    public static String USER_FK_ID = "user_fk_id";
+    public static String USER_NAME = "user_name";
+    public static String USER_PASSWORD = "user_password";
+    public static String USER_TYPE = "user_type";
+  /*  public static String LOGGED_IN_USER_EMAIL = "user_email";
     public static String LOGGED_IN_USER_ADD = "user_add";
     public static String LOGGED_IN_USER_ROLE_ID = "user_role_id";
     public static String LOGGED_IN_USER_ROLE= "user_role";
@@ -34,7 +34,6 @@ public class PrefUtils {
     public static String USER_STATE= "user_state";
     public static String USER_IMAGE= "user_image";
 */
-
     /**
      * Constant string for file name to store the SharedPreferences of the
      * application. This is required to get the same SharedPreferences object
@@ -103,74 +102,74 @@ public class PrefUtils {
 
 
 
-   /* public static void storeEmail(String email, Context context) {
+    public static void storeUserStatus(String status, Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
         sharedPreferences.edit()
-                .putString(LOGGED_IN_USER_EMAIL, email)
+                .putString(USER_STATUS, status)
                 .apply();
 
     }
 
-    public static String getEmail(Context context) {
+    public static String getUserStatus(Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
-        return sharedPreferences.getString(LOGGED_IN_USER_EMAIL, "");
+        return sharedPreferences.getString(USER_STATUS, "");
     }
 
 
-    public static void storeFirstName(String firstName, Context context) {
+    public static void storeUserName(String name, Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
         sharedPreferences.edit()
-                .putString(LOGGED_IN_USER_FIRST_NAME, firstName)
+                .putString(USER_NAME, name)
                 .apply();
 
     }
 
-    public static String getFirstName(Context context) {
+    public static String getUserName(Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
-        return sharedPreferences.getString(LOGGED_IN_USER_FIRST_NAME, "");
+        return sharedPreferences.getString(USER_NAME, "");
     }
 
-    public static void storeLastName(String lastName, Context context) {
+    public static void storeUserPassword(String password, Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
         sharedPreferences.edit()
-                .putString(LOGGED_IN_USER_LAST_NAME, lastName)
+                .putString(USER_PASSWORD, password)
                 .apply();
 
     }
 
-    public static String getLastName(Context context) {
+    public static String getUserPasspord(Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
-        return sharedPreferences.getString(LOGGED_IN_USER_LAST_NAME, "");
+        return sharedPreferences.getString(USER_PASSWORD, "");
     }
 
-    public static void storeRole(String role, Context context) {
+    public static void storeFkId(String fkId, Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
         sharedPreferences.edit()
-                .putString(LOGGED_IN_USER_ROLE, role)
+                .putString(USER_FK_ID, fkId)
                 .apply();
 
     }
 
-    public static String getRole(Context context) {
+    public static String getFkId(Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
-        return sharedPreferences.getString(LOGGED_IN_USER_ROLE, "");
+        return sharedPreferences.getString(USER_FK_ID, "");
     }
 
 
-    public static void storeRoleId(String roleId, Context context) {
+    public static void storeUserType(String roleId, Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
         sharedPreferences.edit()
-                .putString(LOGGED_IN_USER_ROLE_ID, roleId)
+                .putString(USER_TYPE, roleId)
                 .apply();
 
     }
 
-    public static String getRoleId(Context context) {
+    public static String getUserType(Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
-        return sharedPreferences.getString(LOGGED_IN_USER_ROLE_ID, "");
+        return sharedPreferences.getString(USER_TYPE, "");
     }
 
-    public static void storeRoleParent(String roleParent, Context context) {
+  /*  public static void storeRoleParent(String roleParent, Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
         sharedPreferences.edit()
                 .putString(LOGGED_IN_USER_ROLE_PARENT, roleParent)
@@ -391,6 +390,5 @@ public class PrefUtils {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
         return sharedPreferences.getString(USER_IMAGE, "");
     }
-
 */
 }

@@ -20,8 +20,8 @@ import butterknife.ButterKnife;
 public class ProfileCustomerPageFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "ProfileHomePageFragment";
 
-    @BindView(R.id.add_complaint_button)
-    Button addComplaintBtn;
+   /* @BindView(R.id.add_complaint_button)
+    Button addComplaintBtn;*/
     /*private RetrofitInterface.UserWalletClient UserWalletAdapter;
     private RetrofitInterface.UserTransactionsClient MyTransactionAdapter;
     private RetrofitInterface.UserReceivedMoneyRequestClient UserReceivedMoneyRequestAdapter;
@@ -98,7 +98,7 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile_customer_page, container, false);
         ButterKnife.bind(this, view);
-        addComplaintBtn.setOnClickListener(this);
+        //addComplaintBtn.setOnClickListener(this);
        /* setUpRestAdapter();
         getUserTransactions();
         getReceivedMoneyRequests();*/

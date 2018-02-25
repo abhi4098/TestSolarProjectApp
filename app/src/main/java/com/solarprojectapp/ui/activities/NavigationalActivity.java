@@ -2,8 +2,6 @@ package com.solarprojectapp.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -21,18 +19,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.solarprojectapp.R;
-import com.solarprojectapp.ui.fragments.MyProfileFragment;
+import com.solarprojectapp.api.ApiAdapter;
+import com.solarprojectapp.api.RetrofitInterface;
+import com.solarprojectapp.generated.model.LoginResponse;
 import com.solarprojectapp.ui.fragments.ProfileCustomerPageFragment;
 import com.solarprojectapp.ui.fragments.ProfileHomePageFragment;
 import com.solarprojectapp.ui.fragments.ProfileTechnicalFragment;
+import com.solarprojectapp.utils.LoadingDialog;
+import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.PrefUtils;
+import com.solarprojectapp.utils.SnakBarUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
 
 public class NavigationalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     String loginType;
+    private RetrofitInterface.UserLoginClient UserLoginAdapter;
 
     Fragment profileHomePageFragment,profileCustomerFragment,profileTechnicalFragment;
     @BindView(R.id.toolbar)
@@ -66,6 +75,7 @@ public class NavigationalActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
         setUserLoggedIn();
+        setUpRestAdapter();
     }
 
 
@@ -78,7 +88,23 @@ public class NavigationalActivity extends AppCompatActivity
             fragmentTransaction.add(R.id.fragment_container, profileHomePageFragment, "PROFILE").addToBackStack(null);
             fragmentTransaction.commit();
         }
-        else if (loginType.equals("Customer"))
+        else if (loginType.equals("End Consumer"))
+        {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            profileCustomerFragment = new ProfileCustomerPageFragment();
+            fragmentTransaction.add(R.id.fragment_container, profileCustomerFragment, "PROFILE").addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+        else if (loginType.equals("Client"))
+        {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            profileCustomerFragment = new ProfileCustomerPageFragment();
+            fragmentTransaction.add(R.id.fragment_container, profileCustomerFragment, "PROFILE").addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+        else if (loginType.equals("Technical Partner"))
         {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -160,7 +186,7 @@ public class NavigationalActivity extends AppCompatActivity
 
 
         } else if (id == R.id.nav_logout) {
-            callRestart();
+            logoutSolarApp();
 
         } /*else if (id == R.id.nav_manage) {
 
@@ -206,13 +232,44 @@ public class NavigationalActivity extends AppCompatActivity
         }
     }
 
-    private void callRestart() {
+    private void setUpRestAdapter() {
+        UserLoginAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.UserLoginClient.class, MAIN_BASE_URL, this);
 
-        PrefUtils.storeUserLoggedIn(false, this);
-        Intent intent = new Intent(getApplicationContext(), SolarProjectLoginActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-        finish();
+    }
+
+    private void logoutSolarApp() {
+        LoadingDialog.showLoadingDialog(this,"Loading...");
+        Call<LoginResponse> call = UserLoginAdapter.userLogIn( PrefUtils.getUserName(NavigationalActivity.this),PrefUtils.getUserPasspord(NavigationalActivity.this),"memberlogout");
+        if (NetworkUtils.isNetworkConnected(this)) {
+            call.enqueue(new Callback<LoginResponse>() {
+
+                @Override
+                public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+
+                    if (response.isSuccessful()) {
+                        LoadingDialog.cancelLoading();
+
+                        Log.e("abhi", "onResponse: " +response.body().getMsg());
+                        PrefUtils.storeUserLoggedIn(false, NavigationalActivity.this);
+                        Intent intent = new Intent(getApplicationContext(), SolarProjectLoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<LoginResponse> call, Throwable t) {
+                    Log.e("abhi", "onFailure: ---------------" +t.getLocalizedMessage());
+                    LoadingDialog.cancelLoading();
+                }
+
+
+            });
+
+        } else {
+            SnakBarUtils.networkConnected(this);
+        }
     }
 
     private void setUserLoggedIn() {
