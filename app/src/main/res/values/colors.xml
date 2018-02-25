@@ -15,6 +15,7 @@
     <color name="silver">#C0C0C0</color>
     <color name="solar_blue">#1c7cb2</color>
     <color name="solar_pink">#ea466b</color>
+    <color name="solar_pink_gradient">#90ea466b</color>
     <color name="solar_yellow">#fcb261</color>
     <color name="complaint_background">#fdf6f5</color>
 

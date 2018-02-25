@@ -3,10 +3,13 @@ package com.solarprojectapp.ui.fragments;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.solarprojectapp.R;
 import com.solarprojectapp.ui.activities.AddComplaintActivity;
@@ -15,12 +18,61 @@ import com.solarprojectapp.ui.activities.NavigationalActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class ProfileCustomerPageFragment extends Fragment implements View.OnClickListener {
     private static final String TAG = "ProfileHomePageFragment";
 
-   /* @BindView(R.id.add_complaint_button)
+
+    @BindView(R.id.information)
+    LinearLayout llInformation;
+
+    @BindView(R.id.maintenance_data)
+    LinearLayout llMaintenancedData;
+
+    @BindView(R.id.text_maintainence)
+    TextView tvMaintenancedData;
+
+    @BindView(R.id.text_information)
+    TextView tvInformationData;
+
+    @BindView(R.id.preventive_maintainace)
+    LinearLayout llImageMaintenance;
+
+    Boolean showInformation = true;
+
+
+
+
+    @OnClick(R.id.preventive_maintainace)
+    public void preventiveMaintaince() {
+        //
+        if (showInformation)
+        {
+            llImageMaintenance.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.solar_pink_gradient));
+            llInformation.setVisibility(View.GONE);
+            tvInformationData.setVisibility(View.GONE);
+
+            llMaintenancedData.setVisibility(View.VISIBLE);
+            tvMaintenancedData.setVisibility(View.VISIBLE);
+
+            showInformation =false;
+        }
+        else {
+            llImageMaintenance.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.solar_pink));
+            llInformation.setVisibility(View.VISIBLE);
+            tvInformationData.setVisibility(View.VISIBLE);
+
+            llMaintenancedData.setVisibility(View.GONE);
+            tvMaintenancedData.setVisibility(View.GONE);
+            showInformation =true;
+        }
+
+
+    }
+
+    /* @BindView(R.id.add_complaint_button)
     Button addComplaintBtn;*/
     /*private RetrofitInterface.UserWalletClient UserWalletAdapter;
     private RetrofitInterface.UserTransactionsClient MyTransactionAdapter;

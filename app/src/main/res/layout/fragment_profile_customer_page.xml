@@ -14,8 +14,6 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:background="@color/complaint_background"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_height="wrap_content">
 
         <TextView
@@ -23,9 +21,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginEnd="10dp"
+            android:layout_margin="5dp"
             android:textColor="@color/solar_blue"
             android:lines="1"
-            android:textSize="15sp"
             android:text="Project Owner"
 
             />
@@ -58,7 +56,7 @@
                 android:layout_alignParentEnd="true"
                 android:textColor="@color/solar_pink"
                 android:lines="1"
-                android:textSize="15sp"
+                android:layout_marginTop="-5dp"
                 android:text="MyWay Solar"
                 android:layout_gravity="center_horizontal"
                 />
@@ -67,53 +65,292 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             android:weightSum="1"
 
             >
             <LinearLayout
+                android:id="@+id/preventive_maintainace"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="140dp"
                 android:orientation="vertical"
                 android:background="@color/solar_pink"
                 android:layout_weight=".5"
                 >
 
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/preventivemaintenance"
+                    android:layout_height="70dp" />
+
+               <TextView
+                    android:layout_width="wrap_content"
+                   android:layout_marginTop="10dp"
+                    android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:textSize="15sp"
+                   android:textStyle="bold"
+                   android:textColor="@color/white"
+                    android:text="Preventive"/>
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
                     android:textColor="@color/white"
-                    android:layout_marginTop="20dp"
-                    android:textSize="12sp"
-                    android:text="@string/new_complaints_received"
-                    android:layout_height="wrap_content" />
-
-
+                    android:layout_height="wrap_content"
+                    android:text="Maintenance"/>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_height="140dp"
                 android:orientation="vertical"
                 android:layout_weight=".5"
                 android:background="@color/solar_blue"
                 >
-                <TextView
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_marginTop="10dp"
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/white"
+                    android:background="@drawable/braekdown"
+                    android:layout_height="70dp" />
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:textSize="12sp"
-                    android:text="To be closed by today"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:text="Breakdown"/>
 
             </LinearLayout>
 
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal"
+            android:weightSum="1"
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:orientation="vertical"
+                android:background="@color/solar_blue"
+                android:layout_weight=".5"
+                >
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:orientation="vertical"
+                android:layout_weight=".5"
+                android:background="@color/solar_pink"
+                >
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:lines="1"
+            android:textSize="18sp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="Information"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:id="@+id/information"
+            android:background="@drawable/rectangular_background_curved_edges_consumer"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/solar_blue"
+                    android:lines="1"
+                    android:textSize="15sp"
+                    android:text="Capacity"
+
+                    />
+
+                <TextView
+                    android:id="@+id/project_capacity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/solar_pink"
+                    android:lines="1"
+                    android:textSize="15sp"
+                    android:text="10kw"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/solar_blue"
+                    android:lines="1"
+                    android:textSize="15sp"
+                    android:text="Estimated Generation Per Day"
+
+                    />
+
+                <TextView
+                    android:id="@+id/generation_per_day"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/solar_pink"
+                    android:lines="1"
+                    android:textSize="15sp"
+                    android:text="2 Units"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="30dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:textStyle="bold"
+                    android:textColor="@color/solar_blue"
+                    android:lines="1"
+                    android:textSize="15sp"
+                    android:text="Actual Generations"
+
+                    />
+
+                <TextView
+                    android:id="@+id/actual_generation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/solar_pink"
+                    android:lines="1"
+                    android:textSize="15sp"
+                    android:text="2 Units"
+                    android:layout_gravity="center_horizontal"
+                    />
+                <TextView
+                    android:id="@+id/as_on_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="normal"
+                    android:layout_below="@id/actual_generation"
+                    android:textColor="@color/solar_blue"
+                    android:lines="1"
+                    android:textSize="12sp"
+                    android:text="As on 08/02/2018"
+                    android:layout_gravity="center_horizontal"
+                    />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/text_maintainence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:lines="1"
+            android:textSize="18sp"
+            android:visibility="gone"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="Preventive Maintenance"/>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/maintenance_data"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/rectangular_background_curved_edges_consumer"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Under Development . . ."/>
+    </LinearLayout>
         <!--<RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

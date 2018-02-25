@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
 import com.solarprojectapp.R;
+import com.solarprojectapp.utils.PrefUtils;
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -39,19 +40,18 @@ public class SplashActivity extends AppCompatActivity {
     }
 
 
-
     private void CheckLogin() {
-        Intent i = new Intent(SplashActivity.this, InformationActivity.class);
-        startActivity(i);
-       /* Boolean isLoggedIn = PrefUtils.getUserLoggedIn(this);
+        Boolean isLoggedIn = PrefUtils.getUserLoggedIn(this);
         if (isLoggedIn) {
             Intent i = new Intent(SplashActivity.this, NavigationalActivity.class);
+            i.putExtra("LOGIN_TYPE", PrefUtils.getUserType(SplashActivity.this));
             startActivity(i);
         } else {
-            Intent i = new Intent(SplashActivity.this, LoginActivity.class);
+            Intent i = new Intent(SplashActivity.this, InformationActivity.class);
             startActivity(i);
-        }*/
+        }
     }
+
     }
 
 

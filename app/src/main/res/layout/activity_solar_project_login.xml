@@ -112,6 +112,7 @@
 
             <Spinner
                 android:id="@+id/spinner2"
+                android:visibility="gone"
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
                 android:layout_width="match_parent"
