@@ -39,6 +39,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -73,6 +74,14 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
 
     @BindView(R.id.person_image)
     de.hdodenhof.circleimageview.CircleImageView personImage;
+
+
+    @OnClick(R.id.change_password_button)
+    public void changePass()
+    {
+        Intent i = new Intent(MyProfileActivity.this, ChangePasswordActivity.class);
+        startActivity(i);
+    }
 
 
 

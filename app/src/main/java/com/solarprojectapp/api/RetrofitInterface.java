@@ -3,6 +3,7 @@ package com.solarprojectapp.api;
 
 
 
+import com.solarprojectapp.generated.model.ChangePasswordResponse;
 import com.solarprojectapp.generated.model.LoginResponse;
 import com.solarprojectapp.generated.model.ProfileResponse;
 
@@ -29,6 +30,16 @@ public class RetrofitInterface {
                 @Field("username") String username,
                 @Field("user_type") String userType,
                 @Field("id") String id,
+                @Field("type") String type);
+    }
+
+    public interface UserChangePasswordClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<ChangePasswordResponse> userChangePassword(
+                @Field("username") String username,
+                @Field("old_pass") String oldpass,
+                @Field("new_pass") String newpass,
                 @Field("type") String type);
     }
      /*   Call<LoginResponse> userLogIn(@Body Login.LoginDetails loginDetails);

@@ -236,7 +236,7 @@
         android:textStyle="normal"
         android:textColor="@color/black"
         android:textSize="15sp"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
 
         />
 
@@ -252,6 +252,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/change_password_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
