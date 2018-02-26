@@ -4,6 +4,7 @@ package com.solarprojectapp.api;
 
 
 import com.solarprojectapp.generated.model.LoginResponse;
+import com.solarprojectapp.generated.model.ProfileResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -18,6 +19,16 @@ public class RetrofitInterface {
         public Call<LoginResponse> userLogIn(
                 @Field("username") String username,
                 @Field("password") String password,
+                @Field("type") String type);
+    }
+
+    public interface UserProfileClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<ProfileResponse> userProfile(
+                @Field("username") String username,
+                @Field("user_type") String userType,
+                @Field("id") String id,
                 @Field("type") String type);
     }
      /*   Call<LoginResponse> userLogIn(@Body Login.LoginDetails loginDetails);

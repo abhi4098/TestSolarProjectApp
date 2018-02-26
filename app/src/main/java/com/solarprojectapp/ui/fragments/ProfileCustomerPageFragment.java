@@ -13,8 +13,10 @@ import android.widget.TextView;
 
 import com.solarprojectapp.R;
 import com.solarprojectapp.ui.activities.AddComplaintActivity;
+import com.solarprojectapp.ui.activities.BreakdownActivity;
 import com.solarprojectapp.ui.activities.MyProfileActivity;
 import com.solarprojectapp.ui.activities.NavigationalActivity;
+import com.solarprojectapp.ui.activities.SolarProjectLoginActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,9 +42,16 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
     @BindView(R.id.preventive_maintainace)
     LinearLayout llImageMaintenance;
 
+   /* @BindView(R.id.breakdown)
+    LinearLayout llBreakdown;*/
+
     Boolean showInformation = true;
 
-
+    @OnClick(R.id.breakdown)
+    public void breakdown() {
+        Intent intent = new Intent(getActivity(), BreakdownActivity.class);
+        startActivity(intent);
+    }
 
 
     @OnClick(R.id.preventive_maintainace)

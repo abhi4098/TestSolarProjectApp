@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:fillViewport="true"
+    android:layout_marginBottom="10dp"
+
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar_actionbar"
+        layout="@layout/activity_toolbar_complaint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/complaint_background"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/add_complaint_button"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="30dp"
+            android:background="@color/solar_pink"
+            android:text="ADD A COMPLAINT"/>
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_alignParentStart="true"
+            android:textStyle="bold"
+            android:textColor="@color/solar_blue"
+            android:lines="1"
+            android:textSize="15sp"
+            android:text="Project"
+
+            />
+
+        <TextView
+            android:id="@+id/project_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/black"
+            android:lines="1"
+            android:textSize="15sp"
+            android:text="Solar Roof Top"
+            android:layout_gravity="center_horizontal"
+            />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+          >
+
+            <View style="@style/Divider_light_gray" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold"
+                android:textColor="@color/solar_blue"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="Project Owner"
+
+                />
+
+            <TextView
+                android:id="@+id/project_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="My Way Solar"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+           >
+
+            <View style="@style/Divider_light_gray" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold"
+                android:textColor="@color/solar_blue"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="Date of Commisioning"
+
+                />
+
+            <TextView
+                android:id="@+id/commisioning_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="08/02/2018"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            >
+
+            <View style="@style/Divider_light_gray" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold"
+                android:textColor="@color/solar_blue"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="ONM Started on"
+
+                />
+
+            <TextView
+                android:id="@+id/onm_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="08/02/2018"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+           >
+
+            <View style="@style/Divider_light_gray" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold"
+                android:textColor="@color/solar_blue"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="Other Details"
+
+                />
+
+            <TextView
+                android:id="@+id/other_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="Solar Roof Top"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+           >
+
+            <View style="@style/Divider_light_gray" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold"
+                android:textColor="@color/solar_blue"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="Capacity"
+
+                />
+
+            <TextView
+                android:id="@+id/project_capacity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="10kw"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            >
+
+            <View style="@style/Divider_light_gray" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold"
+                android:textColor="@color/solar_blue"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="Estimated Generation Per Day"
+
+                />
+
+            <TextView
+                android:id="@+id/generation_per_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="2 Units"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+           >
+
+            <View style="@style/Divider_light_gray" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold"
+                android:textColor="@color/solar_blue"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="Actual Generation"
+
+                />
+
+            <TextView
+                android:id="@+id/actual_generation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="2 Units"
+                android:layout_gravity="center_horizontal"
+                />
+            <TextView
+                android:id="@+id/as_on_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:layout_below="@id/actual_generation"
+                android:textColor="@color/solar_blue"
+                android:lines="1"
+                android:textSize="12sp"
+                android:text="As on 08/02/2018"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </RelativeLayout>
+       <!-- <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp">
+
+            <View style="@style/Divider_light_gray" />
+        </LinearLayout>-->
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+

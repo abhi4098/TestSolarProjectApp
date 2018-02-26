@@ -31,8 +31,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
@@ -108,6 +108,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/breakdown"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:orientation="vertical"
@@ -286,7 +287,7 @@
                     android:textColor="@color/solar_blue"
                     android:lines="1"
                     android:textSize="15sp"
-                    android:text="Actual Generations"
+                    android:text="Actual Generation"
 
                     />
 
@@ -328,16 +329,17 @@
             android:textColor="@color/black"
             android:lines="1"
             android:textSize="18sp"
-            android:visibility="gone"
+              android:visibility="gone"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="10dp"
             android:text="Preventive Maintenance"/>
 
     <LinearLayout
-        android:visibility="gone"
+
         android:id="@+id/maintenance_data"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:visibility="gone"
+        android:layout_height="170dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:orientation="vertical"
@@ -349,7 +351,77 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Under Development . . ."/>
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/solar_blue"
+            android:text="Upcoming Date for Preventive Maintenance"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <ImageView
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_marginStart="50dp"
+
+                android:layout_gravity="center_vertical"
+                android:background="@color/solar_pink"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/solar_pink"
+            android:text=" 28-02-2018"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <ImageView
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_marginStart="50dp"
+
+                android:layout_gravity="center_vertical"
+                android:background="@color/solar_pink"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:textStyle="bold"
+                android:textColor="@color/solar_pink"
+                android:text=" 01-03-2018"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp">
+            <ImageView
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+                android:layout_marginStart="50dp"
+
+                android:layout_gravity="center_vertical"
+                android:background="@color/solar_pink"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:textStyle="bold"
+                android:textColor="@color/solar_pink"
+                android:text=" 09-03-2018"/>
+        </LinearLayout>
     </LinearLayout>
         <!--<RelativeLayout
             android:layout_width="match_parent"
