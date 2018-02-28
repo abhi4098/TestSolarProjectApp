@@ -38,8 +38,8 @@ public class RetrofitInterface {
         @POST("query.php")
         public Call<ChangePasswordResponse> userChangePassword(
                 @Field("username") String username,
-                @Field("old_pass") String oldpass,
-                @Field("new_pass") String newpass,
+                @Field("oldpass") String oldpass,
+                @Field("newpass") String newpass,
                 @Field("type") String type);
     }
      /*   Call<LoginResponse> userLogIn(@Body Login.LoginDetails loginDetails);
