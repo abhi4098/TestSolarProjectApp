@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include
+        android:id="@+id/toolbar_actionbar"
+        layout="@layout/activity_toolbar_complaint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:textStyle="bold"
+            android:textColor="@color/solar_blue"
+            android:lines="1"
+            android:textSize="15sp"
+            android:text="Complaint"
+
+            />
+
+        <TextView
+            android:id="@+id/complaint_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/black"
+            android:lines="1"
+            android:textSize="15sp"
+            android:text="2 Units"
+            android:layout_gravity="center_horizontal"
+            />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp">
+
+        <View style="@style/Divider_light_gray" />
+    </LinearLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_alignParentStart="true"
+            android:textStyle="bold"
+            android:textColor="@color/solar_blue"
+            android:lines="1"
+            android:textSize="15sp"
+            android:text="Project Type"
+
+            />
+
+        <TextView
+            android:id="@+id/project_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/black"
+            android:lines="1"
+            android:textSize="15sp"
+            android:text="Solar Roof Top"
+            android:layout_gravity="center_horizontal"
+            />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp">
+
+            <View style="@style/Divider_light_gray" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold"
+                android:textColor="@color/solar_blue"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="Project Owner"
+
+                />
+
+            <TextView
+                android:id="@+id/project_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="My Way Solar"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp">
+
+            <View style="@style/Divider_light_gray" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold"
+                android:textColor="@color/solar_blue"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="Complaint Id"
+
+                />
+
+            <TextView
+                android:id="@+id/complaint_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="08/02/2018"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp">
+
+            <View style="@style/Divider_light_gray" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold"
+                android:textColor="@color/solar_blue"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="EndConsumer"
+
+                />
+
+            <TextView
+                android:id="@+id/end_consumer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="08/02/2018"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp">
+
+            <View style="@style/Divider_light_gray" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold"
+                android:textColor="@color/solar_blue"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="State"
+
+                />
+
+            <TextView
+                android:id="@+id/state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="Solar Roof Top"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp">
+
+            <View style="@style/Divider_light_gray" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold"
+                android:textColor="@color/solar_blue"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="Contact"
+
+                />
+
+            <TextView
+                android:id="@+id/contact_no"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="10kw"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp">
+
+            <View style="@style/Divider_light_gray" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold"
+                android:textColor="@color/solar_blue"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="Description"
+
+                />
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="normal"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:lines="1"
+                android:textSize="15sp"
+                android:text="2 Units"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/add_complaint_button"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:background="@color/solar_pink"
+            android:text="ADD A COMPLAINT"/>
+
+
+</LinearLayout>
