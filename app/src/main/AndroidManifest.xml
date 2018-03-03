@@ -46,6 +46,12 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.activities.ChangePasswordActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.NewComplaintListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.NewSparePartsPendingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.SparePartsRequestedActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -5,7 +5,10 @@ package com.solarprojectapp.api;
 
 import com.solarprojectapp.generated.model.ChangePasswordResponse;
 import com.solarprojectapp.generated.model.LoginResponse;
+import com.solarprojectapp.generated.model.NewComplaintResponse;
 import com.solarprojectapp.generated.model.ProfileResponse;
+import com.solarprojectapp.generated.model.SparePartsPendingResponse;
+import com.solarprojectapp.generated.model.SparePartsRequestResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -40,6 +43,27 @@ public class RetrofitInterface {
                 @Field("username") String username,
                 @Field("oldpass") String oldpass,
                 @Field("newpass") String newpass,
+                @Field("type") String type);
+    }
+
+    public interface UserNewCompaintListClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<NewComplaintResponse> userNewComplaintList(
+                @Field("type") String type);
+    }
+
+    public interface SparePartsPendingClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<SparePartsPendingResponse> sparePartsPendingList(
+                @Field("type") String type);
+    }
+
+    public interface SparePartsRequestClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<SparePartsRequestResponse> sparePartsRequestList(
                 @Field("type") String type);
     }
      /*   Call<LoginResponse> userLogIn(@Body Login.LoginDetails loginDetails);

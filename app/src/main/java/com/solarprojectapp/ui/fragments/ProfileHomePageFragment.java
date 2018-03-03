@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 
 import com.solarprojectapp.R;
+import com.solarprojectapp.ui.activities.NewComplaintListActivity;
+import com.solarprojectapp.ui.activities.NewSparePartsPendingActivity;
+import com.solarprojectapp.ui.activities.SparePartsRequestedActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +36,28 @@ public class ProfileHomePageFragment extends Fragment {
     private int progressStatus = 0;
 
     private Handler handler = new Handler();
+    @OnClick(R.id.new_complaints_button)
+    public void newComplaintList()
+    {
+      Intent i = new Intent(getActivity(), NewComplaintListActivity.class);
+        getActivity().startActivity(i);
+    }
+
+
+    @OnClick(R.id.ll_spare_pats_pendingg)
+    public void sparePartsPending()
+    {
+        Intent i = new Intent(getActivity(), NewSparePartsPendingActivity.class);
+        getActivity().startActivity(i);
+    }
+
+    @OnClick(R.id.spare_part_button)
+    public void sparePartsRequested()
+    {
+        Intent i = new Intent(getActivity(), SparePartsRequestedActivity.class);
+        getActivity().startActivity(i);
+    }
+
 
     /*private RetrofitInterface.UserWalletClient UserWalletAdapter;
     private RetrofitInterface.UserTransactionsClient MyTransactionAdapter;
