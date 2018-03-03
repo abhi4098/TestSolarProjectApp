@@ -37,7 +37,7 @@ public class NewComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
 
     // Hold views of the ListView to improve its scrolling performance
     static class ViewHolder {
-        public TextView complaintId;
+        public TextView complaintName;
         public TextView projectOwner;
         public TextView endConsumer;
         public TextView projectType;
@@ -61,10 +61,10 @@ public class NewComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             rowView= inflater.inflate(groupid, parent, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.complaintId= (TextView) rowView.findViewById(R.id.complaint_id);
-            viewHolder.endConsumer= (TextView) rowView.findViewById(R.id.account_num);
-            viewHolder.projectOwner= (TextView) rowView.findViewById(R.id.account_type);
-            viewHolder.projectType= (TextView) rowView.findViewById(R.id.bank_name);
+            viewHolder.complaintName= (TextView) rowView.findViewById(R.id.complaint_name);
+            viewHolder.endConsumer= (TextView) rowView.findViewById(R.id.end_consumer);
+            viewHolder.projectOwner= (TextView) rowView.findViewById(R.id.project_owner);
+            viewHolder.projectType= (TextView) rowView.findViewById(R.id.project_type);
 
 
 
@@ -78,7 +78,7 @@ public class NewComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
         final ViewHolder holder = (ViewHolder) rowView.getTag();
 
         if (complaintListsDatum !=null) {
-            holder.complaintId.setText(complaintListsDatum.getComplainId());
+            holder.complaintName.setText(complaintListsDatum.getComplaint());
             holder.endConsumer.setText(complaintListsDatum.getEndConsumer());
             holder.projectType.setText(complaintListsDatum.getProjectType());
             holder.projectOwner.setText(complaintListsDatum.getProjectOwner());

@@ -120,9 +120,9 @@ public class NewComplaintListActivity extends AppCompatActivity implements View.
 
     private void setNewComplaints(Response<NewComplaintResponse> response) {
         newComplaintList = new ArrayList<>();
-        Log.e("abhi", "setNewComplaints: "+response.body().getComplaintListsData().size() );
-        for (int i = 0; i < response.body().getComplaintListsData().size(); i++) {
 
+        for (int i = 0; i < response.body().getComplaintListsData().size(); i++) {
+            //Log.e("abhi", "setNewComplaints: "+response.body().getComplaintListsData().get(i).size() );
             ComplaintListsDatum complaintListsDatum = new ComplaintListsDatum();
             complaintListsDatum.setComplainId(response.body().getComplaintListsData().get(i).get(i).getComplainId());
             complaintListsDatum.setComplainDescription(response.body().getComplaintListsData().get(i).get(i).getComplainDescription());
@@ -136,7 +136,7 @@ public class NewComplaintListActivity extends AppCompatActivity implements View.
 
         }
 
-        newComplaintAdapter = new NewComplaintAdapter(this, R.layout.layout_new_complaint_list, R.id.complaint_id, newComplaintList);
+        newComplaintAdapter = new NewComplaintAdapter(this, R.layout.layout_new_complaint_list, R.id.complaint_name, newComplaintList);
         listview.setAdapter(newComplaintAdapter);
         LoadingDialog.cancelLoading();
         listview.setDivider(new ColorDrawable(Color.TRANSPARENT));  //hide the divider
