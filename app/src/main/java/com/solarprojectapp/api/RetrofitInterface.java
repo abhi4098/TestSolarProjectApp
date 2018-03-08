@@ -4,6 +4,7 @@ package com.solarprojectapp.api;
 
 
 import com.solarprojectapp.generated.model.ChangePasswordResponse;
+import com.solarprojectapp.generated.model.DashboardDataResponse;
 import com.solarprojectapp.generated.model.LoginResponse;
 import com.solarprojectapp.generated.model.NewComplaintResponse;
 import com.solarprojectapp.generated.model.ProfileResponse;
@@ -64,6 +65,12 @@ public class RetrofitInterface {
         @FormUrlEncoded
         @POST("query.php")
         public Call<SparePartsRequestResponse> sparePartsRequestList(
+                @Field("type") String type);
+    }
+    public interface AdminDataClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<DashboardDataResponse> DashboardDataList(
                 @Field("type") String type);
     }
      /*   Call<LoginResponse> userLogIn(@Body Login.LoginDetails loginDetails);

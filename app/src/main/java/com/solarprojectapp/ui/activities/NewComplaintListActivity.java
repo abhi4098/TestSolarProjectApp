@@ -122,18 +122,20 @@ public class NewComplaintListActivity extends AppCompatActivity implements View.
         newComplaintList = new ArrayList<>();
 
         for (int i = 0; i < response.body().getComplaintListsData().size(); i++) {
-            //Log.e("abhi", "setNewComplaints: "+response.body().getComplaintListsData().get(i).size() );
-            ComplaintListsDatum complaintListsDatum = new ComplaintListsDatum();
-            complaintListsDatum.setComplainId(response.body().getComplaintListsData().get(i).get(i).getComplainId());
-            complaintListsDatum.setComplainDescription(response.body().getComplaintListsData().get(i).get(i).getComplainDescription());
-            complaintListsDatum.setComplaint(response.body().getComplaintListsData().get(i).get(i).getComplaint());
-            complaintListsDatum.setEndConsumer(response.body().getComplaintListsData().get(i).get(i).getEndConsumer());
-            complaintListsDatum.setProjectOwner(response.body().getComplaintListsData().get(i).get(i).getProjectOwner());
-            complaintListsDatum.setProjectType(response.body().getComplaintListsData().get(i).get(i).getProjectType());
-            complaintListsDatum.setState(response.body().getComplaintListsData().get(i).get(i).getState());
-            newComplaintList.add(complaintListsDatum);
-            Log.e("abhi", "onResponse:..new complaint list "+newComplaintList.get(i).getComplaint());
+            for (int j = 0; j < response.body().getComplaintListsData().get(i).size();j++) {
+                //Log.e("abhi", "setNewComplaints: "+response.body().getComplaintListsData().get(i).size() );
+                ComplaintListsDatum complaintListsDatum = new ComplaintListsDatum();
+                complaintListsDatum.setComplainId(response.body().getComplaintListsData().get(i).get(j).getComplainId());
+                complaintListsDatum.setComplainDescription(response.body().getComplaintListsData().get(i).get(j).getComplainDescription());
+                complaintListsDatum.setComplaint(response.body().getComplaintListsData().get(i).get(j).getComplaint());
+                complaintListsDatum.setEndConsumer(response.body().getComplaintListsData().get(i).get(j).getEndConsumer());
+                complaintListsDatum.setProjectOwner(response.body().getComplaintListsData().get(i).get(j).getProjectOwner());
+                complaintListsDatum.setProjectType(response.body().getComplaintListsData().get(i).get(j).getProjectType());
+                complaintListsDatum.setState(response.body().getComplaintListsData().get(i).get(j).getState());
+                newComplaintList.add(complaintListsDatum);
+                Log.e("abhi", "onResponse:..new complaint list " + newComplaintList.get(i).getComplaint());
 
+            }
         }
 
         newComplaintAdapter = new NewComplaintAdapter(this, R.layout.layout_new_complaint_list, R.id.complaint_name, newComplaintList);
