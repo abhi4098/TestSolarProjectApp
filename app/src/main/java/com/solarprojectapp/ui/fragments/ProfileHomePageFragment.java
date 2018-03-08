@@ -38,6 +38,7 @@ import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
 public class ProfileHomePageFragment extends Fragment {
     private static final String TAG = "ProfileHomePageFragment";
     private RetrofitInterface.AdminDataClient AdminDataAdapter;
+    int openComplaints,overdueComplaints,closureComplaints;
 
     @BindView(R.id.progress_bar_blue)
     ProgressBar progressBlue;
@@ -72,7 +73,14 @@ public class ProfileHomePageFragment extends Fragment {
 
 
 
-    private int progressStatus = 0;
+    private int blueprogressStatus = 0;
+    private int pinkprogressStatus = 0;
+    private int yellowprogressStatus = 0;
+
+    private int openprogressStatus = 0;
+    private int overdueprogressStatus = 0;
+    private int closureprogressStatus = 0;
+
 
     private Handler handler = new Handler();
     @OnClick(R.id.new_complaints_button)
@@ -123,7 +131,11 @@ public class ProfileHomePageFragment extends Fragment {
                         if (response.body().getSuccess().equals("true")) {
                             Log.e(TAG, "onResponse: ..............admin data" +response.body().getAdminSummary().size() );
                             for (int i=0; i<response.body().getAdminSummary().size(); i++) {
-                             //   Log.e(TAG, "onResponse: ..............admin data" + );
+
+                                openComplaints =response.body().getAdminSummary().get(i).getTotalOpencomplaints();
+                                overdueComplaints =response.body().getAdminSummary().get(i).getTotalOverduecomplaints();
+                                closureComplaints =response.body().getAdminSummary().get(i).getTotalClosedcomplaints();
+
                                 tvTotalConsumers.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalConsumer()));
 
                                 tvOpenComplaints.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalOpencomplaints()));
@@ -136,6 +148,8 @@ public class ProfileHomePageFragment extends Fragment {
                                 tvSparePartsRequested.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalSparepartsRequested()));
                                 tvSparePartsPending.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalSparepartsPending()));
                                 tvSparePartsToBeClosedToday.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalSparepartstobeclosedbytoday()));
+                                setProgressBar(response);
+
                                 LoadingDialog.cancelLoading();
                             }
                         }
@@ -166,6 +180,104 @@ public class ProfileHomePageFragment extends Fragment {
         }
     }
 
+    private void setProgressBar(Response<DashboardDataResponse> response) {
+         if (openComplaints>overdueComplaints && openComplaints>closureComplaints)
+         {
+             Log.e(TAG, "setProgressBar: " +overdueComplaints  + openComplaints + closureComplaints );
+             openprogressStatus =100;
+             overdueprogressStatus = (overdueComplaints*100)/openComplaints;
+             closureprogressStatus = (closureComplaints*100)/openComplaints;
+
+         }
+         else if (overdueComplaints>openComplaints && overdueComplaints>closureComplaints)
+         {
+             overdueprogressStatus =100;
+             openprogressStatus = (openComplaints*100)/overdueComplaints;
+             Log.e(TAG, "setProgressBar: open"+openprogressStatus );
+             closureprogressStatus = (closureComplaints*100)/overdueComplaints;
+             Log.e(TAG, "setProgressBar: closure"+closureprogressStatus );
+         }
+         else {
+             closureprogressStatus =100;
+             overdueprogressStatus = (overdueComplaints*100)/closureComplaints;
+             Log.e(TAG, "setProgressBar: overdue"+overdueprogressStatus );
+             openprogressStatus = (openComplaints*100)/closureComplaints;
+             Log.e(TAG, "setProgressBar: open"+openprogressStatus );
+         }
+
+        new Thread(new Runnable() {
+            public void run() {
+                while (blueprogressStatus <= closureprogressStatus) {
+                    blueprogressStatus += 1;
+                    //Update progress bar with completion of operation
+                    handler.post(new Runnable() {
+                        public void run() {
+                            Log.e(TAG, "run: ...............closure" +blueprogressStatus );
+                            progressBlue.setProgress(blueprogressStatus);
+
+                        }
+                    });
+                    try {
+                        // Sleep for 200 milliseconds.
+                        //Just to display the progress slowly
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            public void run() {
+                while ( pinkprogressStatus<= openprogressStatus) {
+                    pinkprogressStatus += 1;
+                    //Update progress bar with completion of operation
+                    handler.post(new Runnable() {
+                        public void run() {
+                            Log.e(TAG, "run: ...............open" +pinkprogressStatus );
+                            progressPink.setProgress(pinkprogressStatus);
+
+                        }
+                    });
+                    try {
+                        // Sleep for 200 milliseconds.
+                        //Just to display the progress slowly
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+
+        new Thread(new Runnable() {
+            public void run() {
+                while (yellowprogressStatus <= overdueprogressStatus) {
+                    yellowprogressStatus += 1;
+                    //Update progress bar with completion of operation
+                    handler.post(new Runnable() {
+                        public void run() {
+                            Log.e(TAG, "run: ...............overdue" +yellowprogressStatus );
+                            progressYellow.setProgress(yellowprogressStatus);
+
+                        }
+                    });
+                    try {
+                        // Sleep for 200 milliseconds.
+                        //Just to display the progress slowly
+                        Thread.sleep(200);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -177,73 +289,6 @@ public class ProfileHomePageFragment extends Fragment {
         // Start long running operation in a background thread
        // progressBlue.setMax(100); // 100 maximum value for the progress value
        // progressBlue.setProgress(50); // 50 default progress value for the progress bar
-        new Thread(new Runnable() {
-            public void run() {
-                while (progressStatus < 100) {
-                    progressStatus += 5;
-                    //Update progress bar with completion of operation
-                    handler.post(new Runnable() {
-                        public void run() {
-                            progressBlue.setProgress(progressStatus);
-
-                        }
-                    });
-                    try {
-                        // Sleep for 200 milliseconds.
-                        //Just to display the progress slowly
-                        Thread.sleep(200);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-
-        new Thread(new Runnable() {
-            public void run() {
-                while (progressStatus < 50) {
-                    progressStatus += 5;
-                    //Update progress bar with completion of operation
-                    handler.post(new Runnable() {
-                        public void run() {
-                            progressPink.setProgress(progressStatus);
-
-                        }
-                    });
-                    try {
-                        // Sleep for 200 milliseconds.
-                        //Just to display the progress slowly
-                        Thread.sleep(200);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-
-
-        new Thread(new Runnable() {
-            public void run() {
-                while (progressStatus < 20) {
-                    progressStatus += 2;
-                    //Update progress bar with completion of operation
-                    handler.post(new Runnable() {
-                        public void run() {
-                            progressYellow.setProgress(progressStatus);
-
-                        }
-                    });
-                    try {
-                        // Sleep for 200 milliseconds.
-                        //Just to display the progress slowly
-                        Thread.sleep(200);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
-
 
 
         return view;
