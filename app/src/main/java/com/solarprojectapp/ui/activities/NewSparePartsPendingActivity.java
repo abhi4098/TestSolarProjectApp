@@ -131,9 +131,11 @@ public class NewSparePartsPendingActivity extends AppCompatActivity implements V
             sparepartsrequestList.setSparepartBrand(response.body().getSparepartsrequestList().get(i).get(i).getSparepartBrand());
             sparepartsrequestList.setSparepartName(response.body().getSparepartsrequestList().get(i).get(i).getSparepartName());
             sparepartsrequestList.setSparepartCreatedate(response.body().getSparepartsrequestList().get(i).get(i).getSparepartCreatedate());
-            /*sparepartsrequestList.setProjectOwner(response.body().getSparepartsrequestList().get(i).get(i).getProjectOwner());
-            sparepartsrequestList.setProjectType(response.body().getSparepartsrequestList().get(i).get(i).getProjectType());
-            sparepartsrequestList.setState(response.body().getSparepartsrequestList().get(i).get(i).getState());*/
+            sparepartsrequestList.setSparepartRequestQuantity(response.body().getSparepartsrequestList().get(i).get(i).getSparepartRequestQuantity());
+            sparepartsrequestList.setStatusName(response.body().getSparepartsrequestList().get(i).get(i).getStatusName());
+            sparepartsrequestList.setSparepartRequestPrice(response.body().getSparepartsrequestList().get(i).get(i).getSparepartRequestPrice());
+            sparepartsrequestList.setSparepartStatus(response.body().getSparepartsrequestList().get(i).get(i).getSparepartStatus());
+            sparepartsrequestList.setSparepartPrice(response.body().getSparepartsrequestList().get(i).get(i).getSparepartPrice());
             sparePartsPendingList.add(sparepartsrequestList);
             Log.e("abhi", "onResponse:..new complaint list "+sparePartsPendingList.get(i).getSparepartName());
 

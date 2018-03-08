@@ -54,6 +54,10 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.activities.ShowNewComplaintDetailsActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.ShowSparePartsPendingDetailsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.ShowSparePartsRequestedDetailsActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

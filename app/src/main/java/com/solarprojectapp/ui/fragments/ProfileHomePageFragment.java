@@ -208,7 +208,7 @@ public class ProfileHomePageFragment extends Fragment {
         new Thread(new Runnable() {
             public void run() {
                 while (blueprogressStatus <= closureprogressStatus) {
-                    blueprogressStatus += 1;
+                    blueprogressStatus += 2;
                     //Update progress bar with completion of operation
                     handler.post(new Runnable() {
                         public void run() {
@@ -231,7 +231,7 @@ public class ProfileHomePageFragment extends Fragment {
         new Thread(new Runnable() {
             public void run() {
                 while ( pinkprogressStatus<= openprogressStatus) {
-                    pinkprogressStatus += 1;
+                    pinkprogressStatus += 2;
                     //Update progress bar with completion of operation
                     handler.post(new Runnable() {
                         public void run() {
@@ -255,7 +255,7 @@ public class ProfileHomePageFragment extends Fragment {
         new Thread(new Runnable() {
             public void run() {
                 while (yellowprogressStatus <= overdueprogressStatus) {
-                    yellowprogressStatus += 1;
+                    yellowprogressStatus += 2;
                     //Update progress bar with completion of operation
                     handler.post(new Runnable() {
                         public void run() {

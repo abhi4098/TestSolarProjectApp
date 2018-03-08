@@ -54,7 +54,7 @@ public class SparePartsRequestedActivity extends AppCompatActivity implements Vi
     @BindView(R.id.listview)
     ListView listview;
 
-    ArrayList<SparepartsrequestList> sparePartsPendingList = null;
+    ArrayList<SparepartsrequestList> sparePartsRequestedList = null;
     SparePartRequestededAdapter sparePartRequestededAdapter;
 
 
@@ -122,7 +122,7 @@ public class SparePartsRequestedActivity extends AppCompatActivity implements Vi
     }
 
     private void setSparePartsRequested(Response<SparePartsRequestResponse> response) {
-        sparePartsPendingList = new ArrayList<>();
+        sparePartsRequestedList = new ArrayList<>();
         Log.e("abhi", "setNewComplaints: "+response.body().getSparepartsrequestList().size() );
         for (int i = 0; i < response.body().getSparepartsrequestList().size(); i++) {
 
@@ -130,13 +130,18 @@ public class SparePartsRequestedActivity extends AppCompatActivity implements Vi
             sparepartsrequestList.setSparepartId(response.body().getSparepartsrequestList().get(i).get(i).getSparepartId());
             sparepartsrequestList.setSparepartBrand(response.body().getSparepartsrequestList().get(i).get(i).getSparepartBrand());
             sparepartsrequestList.setSparepartName(response.body().getSparepartsrequestList().get(i).get(i).getSparepartName());
-            sparepartsrequestList.setSparepartRequestCreatedate(response.body().getSparepartsrequestList().get(i).get(i).getSparepartRequestCreatedate());
-            sparePartsPendingList.add(sparepartsrequestList);
-            Log.e("abhi", "onResponse:..new complaint list "+sparePartsPendingList.get(i).getSparepartCreatedate());
+            sparepartsrequestList.setSparepartCreatedate(response.body().getSparepartsrequestList().get(i).get(i).getSparepartCreatedate());
+            sparepartsrequestList.setSparepartRequestQuantity(response.body().getSparepartsrequestList().get(i).get(i).getSparepartRequestQuantity());
+            sparepartsrequestList.setStatusName(response.body().getSparepartsrequestList().get(i).get(i).getStatusName());
+            sparepartsrequestList.setSparepartRequestPrice(response.body().getSparepartsrequestList().get(i).get(i).getSparepartRequestPrice());
+            sparepartsrequestList.setSparepartStatus(response.body().getSparepartsrequestList().get(i).get(i).getSparepartStatus());
+            sparepartsrequestList.setSparepartPrice(response.body().getSparepartsrequestList().get(i).get(i).getSparepartPrice());
+            sparePartsRequestedList.add(sparepartsrequestList);
+            Log.e("abhi", "onResponse:..new complaint list "+sparePartsRequestedList.get(i).getSparepartCreatedate());
 
         }
 
-        sparePartRequestededAdapter = new SparePartRequestededAdapter(this, R.layout.layout_spare_parts_requested, R.id.complaint_id, sparePartsPendingList);
+        sparePartRequestededAdapter = new SparePartRequestededAdapter(this, R.layout.layout_spare_parts_requested, R.id.complaint_id, sparePartsRequestedList);
         listview.setAdapter(sparePartRequestededAdapter);
         LoadingDialog.cancelLoading();
         listview.setDivider(new ColorDrawable(Color.TRANSPARENT));  //hide the divider

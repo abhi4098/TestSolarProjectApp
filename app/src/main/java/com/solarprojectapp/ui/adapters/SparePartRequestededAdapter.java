@@ -1,16 +1,20 @@
 package com.solarprojectapp.ui.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.solarprojectapp.R;
 import com.solarprojectapp.generated.model.SparepartsrequestList;
+import com.solarprojectapp.ui.activities.ShowSparePartsPendingDetailsActivity;
+import com.solarprojectapp.ui.activities.ShowSparePartsRequestedDetailsActivity;
 
 import java.util.ArrayList;
 
@@ -37,10 +41,12 @@ public class SparePartRequestededAdapter extends ArrayAdapter<SparepartsrequestL
 
     // Hold views of the ListView to improve its scrolling performance
     static class ViewHolder {
-        public TextView complaintId;
-        public TextView projectOwner;
-        public TextView endConsumer;
-        public TextView projectType;
+        public TextView sparePartId;
+        public TextView sparePartName;
+        public TextView sparePartStatusName;
+        public TextView sparePartBrand;
+        public TextView sparePartPrice;
+        public Button viewDetailsBtn;
 
 
 
@@ -61,10 +67,12 @@ public class SparePartRequestededAdapter extends ArrayAdapter<SparepartsrequestL
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             rowView= inflater.inflate(groupid, parent, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.complaintId= (TextView) rowView.findViewById(R.id.complaint_id);
-            viewHolder.endConsumer= (TextView) rowView.findViewById(R.id.account_num);
-            viewHolder.projectOwner= (TextView) rowView.findViewById(R.id.account_type);
-            viewHolder.projectType= (TextView) rowView.findViewById(R.id.bank_name);
+            viewHolder.sparePartId= (TextView) rowView.findViewById(R.id.spare_part_id);
+            viewHolder.sparePartName= (TextView) rowView.findViewById(R.id.spare_part_name);
+            viewHolder.sparePartBrand= (TextView) rowView.findViewById(R.id.spare_part_brand);
+            viewHolder.sparePartStatusName= (TextView) rowView.findViewById(R.id.spare_part_status_name);
+            viewHolder.sparePartPrice= (TextView) rowView.findViewById(R.id.spare_part_price);
+            viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
 
 
 
@@ -78,10 +86,29 @@ public class SparePartRequestededAdapter extends ArrayAdapter<SparepartsrequestL
         final ViewHolder holder = (ViewHolder) rowView.getTag();
 
         if (sparepartsrequestList !=null) {
-            holder.complaintId.setText(sparepartsrequestList.getSparepartName());
-            holder.endConsumer.setText(sparepartsrequestList.getSparepartId());
-            holder.projectType.setText(sparepartsrequestList.getSparepartBrand());
-            holder.projectOwner.setText(sparepartsrequestList.getSparepartRequestCreatedate());
+            holder.sparePartName.setText(sparepartsrequestList.getSparepartName());
+            holder.sparePartId.setText(sparepartsrequestList.getSparepartId());
+            holder.sparePartBrand.setText(sparepartsrequestList.getSparepartBrand());
+            holder.sparePartStatusName.setText(sparepartsrequestList.getStatusName());
+            holder.sparePartPrice.setText(sparepartsrequestList.getSparepartPrice());
+            holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(getContext(), ShowSparePartsRequestedDetailsActivity.class);
+                    i.putExtra("SPARE_PART_NAME",sparepartsrequestList.getSparepartName());
+                    i.putExtra("SPARE_PART_ID",sparepartsrequestList.getSparepartId());
+                    i.putExtra("SPARE_PART_STATUS",sparepartsrequestList.getStatusName());
+                    i.putExtra("SPARE_PART_REQUESTED_PRICE",sparepartsrequestList.getSparepartRequestPrice());
+                    i.putExtra("SPARE_PART_PRICE",sparepartsrequestList.getSparepartPrice());
+                    i.putExtra("SPARE_PART_REQUESTED_QUANTITY",sparepartsrequestList.getSparepartRequestQuantity());
+                    i.putExtra("SPARE_PART_CREATED_DATE",sparepartsrequestList.getSparepartCreatedate());
+                    i.putExtra("SPARE_PART_BRAND",sparepartsrequestList.getSparepartBrand());
+                    //i.putExtra("INTENT_FROM","EditButton");
+
+                    getContext().startActivity(i);
+
+                }
+            });
 
         }
 

@@ -38,7 +38,6 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:layout_marginTop="5dp"
-            android:text="5000"
             android:textSize="40dp"
             android:textStyle="bold"/>
 
@@ -87,7 +86,7 @@
                     android:textColor="@color/black"
                     android:textSize="25sp"
                     android:layout_gravity="center_horizontal"
-                    android:text="500"/>
+                    />
 
                 <TextView
                     android:layout_width="6dp"
@@ -116,7 +115,7 @@
                     android:textColor="@color/black"
                     android:textSize="25sp"
                     android:layout_gravity="center_horizontal"
-                    android:text="100"/>
+                  />
                 <TextView
                     android:layout_width="6dp"
                     android:layout_height="6dp"
@@ -145,7 +144,7 @@
                     android:textColor="@color/black"
                     android:textSize="25sp"
                     android:layout_gravity="center_horizontal"
-                    android:text="900"/>
+                    />
                 <TextView
                     android:layout_width="6dp"
                     android:layout_height="6dp"
@@ -240,7 +239,7 @@
                     android:textColor="@color/white"
                     android:textSize="35sp"
                     android:layout_gravity="center_horizontal"
-                    android:text="50"/>
+                   />
 
                 <Button
                     android:id="@+id/new_complaints_button"
@@ -279,7 +278,7 @@
                     android:textColor="@color/white"
                     android:textSize="35sp"
                     android:layout_gravity="center_horizontal"
-                    android:text="12"/>
+                    />
             </LinearLayout>
 
 
@@ -326,7 +325,7 @@
                     android:textColor="@color/white"
                     android:textSize="35sp"
                     android:layout_gravity="center_horizontal"
-                    android:text="30"/>
+                   />
 
                 <Button
                     android:layout_width="wrap_content"
@@ -366,7 +365,7 @@
                     android:textColor="@color/white"
                     android:textSize="35sp"
                     android:layout_gravity="center_horizontal"
-                    android:text="56"/>
+                    />
             </LinearLayout>
 
 
@@ -394,7 +393,7 @@
                 android:textColor="@color/white"
                 android:textSize="35sp"
                 android:layout_gravity="center_horizontal"
-                android:text="47"/>
+               />
 
         </LinearLayout>
 
