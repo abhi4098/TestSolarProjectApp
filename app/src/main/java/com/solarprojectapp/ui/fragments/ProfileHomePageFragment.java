@@ -18,6 +18,7 @@ import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.DashboardDataResponse;
 import com.solarprojectapp.generated.model.NewComplaintResponse;
+import com.solarprojectapp.ui.activities.ComplaintsToBeClosedTodayActivity;
 import com.solarprojectapp.ui.activities.NewComplaintListActivity;
 import com.solarprojectapp.ui.activities.NewSparePartsPendingActivity;
 import com.solarprojectapp.ui.activities.SparePartsRequestedActivity;
@@ -111,6 +112,13 @@ public class ProfileHomePageFragment extends Fragment {
     public void sparePartsToBeClosed()
     {
         Intent i = new Intent(getActivity(), SparePartsToBeClosedTodayActivity.class);
+        getActivity().startActivity(i);
+    }
+
+    @OnClick(R.id.ll_complaints_to_be_closed_today)
+    public void complaintsToBeClosed()
+    {
+        Intent i = new Intent(getActivity(), ComplaintsToBeClosedTodayActivity.class);
         getActivity().startActivity(i);
     }
 

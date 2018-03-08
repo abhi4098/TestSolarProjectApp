@@ -62,6 +62,10 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.activities.ShowSparePartsToBeClosedDetailsActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.ComplaintsToBeClosedTodayActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.ShowComplaintsToBeClosedDetailsActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

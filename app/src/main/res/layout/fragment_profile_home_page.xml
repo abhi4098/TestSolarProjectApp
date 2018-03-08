@@ -259,6 +259,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
+                android:id="@+id/ll_complaints_to_be_closed_today"
                 android:orientation="vertical"
                 android:layout_weight=".5"
                 android:background="@color/solar_pink"
