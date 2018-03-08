@@ -67,6 +67,14 @@ public class RetrofitInterface {
         public Call<SparePartsRequestResponse> sparePartsRequestList(
                 @Field("type") String type);
     }
+
+    public interface SparePartsToBeClosedTodayClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<SparePartsRequestResponse> sparePartsRequestList(
+                @Field("type") String type);
+    }
+
     public interface AdminDataClient {
         @FormUrlEncoded
         @POST("query.php")

@@ -17,11 +17,10 @@ import android.widget.Toast;
 import com.solarprojectapp.R;
 import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
-import com.solarprojectapp.generated.model.SparePartsPendingResponse;
 import com.solarprojectapp.generated.model.SparePartsRequestResponse;
 import com.solarprojectapp.generated.model.SparepartsrequestList;
 import com.solarprojectapp.ui.adapters.SparePartRequestededAdapter;
-import com.solarprojectapp.ui.adapters.UserSparePartsPendingAdapter;
+import com.solarprojectapp.ui.adapters.SparePartToBeClosedAdapter;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.SnakBarUtils;
@@ -37,7 +36,7 @@ import retrofit2.Response;
 import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
 
 
-public class SparePartsRequestedActivity extends AppCompatActivity implements View.OnClickListener {
+public class SparePartsToBeClosedTodayActivity extends AppCompatActivity implements View.OnClickListener {
 
     Context mContext;
     private RetrofitInterface.SparePartsRequestClient spPartsRequested;
@@ -55,7 +54,7 @@ public class SparePartsRequestedActivity extends AppCompatActivity implements Vi
     ListView listview;
 
     ArrayList<SparepartsrequestList> sparePartsRequestedList = null;
-    SparePartRequestededAdapter sparePartRequestededAdapter;
+    SparePartToBeClosedAdapter sparePartToBeClosedAdapter;
 
 
     @Override
@@ -63,10 +62,10 @@ public class SparePartsRequestedActivity extends AppCompatActivity implements Vi
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_spare_parts_requested);
-        mContext = SparePartsRequestedActivity.this;
+        mContext = SparePartsToBeClosedTodayActivity.this;
         ButterKnife.bind(this);
         ivBackIcon.setOnClickListener(this);
-        tvAppTitle.setText("SPARE PARTS REQUESTED");
+        tvAppTitle.setText("SPARE PARTS TO BE CLOSED TODAY");
 
         setUpRestAdapter();
         getSparePartRequested();
@@ -80,7 +79,7 @@ public class SparePartsRequestedActivity extends AppCompatActivity implements Vi
 
     private void getSparePartRequested() {
         LoadingDialog.showLoadingDialog(this,"Loading...");
-        Call<SparePartsRequestResponse> call = spPartsRequested.sparePartsRequestList("opensparepartrequest");
+        Call<SparePartsRequestResponse> call = spPartsRequested.sparePartsRequestList("tobecosedtodaysparepart");
         if (NetworkUtils.isNetworkConnected(this)) {
             call.enqueue(new Callback<SparePartsRequestResponse>() {
 
@@ -142,8 +141,8 @@ public class SparePartsRequestedActivity extends AppCompatActivity implements Vi
             }
         }
 
-        sparePartRequestededAdapter = new SparePartRequestededAdapter(this, R.layout.layout_spare_parts_requested, R.id.complaint_id, sparePartsRequestedList);
-        listview.setAdapter(sparePartRequestededAdapter);
+        sparePartToBeClosedAdapter = new SparePartToBeClosedAdapter(this, R.layout.layout_spare_parts_requested, R.id.complaint_id, sparePartsRequestedList);
+        listview.setAdapter(sparePartToBeClosedAdapter);
         LoadingDialog.cancelLoading();
         listview.setDivider(new ColorDrawable(Color.TRANSPARENT));  //hide the divider
         listview.setClipToPadding(false);

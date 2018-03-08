@@ -21,6 +21,7 @@ import com.solarprojectapp.generated.model.NewComplaintResponse;
 import com.solarprojectapp.ui.activities.NewComplaintListActivity;
 import com.solarprojectapp.ui.activities.NewSparePartsPendingActivity;
 import com.solarprojectapp.ui.activities.SparePartsRequestedActivity;
+import com.solarprojectapp.ui.activities.SparePartsToBeClosedTodayActivity;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.SnakBarUtils;
@@ -102,6 +103,14 @@ public class ProfileHomePageFragment extends Fragment {
     public void sparePartsRequested()
     {
         Intent i = new Intent(getActivity(), SparePartsRequestedActivity.class);
+        getActivity().startActivity(i);
+    }
+
+
+    @OnClick(R.id.ll_spare_parts_to_be_closed_today)
+    public void sparePartsToBeClosed()
+    {
+        Intent i = new Intent(getActivity(), SparePartsToBeClosedTodayActivity.class);
         getActivity().startActivity(i);
     }
 
@@ -208,7 +217,7 @@ public class ProfileHomePageFragment extends Fragment {
         new Thread(new Runnable() {
             public void run() {
                 while (blueprogressStatus <= closureprogressStatus) {
-                    blueprogressStatus += 2;
+                    blueprogressStatus += 5;
                     //Update progress bar with completion of operation
                     handler.post(new Runnable() {
                         public void run() {
@@ -231,7 +240,7 @@ public class ProfileHomePageFragment extends Fragment {
         new Thread(new Runnable() {
             public void run() {
                 while ( pinkprogressStatus<= openprogressStatus) {
-                    pinkprogressStatus += 2;
+                    pinkprogressStatus += 5;
                     //Update progress bar with completion of operation
                     handler.post(new Runnable() {
                         public void run() {
@@ -255,7 +264,7 @@ public class ProfileHomePageFragment extends Fragment {
         new Thread(new Runnable() {
             public void run() {
                 while (yellowprogressStatus <= overdueprogressStatus) {
-                    yellowprogressStatus += 2;
+                    yellowprogressStatus += 5;
                     //Update progress bar with completion of operation
                     handler.post(new Runnable() {
                         public void run() {

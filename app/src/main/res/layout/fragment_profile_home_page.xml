@@ -372,6 +372,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_spare_parts_to_be_closed_today"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:orientation="vertical"
