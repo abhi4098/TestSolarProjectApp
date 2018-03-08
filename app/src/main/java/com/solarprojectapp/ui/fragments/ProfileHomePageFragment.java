@@ -197,6 +197,13 @@ public class ProfileHomePageFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setUpRestAdapter();
+        getDashboardData();
+    }
+
     private void setProgressBar(Response<DashboardDataResponse> response) {
          if (openComplaints>overdueComplaints && openComplaints>closureComplaints)
          {
