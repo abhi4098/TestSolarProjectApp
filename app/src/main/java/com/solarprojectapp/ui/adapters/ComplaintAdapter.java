@@ -37,7 +37,7 @@ import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
  * Created by Abhinandan on 26/12/17.
  */
 
-public class NewComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
+public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
 
     int groupid;
     ArrayList<ComplaintListsDatum> newComplaintList;
@@ -45,7 +45,7 @@ public class NewComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
     private RetrofitInterface.AdminApproveCompaintClient adminApproveCompaintClient;
     String priorityName,statusName;
 
-    public NewComplaintAdapter(FragmentActivity navigationalActivity, int layout_bank_details, int complaint_id, ArrayList<ComplaintListsDatum> newComplaintList)
+    public ComplaintAdapter(FragmentActivity navigationalActivity, int layout_bank_details, int complaint_id, ArrayList<ComplaintListsDatum> newComplaintList)
     {
         super(navigationalActivity,layout_bank_details,complaint_id,newComplaintList);
         groupid=layout_bank_details;

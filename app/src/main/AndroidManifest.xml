@@ -66,6 +66,12 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.activities.ShowComplaintsToBeClosedDetailsActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.OverDueComplaintListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.OpenComplaintListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.ClosureComplaintListActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

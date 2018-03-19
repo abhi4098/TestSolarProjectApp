@@ -19,7 +19,7 @@ import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.ComplaintListsDatum;
 import com.solarprojectapp.generated.model.NewComplaintResponse;
-import com.solarprojectapp.ui.adapters.NewComplaintAdapter;
+import com.solarprojectapp.ui.adapters.ComplaintAdapter;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.SnakBarUtils;
@@ -38,7 +38,7 @@ import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
 public class NewComplaintListActivity extends AppCompatActivity implements View.OnClickListener {
 
     Context mContext;
-    private RetrofitInterface.UserNewCompaintListClient UserNewCompaintListAdapter;
+    private RetrofitInterface.UserCompaintListClient UserNewCompaintListAdapter;
     @BindView(R.id.back_icon)
     ImageView ivBackIcon;
     @BindView(R.id.toolbar)
@@ -53,7 +53,7 @@ public class NewComplaintListActivity extends AppCompatActivity implements View.
     ListView listview;
 
     ArrayList<ComplaintListsDatum> newComplaintList = null;
-    NewComplaintAdapter newComplaintAdapter;
+    ComplaintAdapter newComplaintAdapter;
 
 
     @Override
@@ -72,7 +72,7 @@ public class NewComplaintListActivity extends AppCompatActivity implements View.
     }
 
     private void setUpRestAdapter() {
-        UserNewCompaintListAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.UserNewCompaintListClient.class, MAIN_BASE_URL, this);
+        UserNewCompaintListAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.UserCompaintListClient.class, MAIN_BASE_URL, this);
     }
 
 
@@ -138,7 +138,7 @@ public class NewComplaintListActivity extends AppCompatActivity implements View.
             }
         }
 
-        newComplaintAdapter = new NewComplaintAdapter(this, R.layout.layout_new_complaint_list, R.id.complaint_name, newComplaintList);
+        newComplaintAdapter = new ComplaintAdapter(this, R.layout.layout_new_complaint_list, R.id.complaint_name, newComplaintList);
         listview.setAdapter(newComplaintAdapter);
         LoadingDialog.cancelLoading();
         listview.setDivider(new ColorDrawable(Color.TRANSPARENT));  //hide the divider

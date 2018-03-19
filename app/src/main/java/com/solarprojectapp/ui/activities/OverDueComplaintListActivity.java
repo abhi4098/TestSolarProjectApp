@@ -19,7 +19,7 @@ import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.ComplaintListsDatum;
 import com.solarprojectapp.generated.model.NewComplaintResponse;
-import com.solarprojectapp.ui.adapters.ComplaintToBeClosedAdapter;
+import com.solarprojectapp.ui.adapters.ComplaintAdapter;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.SnakBarUtils;
@@ -35,10 +35,10 @@ import retrofit2.Response;
 import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
 
 
-public class ComplaintsToBeClosedTodayActivity extends AppCompatActivity implements View.OnClickListener {
+public class OverDueComplaintListActivity extends AppCompatActivity implements View.OnClickListener {
 
     Context mContext;
-    private RetrofitInterface.UserCompaintListClient UserNewCompaintListAdapter;
+    private RetrofitInterface.UserCompaintListClient UserCompaintListAdapter;
     @BindView(R.id.back_icon)
     ImageView ivBackIcon;
     @BindView(R.id.toolbar)
@@ -53,7 +53,7 @@ public class ComplaintsToBeClosedTodayActivity extends AppCompatActivity impleme
     ListView listview;
 
     ArrayList<ComplaintListsDatum> complaintList = null;
-    ComplaintToBeClosedAdapter complaintToBeClosedAdapter;
+    ComplaintAdapter complaintAdapter;
 
 
     @Override
@@ -61,24 +61,24 @@ public class ComplaintsToBeClosedTodayActivity extends AppCompatActivity impleme
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_new_complaint);
-        mContext = ComplaintsToBeClosedTodayActivity.this;
+        mContext = OverDueComplaintListActivity.this;
         ButterKnife.bind(this);
         ivBackIcon.setOnClickListener(this);
-        tvAppTitle.setText("COMPLAINT TO BE CLOSED TODAY");
+        tvAppTitle.setText("OVERDUE COMPLAINTS");
 
         setUpRestAdapter();
-        getComplaintsToBeClosed();
+        getNewComplaints();
 
     }
 
     private void setUpRestAdapter() {
-        UserNewCompaintListAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.UserCompaintListClient.class, MAIN_BASE_URL, this);
+        UserCompaintListAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.UserCompaintListClient.class, MAIN_BASE_URL, this);
     }
 
 
-    private void getComplaintsToBeClosed() {
+    private void getNewComplaints() {
         LoadingDialog.showLoadingDialog(this,"Loading...");
-        Call<NewComplaintResponse> call = UserNewCompaintListAdapter.userNewComplaintList("tobecosedtodaycomplain");
+        Call<NewComplaintResponse> call = UserCompaintListAdapter.userNewComplaintList("overduecomplainlist");
         if (NetworkUtils.isNetworkConnected(this)) {
             call.enqueue(new Callback<NewComplaintResponse>() {
 
@@ -88,7 +88,7 @@ public class ComplaintsToBeClosedTodayActivity extends AppCompatActivity impleme
                     if (response.isSuccessful()) {
 
                         if (response.body().getSuccess().equals("true")) {
-                            setNewComplaints(response);
+                            setOverDueComplaints(response);
                             LoadingDialog.cancelLoading();
                         }
                         else
@@ -118,7 +118,7 @@ public class ComplaintsToBeClosedTodayActivity extends AppCompatActivity impleme
         }
     }
 
-    private void setNewComplaints(Response<NewComplaintResponse> response) {
+    private void setOverDueComplaints(Response<NewComplaintResponse> response) {
         complaintList = new ArrayList<>();
 
         for (int i = 0; i < response.body().getComplaintListsData().size(); i++) {
@@ -138,8 +138,8 @@ public class ComplaintsToBeClosedTodayActivity extends AppCompatActivity impleme
             }
         }
 
-        complaintToBeClosedAdapter = new ComplaintToBeClosedAdapter(this, R.layout.layout_new_complaint_list, R.id.complaint_name, complaintList);
-        listview.setAdapter(complaintToBeClosedAdapter);
+        complaintAdapter = new ComplaintAdapter(this, R.layout.layout_new_complaint_list, R.id.complaint_name, complaintList);
+        listview.setAdapter(complaintAdapter);
         LoadingDialog.cancelLoading();
         listview.setDivider(new ColorDrawable(Color.TRANSPARENT));  //hide the divider
         listview.setClipToPadding(false);

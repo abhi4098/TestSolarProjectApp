@@ -48,7 +48,7 @@ public class RetrofitInterface {
                 @Field("type") String type);
     }
 
-    public interface UserNewCompaintListClient {
+    public interface UserCompaintListClient {
         @FormUrlEncoded
         @POST("query.php")
         public Call<NewComplaintResponse> userNewComplaintList(

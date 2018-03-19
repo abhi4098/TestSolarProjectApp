@@ -18,9 +18,12 @@ import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.DashboardDataResponse;
 import com.solarprojectapp.generated.model.NewComplaintResponse;
+import com.solarprojectapp.ui.activities.ClosureComplaintListActivity;
 import com.solarprojectapp.ui.activities.ComplaintsToBeClosedTodayActivity;
 import com.solarprojectapp.ui.activities.NewComplaintListActivity;
 import com.solarprojectapp.ui.activities.NewSparePartsPendingActivity;
+import com.solarprojectapp.ui.activities.OpenComplaintListActivity;
+import com.solarprojectapp.ui.activities.OverDueComplaintListActivity;
 import com.solarprojectapp.ui.activities.SparePartsRequestedActivity;
 import com.solarprojectapp.ui.activities.SparePartsToBeClosedTodayActivity;
 import com.solarprojectapp.utils.LoadingDialog;
@@ -106,6 +109,29 @@ public class ProfileHomePageFragment extends Fragment {
         Intent i = new Intent(getActivity(), SparePartsRequestedActivity.class);
         getActivity().startActivity(i);
     }
+
+    @OnClick(R.id.ll_overdue)
+    public void overDueList()
+    {
+        Intent i = new Intent(getActivity(), OverDueComplaintListActivity.class);
+        getActivity().startActivity(i);
+    }
+
+    @OnClick(R.id.ll_open)
+    public void openList()
+    {
+        Intent i = new Intent(getActivity(), OpenComplaintListActivity.class);
+        getActivity().startActivity(i);
+    }
+
+
+    @OnClick(R.id.ll_closure)
+    public void closureList()
+    {
+        Intent i = new Intent(getActivity(), ClosureComplaintListActivity.class);
+        getActivity().startActivity(i);
+    }
+
 
 
     @OnClick(R.id.ll_spare_parts_to_be_closed_today)
