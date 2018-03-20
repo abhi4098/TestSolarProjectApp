@@ -5,12 +5,14 @@ package com.solarprojectapp.api;
 
 import com.solarprojectapp.generated.model.ApproveComplaintResponse;
 import com.solarprojectapp.generated.model.ChangePasswordResponse;
+import com.solarprojectapp.generated.model.ComplaintTypeDropdown;
 import com.solarprojectapp.generated.model.DashboardDataResponse;
 import com.solarprojectapp.generated.model.LoginResponse;
 import com.solarprojectapp.generated.model.NewComplaintResponse;
 import com.solarprojectapp.generated.model.ProfileResponse;
 import com.solarprojectapp.generated.model.SparePartsPendingResponse;
 import com.solarprojectapp.generated.model.SparePartsRequestResponse;
+import com.solarprojectapp.generated.model.SubmitComplaintResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -48,10 +50,28 @@ public class RetrofitInterface {
                 @Field("type") String type);
     }
 
+    public interface UserSubmitComplaintClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<SubmitComplaintResponse> userSubmitComplaint(
+                @Field("userid") String userId,
+                @Field("projectid") String projectid,
+                @Field("complaintstypeid") String complaintstypeid,
+                @Field("remarks") String remarks,
+                @Field("type") String type);
+    }
+
     public interface UserCompaintListClient {
         @FormUrlEncoded
         @POST("query.php")
         public Call<NewComplaintResponse> userNewComplaintList(
+                @Field("type") String type);
+    }
+
+    public interface UserCompaintTypeClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<ComplaintTypeDropdown> userComplaintTypeList(
                 @Field("type") String type);
     }
 
