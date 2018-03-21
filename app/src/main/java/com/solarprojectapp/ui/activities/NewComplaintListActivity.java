@@ -132,6 +132,8 @@ public class NewComplaintListActivity extends AppCompatActivity implements View.
                 complaintListsDatum.setProjectOwner(response.body().getComplaintListsData().get(i).get(j).getProjectOwner());
                 complaintListsDatum.setProjectType(response.body().getComplaintListsData().get(i).get(j).getProjectType());
                 complaintListsDatum.setState(response.body().getComplaintListsData().get(i).get(j).getState());
+                complaintListsDatum.setEndConsumerContactno(response.body().getComplaintListsData().get(i).get(j).getEndConsumerContactno());
+
                 newComplaintList.add(complaintListsDatum);
                 Log.e("abhi", "onResponse:..new complaint list " + newComplaintList.get(i).getComplaint());
 

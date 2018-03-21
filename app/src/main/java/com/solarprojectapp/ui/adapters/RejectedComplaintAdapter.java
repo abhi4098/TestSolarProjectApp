@@ -16,13 +16,9 @@ import com.solarprojectapp.R;
 import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.ApproveComplaintResponse;
-import com.solarprojectapp.generated.model.ComplaintListsDatum;
-import com.solarprojectapp.generated.model.DashboardDataResponse;
+import com.solarprojectapp.generated.model.RejectedComplaintListsDatum;
 import com.solarprojectapp.ui.activities.NewComplaintListActivity;
-import com.solarprojectapp.ui.activities.OpenComplaintListActivity;
 import com.solarprojectapp.ui.activities.ShowNewComplaintDetailsActivity;
-import com.solarprojectapp.ui.activities.SparePartsRequestedActivity;
-import com.solarprojectapp.ui.activities.TechnicalPartenerListActivity;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.SnakBarUtils;
@@ -39,20 +35,20 @@ import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
  * Created by Abhinandan on 26/12/17.
  */
 
-public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
+public class RejectedComplaintAdapter extends ArrayAdapter<RejectedComplaintListsDatum> {
 
     int groupid;
-    ArrayList<ComplaintListsDatum> newComplaintList;
+    ArrayList<RejectedComplaintListsDatum> RejectedComplaintList;
     FragmentActivity context;
     private RetrofitInterface.AdminApproveCompaintClient adminApproveCompaintClient;
     String priorityName,statusName;
 
-    public ComplaintAdapter(FragmentActivity navigationalActivity, int layout_bank_details, int complaint_id, ArrayList<ComplaintListsDatum> newComplaintList)
+    public RejectedComplaintAdapter(FragmentActivity navigationalActivity, int layout_bank_details, int complaint_id, ArrayList<RejectedComplaintListsDatum> RejectedComplaintList)
     {
-        super(navigationalActivity,layout_bank_details,complaint_id,newComplaintList);
+        super(navigationalActivity,layout_bank_details,complaint_id,RejectedComplaintList);
         groupid=layout_bank_details;
         this.context = navigationalActivity;
-        this.newComplaintList = newComplaintList;
+        this.RejectedComplaintList = RejectedComplaintList;
 
     }
 
@@ -100,7 +96,7 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
 
         }
         // Set text to each TextView of ListView item
-        final ComplaintListsDatum complaintListsDatum = getItem(position);
+        final RejectedComplaintListsDatum complaintListsDatum = getItem(position);
         final ViewHolder holder = (ViewHolder) rowView.getTag();
 
         if (complaintListsDatum !=null) {
@@ -131,11 +127,9 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
                 @Override
                 public void onClick(View v) {
 
-                    Intent i = new Intent(((NewComplaintListActivity)getContext()), TechnicalPartenerListActivity.class);
-                    ((NewComplaintListActivity)getContext()).startActivity(i);
-                    //setUpRestAdapter();
-                    //getApproval(v,complaintListsDatum);
 
+                    setUpRestAdapter();
+                    getApproval(v,complaintListsDatum);
                 }
             });
 
@@ -152,7 +146,7 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
     }
 
 
-    private void getApproval(View v, ComplaintListsDatum complaintListsDatum) {
+    private void getApproval(View v, RejectedComplaintListsDatum complaintListsDatum) {
         LoadingDialog.showLoadingDialog(getContext(),"Loading...");
         Call<ApproveComplaintResponse> call = adminApproveCompaintClient.AdminApproval(complaintListsDatum.getComplainId(),"Approved","complaintsapproved");
         if (NetworkUtils.isNetworkConnected(getContext())) {

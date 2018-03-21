@@ -17,11 +17,9 @@ import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.ApproveComplaintResponse;
 import com.solarprojectapp.generated.model.ComplaintListsDatum;
-import com.solarprojectapp.generated.model.DashboardDataResponse;
+import com.solarprojectapp.generated.model.TechnicalPartnerList;
 import com.solarprojectapp.ui.activities.NewComplaintListActivity;
-import com.solarprojectapp.ui.activities.OpenComplaintListActivity;
 import com.solarprojectapp.ui.activities.ShowNewComplaintDetailsActivity;
-import com.solarprojectapp.ui.activities.SparePartsRequestedActivity;
 import com.solarprojectapp.ui.activities.TechnicalPartenerListActivity;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
@@ -39,32 +37,32 @@ import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
  * Created by Abhinandan on 26/12/17.
  */
 
-public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
+public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList> {
 
     int groupid;
-    ArrayList<ComplaintListsDatum> newComplaintList;
+    ArrayList<TechnicalPartnerList> techPartnerList;
     FragmentActivity context;
     private RetrofitInterface.AdminApproveCompaintClient adminApproveCompaintClient;
     String priorityName,statusName;
 
-    public ComplaintAdapter(FragmentActivity navigationalActivity, int layout_bank_details, int complaint_id, ArrayList<ComplaintListsDatum> newComplaintList)
+    public TechnicalPartenerAdapter(FragmentActivity navigationalActivity, int layout_bank_details, int complaint_id, ArrayList<TechnicalPartnerList> techPartnerList)
     {
-        super(navigationalActivity,layout_bank_details,complaint_id,newComplaintList);
+        super(navigationalActivity,layout_bank_details,complaint_id,techPartnerList);
         groupid=layout_bank_details;
         this.context = navigationalActivity;
-        this.newComplaintList = newComplaintList;
+        this.techPartnerList = techPartnerList;
 
     }
 
 
     // Hold views of the ListView to improve its scrolling performance
     static class ViewHolder {
-        public TextView complaintName;
-        public TextView projectOwner;
-        public TextView endConsumer;
-        public TextView projectType;
-        public Button viewDetailsBtn;
-        public Button approveBtn;
+        public TextView techName;
+        public TextView techEmail;
+        public TextView techGeoAdd;
+        public TextView techContactNum;
+        //public Button viewDetailsBtn;
+      //  public Button approveBtn;
 
 
 
@@ -84,12 +82,12 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             rowView= inflater.inflate(groupid, parent, false);
             ViewHolder viewHolder = new ViewHolder();
-            viewHolder.complaintName= (TextView) rowView.findViewById(R.id.complaint_name);
-            viewHolder.endConsumer= (TextView) rowView.findViewById(R.id.end_consumer);
-            viewHolder.projectOwner= (TextView) rowView.findViewById(R.id.project_owner);
-            viewHolder.projectType= (TextView) rowView.findViewById(R.id.project_type);
-            viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
-            viewHolder.approveBtn= (Button) rowView.findViewById(R.id.approve_button);
+            viewHolder.techName= (TextView) rowView.findViewById(R.id.tech_name);
+            viewHolder.techEmail= (TextView) rowView.findViewById(R.id.tech_email);
+            viewHolder.techGeoAdd= (TextView) rowView.findViewById(R.id.tech_user_add);
+            viewHolder.techContactNum= (TextView) rowView.findViewById(R.id.tech_contact_num);
+            //viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
+           // viewHolder.approveBtn= (Button) rowView.findViewById(R.id.approve_button);
 
 
 
@@ -100,15 +98,15 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
 
         }
         // Set text to each TextView of ListView item
-        final ComplaintListsDatum complaintListsDatum = getItem(position);
+        final TechnicalPartnerList technicalPartnerList = getItem(position);
         final ViewHolder holder = (ViewHolder) rowView.getTag();
 
-        if (complaintListsDatum !=null) {
-            holder.complaintName.setText(complaintListsDatum.getComplaint());
-            holder.endConsumer.setText(complaintListsDatum.getEndConsumer());
-            holder.projectType.setText(complaintListsDatum.getProjectType());
-            holder.projectOwner.setText(complaintListsDatum.getProjectOwner());
-            holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
+        if (technicalPartnerList !=null) {
+            holder.techName.setText(technicalPartnerList.getTechnicalpartenerName());
+            holder.techEmail.setText(technicalPartnerList.getTechnicalpartenerEmailid());
+            holder.techGeoAdd.setText(technicalPartnerList.getTechnicalpartenerGeoadress());
+            holder.techContactNum.setText(technicalPartnerList.getTechnicalpartenerPhone());
+           /* holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(getContext(), ShowNewComplaintDetailsActivity.class);
@@ -138,7 +136,7 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
 
                 }
             });
-
+*/
 
         }
 
@@ -152,7 +150,7 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
     }
 
 
-    private void getApproval(View v, ComplaintListsDatum complaintListsDatum) {
+    /*private void getApproval(View v, TechnicalPartnerList complaintListsDatum) {
         LoadingDialog.showLoadingDialog(getContext(),"Loading...");
         Call<ApproveComplaintResponse> call = adminApproveCompaintClient.AdminApproval(complaintListsDatum.getComplainId(),"Approved","complaintsapproved");
         if (NetworkUtils.isNetworkConnected(getContext())) {
@@ -194,6 +192,6 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
         } else {
             SnakBarUtils.networkConnected(getContext());
         }
-    }
+    }*/
 
 }

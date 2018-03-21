@@ -10,9 +10,11 @@ import com.solarprojectapp.generated.model.DashboardDataResponse;
 import com.solarprojectapp.generated.model.LoginResponse;
 import com.solarprojectapp.generated.model.NewComplaintResponse;
 import com.solarprojectapp.generated.model.ProfileResponse;
+import com.solarprojectapp.generated.model.RejectedComplaintListResponse;
 import com.solarprojectapp.generated.model.SparePartsPendingResponse;
 import com.solarprojectapp.generated.model.SparePartsRequestResponse;
 import com.solarprojectapp.generated.model.SubmitComplaintResponse;
+import com.solarprojectapp.generated.model.TechnicalPartnerListResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -68,6 +70,13 @@ public class RetrofitInterface {
                 @Field("type") String type);
     }
 
+    public interface UserRejectedCompaintListClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<RejectedComplaintListResponse> userRejectedComplaintList(
+                @Field("type") String type);
+    }
+
     public interface UserCompaintTypeClient {
         @FormUrlEncoded
         @POST("query.php")
@@ -101,6 +110,14 @@ public class RetrofitInterface {
         @POST("query.php")
         public Call<DashboardDataResponse> DashboardDataList(
                 @Field("type") String type);
+    }
+
+    public interface TechnicalPartnerClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<TechnicalPartnerListResponse> TechPartnerList(
+                @Field("type") String type,
+                 @Field("id") String id);
     }
 
     public interface AdminApproveCompaintClient {

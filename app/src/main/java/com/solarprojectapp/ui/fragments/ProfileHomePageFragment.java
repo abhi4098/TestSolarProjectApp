@@ -24,6 +24,7 @@ import com.solarprojectapp.ui.activities.NewComplaintListActivity;
 import com.solarprojectapp.ui.activities.NewSparePartsPendingActivity;
 import com.solarprojectapp.ui.activities.OpenComplaintListActivity;
 import com.solarprojectapp.ui.activities.OverDueComplaintListActivity;
+import com.solarprojectapp.ui.activities.RejectedComplaintListActivity;
 import com.solarprojectapp.ui.activities.SparePartsRequestedActivity;
 import com.solarprojectapp.ui.activities.SparePartsToBeClosedTodayActivity;
 import com.solarprojectapp.utils.LoadingDialog;
@@ -95,6 +96,12 @@ public class ProfileHomePageFragment extends Fragment {
         getActivity().startActivity(i);
     }
 
+    @OnClick(R.id.ll_rejected_complaints)
+    public void rejectedComplaints()
+    {
+        Intent i = new Intent(getActivity(), RejectedComplaintListActivity.class);
+        getActivity().startActivity(i);
+    }
 
     @OnClick(R.id.ll_spare_pats_pendingg)
     public void sparePartsPending()

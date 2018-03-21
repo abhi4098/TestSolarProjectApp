@@ -20,10 +20,10 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_pink"
-            android:text="Complaint: "/>
+            android:text="Technical Partner Name: "/>
 
         <TextView
-            android:id="@+id/complaint_name"
+            android:id="@+id/tech_name"
             android:layout_width="wrap_content"
             android:textColor="@color/solar_pink"
             android:layout_height="wrap_content"
@@ -41,10 +41,10 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_blue"
-            android:text="Project Owner: "/>
+            android:text="Email Add: "/>
 
         <TextView
-            android:id="@+id/project_owner"
+            android:id="@+id/tech_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -61,10 +61,10 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_blue"
-            android:text="End Consumer: "/>
+            android:text="User Add: "/>
 
         <TextView
-            android:id="@+id/end_consumer"
+            android:id="@+id/tech_user_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
@@ -84,10 +84,10 @@
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
                 android:textColor="@color/solar_blue"
-                android:text="Project Type: "/>
+                android:text="Contact No: "/>
 
             <TextView
-                android:id="@+id/project_type"
+                android:id="@+id/tech_contact_num"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
@@ -115,6 +115,7 @@
 
     </LinearLayout>-->
 
+<!--
 <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -151,5 +152,6 @@
         android:layout_height="25dp"
         android:text="Reject"/>
 </RelativeLayout>
+-->
 
 </LinearLayout>

@@ -132,6 +132,7 @@ public class ComplaintsToBeClosedTodayActivity extends AppCompatActivity impleme
                 complaintListsDatum.setProjectOwner(response.body().getComplaintListsData().get(i).get(j).getProjectOwner());
                 complaintListsDatum.setProjectType(response.body().getComplaintListsData().get(i).get(j).getProjectType());
                 complaintListsDatum.setState(response.body().getComplaintListsData().get(i).get(j).getState());
+                complaintListsDatum.setEndConsumerContactno(response.body().getComplaintListsData().get(i).get(j).getEndConsumerContactno());
                 complaintList.add(complaintListsDatum);
                 Log.e("abhi", "onResponse:..new complaint list " + complaintList.get(i).getComplaint());
 

@@ -72,6 +72,10 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.activities.ClosureComplaintListActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.RejectedComplaintListActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.TechnicalPartenerListActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

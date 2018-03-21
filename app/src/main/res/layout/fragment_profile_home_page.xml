@@ -265,7 +265,7 @@
                 android:id="@+id/ll_complaints_to_be_closed_today"
                 android:orientation="vertical"
                 android:layout_weight=".5"
-                android:background="@color/solar_pink"
+                android:background="@color/solar_yellow"
                 >
                 <TextView
                     android:layout_width="wrap_content"
@@ -287,6 +287,34 @@
 
 
         </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_rejected_complaints"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="vertical"
+            android:background="@color/solar_pink"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:textSize="12sp"
+                android:text="@string/rejected_complaints"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/rejected_complaints_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="35sp"
+                android:layout_gravity="center_horizontal"
+                />
+
+        </LinearLayout>
+
+
 
         <TextView
             android:layout_width="wrap_content"

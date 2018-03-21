@@ -32,6 +32,7 @@
     <string name="spare_parts_requested">Spare Parts Requested</string>
     <string name="spare_parts_pending">Spare parts pending</string>
     <string name="to_be_closed_by_today">To be Closed by Today</string>
+    <string name="rejected_complaints">Rejected Complaints</string>
 
     <string-array name="login_types">
         <item>Admin</item>
