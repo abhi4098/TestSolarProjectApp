@@ -108,7 +108,7 @@ public class NavigationalActivity extends AppCompatActivity
 
     public void setFragment() {
         if (loginType.equals("Admin")) {
-
+            PrefUtils.storeUserFrag("Admin",getBaseContext());
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             profileHomePageFragment = new ProfileHomePageFragment();
@@ -117,6 +117,7 @@ public class NavigationalActivity extends AppCompatActivity
         }
         else if (loginType.equals("End Consumer"))
         {
+            PrefUtils.storeUserFrag("End Consumer",getBaseContext());
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             profileCustomerFragment = new ProfileCustomerPageFragment();
@@ -125,14 +126,16 @@ public class NavigationalActivity extends AppCompatActivity
         }
         else if (loginType.equals("Client"))
         {
+            PrefUtils.storeUserFrag("Client",getBaseContext());
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            profileCustomerFragment = new ProfileCustomerPageFragment();
-            fragmentTransaction.add(R.id.fragment_container, profileCustomerFragment, "PROFILE").addToBackStack(null);
+            profileHomePageFragment = new ProfileHomePageFragment();
+            fragmentTransaction.add(R.id.fragment_container, profileHomePageFragment, "PROFILE").addToBackStack(null);
             fragmentTransaction.commit();
         }
         else if (loginType.equals("Technical Partner"))
         {
+            PrefUtils.storeUserFrag("Technical Partner",getBaseContext());
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             profileCustomerFragment = new ProfileCustomerPageFragment();
@@ -141,6 +144,7 @@ public class NavigationalActivity extends AppCompatActivity
         }
         else
         {
+            PrefUtils.storeUserFrag("Admin",getBaseContext());
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             profileTechnicalFragment = new ProfileTechnicalFragment();

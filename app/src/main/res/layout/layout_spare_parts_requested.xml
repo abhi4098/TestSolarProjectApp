@@ -136,6 +136,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp">
 
         <Button
@@ -149,6 +150,7 @@
             android:layout_alignParentStart="true"
             android:text="View Details"/>
         <Button
+            android:id="@+id/approve_button"
             android:layout_width="wrap_content"
             android:layout_toEndOf="@+id/view_detail_button"
             android:layout_centerHorizontal="true"
@@ -156,11 +158,12 @@
             android:layout_marginStart="20dp"
             android:background="@color/solar_yellow"
             android:layout_height="25dp"
-            android:text="Approve"/>
+            android:text="Assign"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_alignParentEnd="true"
+            android:visibility="gone"
             android:textColor="@color/white"
             android:background="@color/solar_blue"
             android:layout_height="25dp"

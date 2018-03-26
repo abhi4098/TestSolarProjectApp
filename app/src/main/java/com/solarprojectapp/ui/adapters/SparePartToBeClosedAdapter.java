@@ -15,6 +15,7 @@ import com.solarprojectapp.R;
 import com.solarprojectapp.generated.model.SparepartsrequestList;
 import com.solarprojectapp.ui.activities.ShowSparePartsRequestedDetailsActivity;
 import com.solarprojectapp.ui.activities.ShowSparePartsToBeClosedDetailsActivity;
+import com.solarprojectapp.utils.PrefUtils;
 
 import java.util.ArrayList;
 
@@ -47,6 +48,7 @@ public class SparePartToBeClosedAdapter extends ArrayAdapter<SparepartsrequestLi
         public TextView sparePartBrand;
         public TextView sparePartPrice;
         public Button viewDetailsBtn;
+        public Button approveBtn;
 
 
 
@@ -73,6 +75,7 @@ public class SparePartToBeClosedAdapter extends ArrayAdapter<SparepartsrequestLi
             viewHolder.sparePartStatusName= (TextView) rowView.findViewById(R.id.spare_part_status_name);
             viewHolder.sparePartPrice= (TextView) rowView.findViewById(R.id.spare_part_price);
             viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
+            viewHolder.approveBtn= (Button) rowView.findViewById(R.id.approve_button);
 
 
 
@@ -91,25 +94,31 @@ public class SparePartToBeClosedAdapter extends ArrayAdapter<SparepartsrequestLi
             holder.sparePartBrand.setText(sparepartsrequestList.getSparepartBrand());
             holder.sparePartStatusName.setText(sparepartsrequestList.getStatusName());
             holder.sparePartPrice.setText(sparepartsrequestList.getSparepartPrice());
-            holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(getContext(), ShowSparePartsToBeClosedDetailsActivity.class);
-                    i.putExtra("SPARE_PART_NAME",sparepartsrequestList.getSparepartName());
-                    i.putExtra("SPARE_PART_ID",sparepartsrequestList.getSparepartId());
-                    i.putExtra("SPARE_PART_STATUS",sparepartsrequestList.getStatusName());
-                    i.putExtra("SPARE_PART_REQUESTED_PRICE",sparepartsrequestList.getSparepartRequestPrice());
-                    i.putExtra("SPARE_PART_PRICE",sparepartsrequestList.getSparepartPrice());
-                    i.putExtra("SPARE_PART_REQUESTED_QUANTITY",sparepartsrequestList.getSparepartRequestQuantity());
-                    i.putExtra("SPARE_PART_CREATED_DATE",sparepartsrequestList.getSparepartCreatedate());
-                    i.putExtra("SPARE_PART_BRAND",sparepartsrequestList.getSparepartBrand());
-                    //i.putExtra("INTENT_FROM","EditButton");
 
-                    getContext().startActivity(i);
+            if (PrefUtils.getUserFrag(getContext()).equals("Client")) {
+                holder.viewDetailsBtn.setVisibility(View.GONE);
+                holder.approveBtn.setVisibility(View.GONE);
+            } else {
+                holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(getContext(), ShowSparePartsToBeClosedDetailsActivity.class);
+                        i.putExtra("SPARE_PART_NAME", sparepartsrequestList.getSparepartName());
+                        i.putExtra("SPARE_PART_ID", sparepartsrequestList.getSparepartId());
+                        i.putExtra("SPARE_PART_STATUS", sparepartsrequestList.getStatusName());
+                        i.putExtra("SPARE_PART_REQUESTED_PRICE", sparepartsrequestList.getSparepartRequestPrice());
+                        i.putExtra("SPARE_PART_PRICE", sparepartsrequestList.getSparepartPrice());
+                        i.putExtra("SPARE_PART_REQUESTED_QUANTITY", sparepartsrequestList.getSparepartRequestQuantity());
+                        i.putExtra("SPARE_PART_CREATED_DATE", sparepartsrequestList.getSparepartCreatedate());
+                        i.putExtra("SPARE_PART_BRAND", sparepartsrequestList.getSparepartBrand());
+                        //i.putExtra("INTENT_FROM","EditButton");
 
-                }
-            });
+                        getContext().startActivity(i);
 
+                    }
+                });
+
+            }
         }
 
 

@@ -18,6 +18,7 @@ public class PrefUtils {
     public static String USER_PASSWORD = "user_password";
     public static String USER_TYPE = "user_type";
     public static String USER_IMAGE= "user_image";
+    public static String USER_FRAG_SELECTED= "user_frah_selected";
   /*  public static String LOGGED_IN_USER_EMAIL = "user_email";
     public static String LOGGED_IN_USER_ADD = "user_add";
     public static String LOGGED_IN_USER_ROLE_ID = "user_role_id";
@@ -181,6 +182,19 @@ public class PrefUtils {
     public static String getUserImage(Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
         return sharedPreferences.getString(USER_IMAGE, "");
+    }
+
+    public static void storeUserFrag(String frag, Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        sharedPreferences.edit()
+                .putString(USER_FRAG_SELECTED, frag)
+                .apply();
+
+    }
+
+    public static String getUserFrag(Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        return sharedPreferences.getString(USER_FRAG_SELECTED, "");
     }
   /*  public static void storeRoleParent(String roleParent, Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);

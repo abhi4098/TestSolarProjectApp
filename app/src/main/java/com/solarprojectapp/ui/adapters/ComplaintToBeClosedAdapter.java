@@ -15,6 +15,7 @@ import com.solarprojectapp.R;
 import com.solarprojectapp.generated.model.ComplaintListsDatum;
 import com.solarprojectapp.ui.activities.ShowComplaintsToBeClosedDetailsActivity;
 import com.solarprojectapp.ui.activities.ShowNewComplaintDetailsActivity;
+import com.solarprojectapp.utils.PrefUtils;
 
 import java.util.ArrayList;
 
@@ -46,6 +47,8 @@ public class ComplaintToBeClosedAdapter extends ArrayAdapter<ComplaintListsDatum
         public TextView endConsumer;
         public TextView projectType;
         public Button viewDetailsBtn;
+        public Button approveBtn;
+
 
 
 
@@ -70,6 +73,7 @@ public class ComplaintToBeClosedAdapter extends ArrayAdapter<ComplaintListsDatum
             viewHolder.projectOwner= (TextView) rowView.findViewById(R.id.project_owner);
             viewHolder.projectType= (TextView) rowView.findViewById(R.id.project_type);
             viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
+            viewHolder.approveBtn= (Button) rowView.findViewById(R.id.approve_button);
 
 
 
@@ -88,24 +92,31 @@ public class ComplaintToBeClosedAdapter extends ArrayAdapter<ComplaintListsDatum
             holder.endConsumer.setText(complaintListsDatum.getEndConsumer());
             holder.projectType.setText(complaintListsDatum.getProjectType());
             holder.projectOwner.setText(complaintListsDatum.getProjectOwner());
-            holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(getContext(), ShowComplaintsToBeClosedDetailsActivity.class);
-                    i.putExtra("COMPLAINT_DESC",complaintListsDatum.getComplainDescription());
-                    i.putExtra("COMPLAINT_ID",complaintListsDatum.getComplainId());
-                    i.putExtra("COMPLAINT",complaintListsDatum.getComplaint());
-                    i.putExtra("COMPLAINT_END_CONSUMER",complaintListsDatum.getEndConsumer());
-                    i.putExtra("COMPLAINT_PROJECT_OWNER",complaintListsDatum.getProjectOwner());
-                    i.putExtra("COMPLAINT_PROJECT_TYPE",complaintListsDatum.getProjectType());
-                    i.putExtra("COMPLAINT_STATE",complaintListsDatum.getState());
-                    i.putExtra("COMPLAINT_CONTACT",complaintListsDatum.getEndConsumerContactno());
-                    //i.putExtra("INTENT_FROM","EditButton");
+            if (PrefUtils.getUserFrag(getContext()).equals("Client"))
+            {
+                holder.viewDetailsBtn.setVisibility(View.GONE);
+                holder.approveBtn.setVisibility(View.GONE);
+            }
+            else {
+                holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(getContext(), ShowComplaintsToBeClosedDetailsActivity.class);
+                        i.putExtra("COMPLAINT_DESC", complaintListsDatum.getComplainDescription());
+                        i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                        i.putExtra("COMPLAINT", complaintListsDatum.getComplaint());
+                        i.putExtra("COMPLAINT_END_CONSUMER", complaintListsDatum.getEndConsumer());
+                        i.putExtra("COMPLAINT_PROJECT_OWNER", complaintListsDatum.getProjectOwner());
+                        i.putExtra("COMPLAINT_PROJECT_TYPE", complaintListsDatum.getProjectType());
+                        i.putExtra("COMPLAINT_STATE", complaintListsDatum.getState());
+                        i.putExtra("COMPLAINT_CONTACT", complaintListsDatum.getEndConsumerContactno());
+                        //i.putExtra("INTENT_FROM","EditButton");
 
-                    getContext().startActivity(i);
+                        getContext().startActivity(i);
 
-                }
-            });
+                    }
+                });
+            }
 
 
 
