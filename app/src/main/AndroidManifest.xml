@@ -76,6 +76,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.activities.TechnicalPartenerListActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.TotalConsumerListActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

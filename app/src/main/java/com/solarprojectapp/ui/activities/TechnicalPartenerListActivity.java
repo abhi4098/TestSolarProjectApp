@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -151,6 +152,12 @@ public class TechnicalPartenerListActivity extends AppCompatActivity implements 
         listview.setClipToPadding(false);
         listview.setDividerHeight(50);
         listview.setTextFilterEnabled(true);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.e("abhi", "onItemClick: ............." );
+            }
+        });
 
 
     }

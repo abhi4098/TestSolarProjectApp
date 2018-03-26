@@ -27,6 +27,7 @@ import com.solarprojectapp.ui.activities.OverDueComplaintListActivity;
 import com.solarprojectapp.ui.activities.RejectedComplaintListActivity;
 import com.solarprojectapp.ui.activities.SparePartsRequestedActivity;
 import com.solarprojectapp.ui.activities.SparePartsToBeClosedTodayActivity;
+import com.solarprojectapp.ui.activities.TotalConsumerListActivity;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.SnakBarUtils;
@@ -93,6 +94,13 @@ public class ProfileHomePageFragment extends Fragment {
     public void newComplaintList()
     {
       Intent i = new Intent(getActivity(), NewComplaintListActivity.class);
+        getActivity().startActivity(i);
+    }
+
+    @OnClick(R.id.ll_total_consumers)
+    public void totalConsumers()
+    {
+        Intent i = new Intent(getActivity(), TotalConsumerListActivity.class);
         getActivity().startActivity(i);
     }
 
