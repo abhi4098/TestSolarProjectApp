@@ -90,7 +90,7 @@ public class ProfileHomePageFragment extends Fragment {
 
 
     private Handler handler = new Handler();
-    @OnClick(R.id.new_complaints_button)
+    @OnClick(R.id.ll_new_complaint)
     public void newComplaintList()
     {
       Intent i = new Intent(getActivity(), NewComplaintListActivity.class);
@@ -118,7 +118,7 @@ public class ProfileHomePageFragment extends Fragment {
         getActivity().startActivity(i);
     }
 
-    @OnClick(R.id.spare_part_button)
+    @OnClick(R.id.ll_spare_part_request)
     public void sparePartsRequested()
     {
         Intent i = new Intent(getActivity(), SparePartsRequestedActivity.class);
