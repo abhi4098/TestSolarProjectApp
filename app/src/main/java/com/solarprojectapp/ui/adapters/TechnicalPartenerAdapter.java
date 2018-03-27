@@ -16,6 +16,7 @@ import com.solarprojectapp.R;
 import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.ApproveComplaintResponse;
+import com.solarprojectapp.generated.model.AssignComplaintResponse;
 import com.solarprojectapp.generated.model.ComplaintListsDatum;
 import com.solarprojectapp.generated.model.TechnicalPartnerList;
 import com.solarprojectapp.ui.activities.NewComplaintListActivity;
@@ -23,6 +24,7 @@ import com.solarprojectapp.ui.activities.ShowNewComplaintDetailsActivity;
 import com.solarprojectapp.ui.activities.TechnicalPartenerListActivity;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
+import com.solarprojectapp.utils.PrefUtils;
 import com.solarprojectapp.utils.SnakBarUtils;
 
 import java.util.ArrayList;
@@ -42,7 +44,7 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
     int groupid;
     ArrayList<TechnicalPartnerList> techPartnerList;
     FragmentActivity context;
-    private RetrofitInterface.AdminApproveCompaintClient adminApproveCompaintClient;
+    private RetrofitInterface.AssignTechPartnerClient assignTechPartnerAdapter;
     String priorityName,statusName;
 
     public TechnicalPartenerAdapter(FragmentActivity navigationalActivity, int layout_bank_details, int complaint_id, ArrayList<TechnicalPartnerList> techPartnerList)
@@ -62,7 +64,7 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
         public TextView techGeoAdd;
         public TextView techContactNum;
         //public Button viewDetailsBtn;
-      //  public Button approveBtn;
+        public Button approveBtn;
 
 
 
@@ -87,7 +89,7 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
             viewHolder.techGeoAdd= (TextView) rowView.findViewById(R.id.tech_user_add);
             viewHolder.techContactNum= (TextView) rowView.findViewById(R.id.tech_contact_num);
             //viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
-           // viewHolder.approveBtn= (Button) rowView.findViewById(R.id.approve_button);
+           viewHolder.approveBtn= (Button) rowView.findViewById(R.id.approve_button);
 
 
 
@@ -106,6 +108,15 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
             holder.techEmail.setText(technicalPartnerList.getTechnicalpartenerEmailid());
             holder.techGeoAdd.setText(technicalPartnerList.getTechnicalpartenerGeoadress());
             holder.techContactNum.setText(technicalPartnerList.getTechnicalpartenerPhone());
+            holder.approveBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    //setUpRestAdapter();
+                    //getApproval(v,technicalPartnerList);
+
+                }
+            });
            /* holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -125,17 +136,7 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
                 }
             });
 
-            holder.approveBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
 
-                    Intent i = new Intent(((NewComplaintListActivity)getContext()), TechnicalPartenerListActivity.class);
-                    ((NewComplaintListActivity)getContext()).startActivity(i);
-                    //setUpRestAdapter();
-                    //getApproval(v,complaintListsDatum);
-
-                }
-            });
 */
 
         }
@@ -145,24 +146,24 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
         return rowView;
     }
 
-    private void setUpRestAdapter() {
-        adminApproveCompaintClient = ApiAdapter.createRestAdapter(RetrofitInterface.AdminApproveCompaintClient.class, MAIN_BASE_URL, getContext());
+   /* private void setUpRestAdapter() {
+        assignTechPartnerAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.AssignTechPartnerClient.class, MAIN_BASE_URL, getContext());
     }
 
 
-    /*private void getApproval(View v, TechnicalPartnerList complaintListsDatum) {
+    private void getApproval(View v, TechnicalPartnerList technicalPartnerList) {
         LoadingDialog.showLoadingDialog(getContext(),"Loading...");
-        Call<ApproveComplaintResponse> call = adminApproveCompaintClient.AdminApproval(complaintListsDatum.getComplainId(),"Approved","complaintsapproved");
+        Call<AssignComplaintResponse> call = assignTechPartnerAdapter.AssignTechPartner(technicalPartnerList.getComplainId(),technicalPartnerList.getTechnicalpartenerId(),"complaintsapproved", PrefUtils.getFkId(getContext()),"assigntechnicalpartner");
         if (NetworkUtils.isNetworkConnected(getContext())) {
-            call.enqueue(new Callback<ApproveComplaintResponse>() {
+            call.enqueue(new Callback<AssignComplaintResponse>() {
 
                 @Override
-                public void onResponse(Call<ApproveComplaintResponse> call, Response<ApproveComplaintResponse> response) {
+                public void onResponse(Call<AssignComplaintResponse> call, Response<AssignComplaintResponse> response) {
 
                     if (response.isSuccessful()) {
 
                         if (response.body().getSuccess().equals("true")) {
-                            Log.e("abhi", "onResponse: ..............admin data" +response.body().getComplaintsApproved());
+                            Log.e("abhi", "onResponse: ..............admin data" +response.body().getMessage());
                             ((NewComplaintListActivity)getContext()).finish();
                             LoadingDialog.cancelLoading();
 
@@ -171,7 +172,7 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
                         {
                             LoadingDialog.cancelLoading();
 
-                            Toast.makeText(getContext(),response.body().getComplaintsApproved(),Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
                         }
 
 
@@ -181,7 +182,7 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
                 }
 
                 @Override
-                public void onFailure(Call<ApproveComplaintResponse> call, Throwable t) {
+                public void onFailure(Call<AssignComplaintResponse> call, Throwable t) {
                     Toast.makeText(getContext(),"Error occur",Toast.LENGTH_SHORT).show();
                     LoadingDialog.cancelLoading();
                 }

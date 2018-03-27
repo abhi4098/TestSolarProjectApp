@@ -139,6 +139,7 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
                     public void onClick(View v) {
 
                         Intent i = new Intent(((NewComplaintListActivity) getContext()), TechnicalPartenerListActivity.class);
+                        //i.putExtra("COMPLAINT_TYPE_ID", complaintListsDatum.get());
                         ((NewComplaintListActivity) getContext()).startActivity(i);
                         //setUpRestAdapter();
                         //getApproval(v,complaintListsDatum);

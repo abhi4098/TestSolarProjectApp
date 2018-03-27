@@ -152,12 +152,7 @@ public class TechnicalPartenerListActivity extends AppCompatActivity implements 
         listview.setClipToPadding(false);
         listview.setDividerHeight(50);
         listview.setTextFilterEnabled(true);
-        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.e("abhi", "onItemClick: ............." );
-            }
-        });
+
 
 
     }

@@ -78,6 +78,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.activities.TotalConsumerListActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.CustomTecnicalPartnerTabActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

@@ -133,7 +133,7 @@ public class NavigationalActivity extends AppCompatActivity
             fragmentTransaction.add(R.id.fragment_container, profileHomePageFragment, "PROFILE").addToBackStack(null);
             fragmentTransaction.commit();
         }
-        else if (loginType.equals("Technical Partner"))
+        else if (loginType.equals("Technical Partener"))
         {
             PrefUtils.storeUserFrag("Technical Partner",getBaseContext());
             FragmentManager fragmentManager = getSupportFragmentManager();

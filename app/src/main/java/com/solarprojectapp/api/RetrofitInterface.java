@@ -4,6 +4,7 @@ package com.solarprojectapp.api;
 
 
 import com.solarprojectapp.generated.model.ApproveComplaintResponse;
+import com.solarprojectapp.generated.model.AssignComplaintResponse;
 import com.solarprojectapp.generated.model.ChangePasswordResponse;
 import com.solarprojectapp.generated.model.ComplaintTypeDropdown;
 import com.solarprojectapp.generated.model.DashboardDataResponse;
@@ -139,15 +140,14 @@ public class RetrofitInterface {
                 @Field("type") String type);
     }
 
- /*   public interface AssignTechPartnerClient {
+    public interface AssignTechPartnerClient {
         @FormUrlEncoded
         @POST("query.php")
-        public Call<ApproveComplaintResponse> AssignTechPartner(
+        public Call<AssignComplaintResponse> AssignTechPartner(
                 @Field("userid") String userid,
                 @Field("tech_userid") String tech_userid,
-                @Field("complaintstypeid") String complaintstypeid  ,
+                @Field("complaintstypeid") String complaintstypeid ,
                 @Field("admin_id") String admin_id,
                 @Field("type") String type);
     }
-    */
 }
