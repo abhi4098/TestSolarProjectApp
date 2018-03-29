@@ -127,6 +127,7 @@ public class OpenTabFragment extends Fragment {
                     complaintListsDatum.setProjectOwner(response.body().getComplaintListsData().get(i).get(j).getProjectOwner());
                     complaintListsDatum.setProjectType(response.body().getComplaintListsData().get(i).get(j).getProjectType());
                     complaintListsDatum.setState(response.body().getComplaintListsData().get(i).get(j).getState());
+                    complaintListsDatum.setComplainTechnicalpartnerstatus(response.body().getComplaintListsData().get(i).get(j).getComplainTechnicalpartnerstatus());
                     complaintListsDatum.setEndConsumerContactno(response.body().getComplaintListsData().get(i).get(j).getEndConsumerContactno());
 
                     newTabComplaintList.add(complaintListsDatum);
@@ -154,6 +155,7 @@ public class OpenTabFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_open, container, false);
         ButterKnife.bind(this,rootView);
+
         setUpRestAdapter();
         getTabList();
         return rootView;

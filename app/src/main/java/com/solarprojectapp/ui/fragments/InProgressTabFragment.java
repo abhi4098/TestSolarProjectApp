@@ -128,7 +128,7 @@ public class InProgressTabFragment extends Fragment {
                     complaintListsDatum.setProjectType(response.body().getComplaintListsData().get(i).get(j).getProjectType());
                     complaintListsDatum.setState(response.body().getComplaintListsData().get(i).get(j).getState());
                     complaintListsDatum.setEndConsumerContactno(response.body().getComplaintListsData().get(i).get(j).getEndConsumerContactno());
-
+                    complaintListsDatum.setComplainTechnicalpartnerstatus(response.body().getComplaintListsData().get(i).get(j).getComplainTechnicalpartnerstatus());
                     newTabComplaintList.add(complaintListsDatum);
                     Log.e("abhi", "onResponse:..new complaint list " + newTabComplaintList.get(i).getComplaint());
                 }

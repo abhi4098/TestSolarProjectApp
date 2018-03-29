@@ -132,7 +132,7 @@
             android:layout_alignParentStart="true"
             android:text="View Details"/>
         <Button
-            android:id="@+id/approve_button"
+            android:id="@+id/accept_button"
             android:layout_width="wrap_content"
             android:layout_toEndOf="@+id/view_detail_button"
             android:layout_centerHorizontal="true"
@@ -140,12 +140,33 @@
             android:layout_marginStart="20dp"
             android:background="@color/solar_yellow"
             android:layout_height="25dp"
-            android:text="Assign"/>
+            android:text="Accept"/>
+        <Button
+            android:id="@+id/request_spare_part_button"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_toEndOf="@+id/view_detail_button"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:layout_marginStart="20dp"
+            android:background="@color/solar_yellow"
+            android:layout_height="25dp"
+            android:text="Request"/>
 
         <Button
+            android:id="@+id/close_button"
             android:layout_width="wrap_content"
             android:layout_alignParentEnd="true"
+            android:textColor="@color/white"
             android:visibility="gone"
+            android:background="@color/solar_blue"
+            android:layout_height="25dp"
+            android:text="Close"/>
+
+        <Button
+            android:id="@+id/reject_button"
+            android:layout_width="wrap_content"
+            android:layout_alignParentEnd="true"
             android:textColor="@color/white"
             android:background="@color/solar_blue"
             android:layout_height="25dp"

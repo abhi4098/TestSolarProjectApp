@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.solarprojectapp.R;
 import com.solarprojectapp.api.RetrofitInterface;
@@ -49,7 +50,10 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
         public TextView endConsumer;
         public TextView projectType;
         public Button viewDetailsBtn;
-        public Button approveBtn;
+        public Button acceptBtn;
+        public Button closeBtn;
+        public Button rejectBtn;
+        public Button requestSparePartBtn;
 
 
 
@@ -73,8 +77,11 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
             viewHolder.endConsumer= (TextView) rowView.findViewById(R.id.end_consumer);
             viewHolder.projectOwner= (TextView) rowView.findViewById(R.id.project_owner);
             viewHolder.projectType= (TextView) rowView.findViewById(R.id.project_type);
-           // viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
-          //  viewHolder.approveBtn= (Button) rowView.findViewById(R.id.approve_button);
+            viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
+            viewHolder.acceptBtn= (Button) rowView.findViewById(R.id.accept_button);
+            viewHolder.rejectBtn= (Button) rowView.findViewById(R.id.reject_button);
+            viewHolder.closeBtn= (Button) rowView.findViewById(R.id.close_button);
+            viewHolder.requestSparePartBtn= (Button) rowView.findViewById(R.id.request_spare_part_button);
 
 
 
@@ -94,6 +101,124 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
            holder.endConsumer.setText(complaintListsDatum.getEndConsumer());
            holder.projectType.setText(complaintListsDatum.getProjectType());
            holder.projectOwner.setText(complaintListsDatum.getProjectOwner());
+           if (complaintListsDatum.getComplainTechnicalpartnerstatus().equals("Inprogress"))
+           {
+               holder.viewDetailsBtn.setVisibility(View.VISIBLE);
+               holder.acceptBtn.setVisibility(View.VISIBLE);
+               holder.closeBtn.setVisibility(View.GONE);
+               holder.rejectBtn.setVisibility(View.VISIBLE);
+               holder.requestSparePartBtn.setVisibility(View.GONE);
+
+               holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       Intent i = new Intent(getContext(), ShowNewComplaintDetailsActivity.class);
+                       i.putExtra("COMPLAINT_DESC", complaintListsDatum.getComplainDescription());
+                       i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                       i.putExtra("COMPLAINT", complaintListsDatum.getComplaint());
+                       i.putExtra("COMPLAINT_END_CONSUMER", complaintListsDatum.getEndConsumer());
+                       i.putExtra("COMPLAINT_PROJECT_OWNER", complaintListsDatum.getProjectOwner());
+                       i.putExtra("COMPLAINT_PROJECT_TYPE", complaintListsDatum.getProjectType());
+                       i.putExtra("COMPLAINT_STATE", complaintListsDatum.getState());
+                       i.putExtra("COMPLAINT_CONTACT", complaintListsDatum.getEndConsumerContactno());
+                       //i.putExtra("INTENT_FROM","EditButton");
+
+                       getContext().startActivity(i);
+
+                   }
+               });
+
+               holder.acceptBtn.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+
+                       Toast.makeText(getContext(),"accept",Toast.LENGTH_SHORT).show();
+
+                   }
+               });
+
+
+               holder.rejectBtn.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+
+                       Toast.makeText(getContext(),"reject",Toast.LENGTH_SHORT).show();
+                   }
+               });
+
+
+           }
+           else if (complaintListsDatum.getComplainTechnicalpartnerstatus().equals("Accept"))
+           {
+               holder.viewDetailsBtn.setVisibility(View.VISIBLE);
+               holder.acceptBtn.setVisibility(View.GONE);
+               holder.closeBtn.setVisibility(View.VISIBLE);
+               holder.rejectBtn.setVisibility(View.GONE);
+               holder.requestSparePartBtn.setVisibility(View.VISIBLE);
+               holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       Intent i = new Intent(getContext(), ShowNewComplaintDetailsActivity.class);
+                       i.putExtra("COMPLAINT_DESC", complaintListsDatum.getComplainDescription());
+                       i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                       i.putExtra("COMPLAINT", complaintListsDatum.getComplaint());
+                       i.putExtra("COMPLAINT_END_CONSUMER", complaintListsDatum.getEndConsumer());
+                       i.putExtra("COMPLAINT_PROJECT_OWNER", complaintListsDatum.getProjectOwner());
+                       i.putExtra("COMPLAINT_PROJECT_TYPE", complaintListsDatum.getProjectType());
+                       i.putExtra("COMPLAINT_STATE", complaintListsDatum.getState());
+                       i.putExtra("COMPLAINT_CONTACT", complaintListsDatum.getEndConsumerContactno());
+                       //i.putExtra("INTENT_FROM","EditButton");
+
+                       getContext().startActivity(i);
+
+                   }
+               });
+
+               holder.requestSparePartBtn.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+
+                       Toast.makeText(getContext(),"Request",Toast.LENGTH_SHORT).show();
+
+                   }
+               });
+
+
+               holder.closeBtn.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+
+                       Toast.makeText(getContext(),"close",Toast.LENGTH_SHORT).show();
+                   }
+               });
+
+           }
+           else
+           {
+               holder.viewDetailsBtn.setVisibility(View.VISIBLE);
+               holder.acceptBtn.setVisibility(View.GONE);
+               holder.closeBtn.setVisibility(View.GONE);
+               holder.rejectBtn.setVisibility(View.GONE);
+               holder.requestSparePartBtn.setVisibility(View.GONE);
+               holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View v) {
+                       Intent i = new Intent(getContext(), ShowNewComplaintDetailsActivity.class);
+                       i.putExtra("COMPLAINT_DESC", complaintListsDatum.getComplainDescription());
+                       i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                       i.putExtra("COMPLAINT", complaintListsDatum.getComplaint());
+                       i.putExtra("COMPLAINT_END_CONSUMER", complaintListsDatum.getEndConsumer());
+                       i.putExtra("COMPLAINT_PROJECT_OWNER", complaintListsDatum.getProjectOwner());
+                       i.putExtra("COMPLAINT_PROJECT_TYPE", complaintListsDatum.getProjectType());
+                       i.putExtra("COMPLAINT_STATE", complaintListsDatum.getState());
+                       i.putExtra("COMPLAINT_CONTACT", complaintListsDatum.getEndConsumerContactno());
+                       //i.putExtra("INTENT_FROM","EditButton");
+
+                       getContext().startActivity(i);
+
+                   }
+               });
+           }
             /*if (PrefUtils.getUserFrag(getContext()).equals("Client"))
             {
               holder.viewDetailsBtn.setVisibility(View.GONE);
