@@ -70,7 +70,12 @@ public class NewComplaintListActivity extends AppCompatActivity implements View.
         getNewComplaints();
 
     }
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        setUpRestAdapter();
+        getNewComplaints();
+    }
     private void setUpRestAdapter() {
         UserNewCompaintListAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.UserCompaintListClient.class, MAIN_BASE_URL, this);
     }

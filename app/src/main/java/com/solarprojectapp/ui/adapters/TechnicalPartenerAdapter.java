@@ -44,15 +44,17 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
     int groupid;
     ArrayList<TechnicalPartnerList> techPartnerList;
     FragmentActivity context;
+    String complainId;
     private RetrofitInterface.AssignTechPartnerClient assignTechPartnerAdapter;
     String priorityName,statusName;
 
-    public TechnicalPartenerAdapter(FragmentActivity navigationalActivity, int layout_bank_details, int complaint_id, ArrayList<TechnicalPartnerList> techPartnerList)
+    public TechnicalPartenerAdapter(FragmentActivity navigationalActivity, int layout_bank_details, int complaint_id, ArrayList<TechnicalPartnerList> techPartnerList, String complaintId)
     {
         super(navigationalActivity,layout_bank_details,complaint_id,techPartnerList);
         groupid=layout_bank_details;
         this.context = navigationalActivity;
         this.techPartnerList = techPartnerList;
+        this.complainId = complaintId;
 
     }
 
@@ -112,8 +114,8 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
                 @Override
                 public void onClick(View v) {
 
-                    //setUpRestAdapter();
-                    //getApproval(v,technicalPartnerList);
+                    setUpRestAdapter();
+                    getApproval(v,technicalPartnerList);
 
                 }
             });
@@ -146,14 +148,14 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
         return rowView;
     }
 
-   /* private void setUpRestAdapter() {
+    private void setUpRestAdapter() {
         assignTechPartnerAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.AssignTechPartnerClient.class, MAIN_BASE_URL, getContext());
     }
 
 
     private void getApproval(View v, TechnicalPartnerList technicalPartnerList) {
         LoadingDialog.showLoadingDialog(getContext(),"Loading...");
-        Call<AssignComplaintResponse> call = assignTechPartnerAdapter.AssignTechPartner(technicalPartnerList.getComplainId(),technicalPartnerList.getTechnicalpartenerId(),"complaintsapproved", PrefUtils.getFkId(getContext()),"assigntechnicalpartner");
+        Call<AssignComplaintResponse> call = assignTechPartnerAdapter.AssignTechPartner(technicalPartnerList.getTechnicalpartenerId(),complainId, PrefUtils.getFkId(getContext()),"assigntechnicalpartner");
         if (NetworkUtils.isNetworkConnected(getContext())) {
             call.enqueue(new Callback<AssignComplaintResponse>() {
 
@@ -164,7 +166,7 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
 
                         if (response.body().getSuccess().equals("true")) {
                             Log.e("abhi", "onResponse: ..............admin data" +response.body().getMessage());
-                            ((NewComplaintListActivity)getContext()).finish();
+                            ((TechnicalPartenerListActivity)getContext()).finish();
                             LoadingDialog.cancelLoading();
 
                         }
@@ -193,6 +195,6 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
         } else {
             SnakBarUtils.networkConnected(getContext());
         }
-    }*/
+    }
 
 }

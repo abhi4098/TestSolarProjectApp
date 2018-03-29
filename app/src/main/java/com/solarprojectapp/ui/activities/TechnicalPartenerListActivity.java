@@ -55,6 +55,7 @@ public class TechnicalPartenerListActivity extends AppCompatActivity implements 
 */
     @BindView(R.id.listview)
     ListView listview;
+    String  complaintId;
 
     ArrayList<TechnicalPartnerList> technicalPartnerLists = null;
     TechnicalPartenerAdapter technicalPartenersAdapter;
@@ -69,10 +70,18 @@ public class TechnicalPartenerListActivity extends AppCompatActivity implements 
         ButterKnife.bind(this);
         ivBackIcon.setOnClickListener(this);
         tvAppTitle.setText("TECHNICAL PARTNER LIST");
+        complaintId =getIntent().getExtras().getString("COMPLAINT_ID");
 
         setUpRestAdapter();
         getTechPartnerList();
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        setUpRestAdapter();
+        getTechPartnerList();
     }
 
     private void setUpRestAdapter() {
@@ -145,7 +154,7 @@ public class TechnicalPartenerListActivity extends AppCompatActivity implements 
             }
         }
 
-        technicalPartenersAdapter = new TechnicalPartenerAdapter(this, R.layout.layout_tech_partner_list, R.id.tech_name, technicalPartnerLists);
+        technicalPartenersAdapter = new TechnicalPartenerAdapter(this, R.layout.layout_tech_partner_list, R.id.tech_name, technicalPartnerLists,complaintId);
         listview.setAdapter(technicalPartenersAdapter);
         LoadingDialog.cancelLoading();
         listview.setDivider(new ColorDrawable(Color.TRANSPARENT));  //hide the divider

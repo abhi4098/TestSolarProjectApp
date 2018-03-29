@@ -144,7 +144,6 @@ public class RetrofitInterface {
         @FormUrlEncoded
         @POST("query.php")
         public Call<AssignComplaintResponse> AssignTechPartner(
-                @Field("userid") String userid,
                 @Field("tech_userid") String tech_userid,
                 @Field("complaintstypeid") String complaintstypeid ,
                 @Field("admin_id") String admin_id,
