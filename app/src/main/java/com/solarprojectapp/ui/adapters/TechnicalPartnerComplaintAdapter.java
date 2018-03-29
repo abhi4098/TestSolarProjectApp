@@ -10,50 +10,34 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.solarprojectapp.R;
-import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
-import com.solarprojectapp.generated.model.ApproveComplaintResponse;
 import com.solarprojectapp.generated.model.ComplaintListsDatum;
-import com.solarprojectapp.generated.model.DashboardDataResponse;
 import com.solarprojectapp.ui.activities.NewComplaintListActivity;
-import com.solarprojectapp.ui.activities.OpenComplaintListActivity;
 import com.solarprojectapp.ui.activities.ShowNewComplaintDetailsActivity;
-import com.solarprojectapp.ui.activities.SparePartsRequestedActivity;
 import com.solarprojectapp.ui.activities.TechnicalPartenerListActivity;
-import com.solarprojectapp.utils.LoadingDialog;
-import com.solarprojectapp.utils.NetworkUtils;
+import com.solarprojectapp.ui.fragments.OpenTabFragment;
 import com.solarprojectapp.utils.PrefUtils;
-import com.solarprojectapp.utils.SnakBarUtils;
 
 import java.util.ArrayList;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
-import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
 
-/**
- * Created by Abhinandan on 26/12/17.
- */
-
-public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
+public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
 
     int groupid;
-    ArrayList<ComplaintListsDatum> newComplaintList;
+    ArrayList<ComplaintListsDatum> newTechPartnerComplaintList;
     FragmentActivity context;
-    private RetrofitInterface.AdminApproveCompaintClient adminApproveCompaintClient;
+   // private RetrofitInterface.AdminApproveCompaintClient adminApproveCompaintClient;
     String priorityName,statusName;
 
-    public ComplaintAdapter(FragmentActivity navigationalActivity, int layout_bank_details, int complaint_id, ArrayList<ComplaintListsDatum> newComplaintList)
+    public TechnicalPartnerComplaintAdapter(FragmentActivity navigationalActivity, int layout_complaint, int complaint_id, ArrayList<ComplaintListsDatum> newTechPartnerComplaintList)
     {
-        super(navigationalActivity,layout_bank_details,complaint_id,newComplaintList);
-        groupid=layout_bank_details;
+        super(navigationalActivity,layout_complaint,complaint_id,newTechPartnerComplaintList);
+        groupid=layout_complaint;
         this.context = navigationalActivity;
-        this.newComplaintList = newComplaintList;
+        this.newTechPartnerComplaintList = newTechPartnerComplaintList;
 
     }
 
@@ -89,8 +73,8 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
             viewHolder.endConsumer= (TextView) rowView.findViewById(R.id.end_consumer);
             viewHolder.projectOwner= (TextView) rowView.findViewById(R.id.project_owner);
             viewHolder.projectType= (TextView) rowView.findViewById(R.id.project_type);
-            viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
-            viewHolder.approveBtn= (Button) rowView.findViewById(R.id.approve_button);
+           // viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
+          //  viewHolder.approveBtn= (Button) rowView.findViewById(R.id.approve_button);
 
 
 
@@ -105,11 +89,12 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
         final ViewHolder holder = (ViewHolder) rowView.getTag();
 
         if (complaintListsDatum !=null) {
-            holder.complaintName.setText(complaintListsDatum.getComplaint());
-            holder.endConsumer.setText(complaintListsDatum.getEndConsumer());
-            holder.projectType.setText(complaintListsDatum.getProjectType());
-            holder.projectOwner.setText(complaintListsDatum.getProjectOwner());
-            if (PrefUtils.getUserFrag(getContext()).equals("Client"))
+            Log.e("abhi", "getView: complaint id"+complaintListsDatum.getComplaint() );
+           holder.complaintName.setText(complaintListsDatum.getComplaint());
+           holder.endConsumer.setText(complaintListsDatum.getEndConsumer());
+           holder.projectType.setText(complaintListsDatum.getProjectType());
+           holder.projectOwner.setText(complaintListsDatum.getProjectOwner());
+            /*if (PrefUtils.getUserFrag(getContext()).equals("Client"))
             {
               holder.viewDetailsBtn.setVisibility(View.GONE);
                 holder.approveBtn.setVisibility(View.GONE);
@@ -148,7 +133,7 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
                 });
             }
 
-
+*/
         }
 
 

@@ -7,6 +7,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -85,6 +86,7 @@ public class CustomTecnicalPartnerTabActivity extends AppCompatActivity implemen
             @Override
             public void onPageSelected(int position) {
                 viewPager.setCurrentItem(position,false);
+                Log.e("abhi", "onPageSelected: ............." +position);
 
             }
 

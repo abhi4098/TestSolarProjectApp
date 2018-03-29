@@ -72,6 +72,15 @@ public class RetrofitInterface {
                 @Field("type") String type);
     }
 
+
+    public interface UserTechCompaintListClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<NewComplaintResponse> userTechComplaintList(
+                @Field("type") String type,
+                @Field("tech_userid") String tech_userid);
+    }
+
     public interface UserRejectedCompaintListClient {
         @FormUrlEncoded
         @POST("query.php")
