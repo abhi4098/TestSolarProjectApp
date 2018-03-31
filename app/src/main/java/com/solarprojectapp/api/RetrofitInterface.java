@@ -15,6 +15,7 @@ import com.solarprojectapp.generated.model.RejectedComplaintListResponse;
 import com.solarprojectapp.generated.model.SparePartsPendingResponse;
 import com.solarprojectapp.generated.model.SparePartsRequestResponse;
 import com.solarprojectapp.generated.model.SubmitComplaintResponse;
+import com.solarprojectapp.generated.model.TechnicalPartnerFunctionResponse;
 import com.solarprojectapp.generated.model.TechnicalPartnerListResponse;
 import com.solarprojectapp.generated.model.TotalConsumerListResponse;
 
@@ -156,6 +157,15 @@ public class RetrofitInterface {
                 @Field("tech_userid") String tech_userid,
                 @Field("complaintstypeid") String complaintstypeid ,
                 @Field("admin_id") String admin_id,
+                @Field("type") String type);
+    }
+
+    public interface TechnicalPartnerFunctionClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<TechnicalPartnerFunctionResponse> technicalPartnerFunction(
+                @Field("tech_userid") String tech_userid,
+                @Field("complaintstypeid") String complaintstypeid,
                 @Field("type") String type);
     }
 }
