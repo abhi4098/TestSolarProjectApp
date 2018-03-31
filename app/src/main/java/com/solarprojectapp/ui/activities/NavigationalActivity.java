@@ -202,12 +202,12 @@ public class NavigationalActivity extends AppCompatActivity
             {
                 fragment = new ProfileCustomerPageFragment();
             }
-            else if (loginType.equals("Technical Partner"))
+            else if (loginType.equals("Technical Partener"))
             {
                 fragment = new ProfileCustomerPageFragment();
             }else if (loginType.equals("Client"))
             {
-                fragment = new ProfileCustomerPageFragment();
+                fragment = new ProfileHomePageFragment();
             }
             else
             {
