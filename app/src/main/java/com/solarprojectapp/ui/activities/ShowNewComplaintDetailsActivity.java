@@ -70,7 +70,7 @@ public class ShowNewComplaintDetailsActivity extends AppCompatActivity implement
         mContext = ShowNewComplaintDetailsActivity.this;
         ButterKnife.bind(this);
         ivBackIcon.setOnClickListener(this);
-        tvAppTitle.setText("NEW COMPLAINT DETAILS");
+        tvAppTitle.setText("COMPLAINT DETAILS");
         complaintDesc = getIntent().getExtras().getString("COMPLAINT_DESC");
         complaintId = getIntent().getExtras().getString("COMPLAINT_ID");
         complaintName = getIntent().getExtras().getString("COMPLAINT");

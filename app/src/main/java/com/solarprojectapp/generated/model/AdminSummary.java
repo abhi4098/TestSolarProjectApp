@@ -12,6 +12,11 @@ public class AdminSummary {
     @SerializedName("Total_Client")
     @Expose
     private Integer totalClient;
+
+    @SerializedName("Total_Rejectedcomplaints")
+    @Expose
+    private Integer totalRejectedcomplaints;
+
     @SerializedName("Total_Complaints")
     @Expose
     private Integer totalComplaints;
@@ -115,6 +120,14 @@ public class AdminSummary {
 
     public void setTotalSparepartstobeclosedbytoday(Integer totalSparepartstobeclosedbytoday) {
         this.totalSparepartstobeclosedbytoday = totalSparepartstobeclosedbytoday;
+    }
+
+    public Integer getTotalRejectedcomplaints() {
+        return totalRejectedcomplaints;
+    }
+
+    public void setTotalRejectedcomplaints(Integer totalRejectedcomplaints) {
+        this.totalRejectedcomplaints = totalRejectedcomplaints;
     }
 
 }

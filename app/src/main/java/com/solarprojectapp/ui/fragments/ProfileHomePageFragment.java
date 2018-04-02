@@ -66,6 +66,10 @@ public class ProfileHomePageFragment extends Fragment {
 
     @BindView(R.id.new_complaints)
     TextView tvNewComplaints;
+
+    @BindView(R.id.rejected_complaints_count)
+    TextView tvRejectedComplaints;
+
     @BindView(R.id.complaints_to_be_closed_today)
     TextView tvToBeClosedToday;
 
@@ -195,7 +199,7 @@ public class ProfileHomePageFragment extends Fragment {
                                 closureComplaints =response.body().getAdminSummary().get(i).getTotalClosedcomplaints();
 
                                 tvTotalConsumers.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalConsumer()));
-
+                                 tvRejectedComplaints.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalRejectedcomplaints()));
                                 tvOpenComplaints.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalOpencomplaints()));
                                 tvOverDueComplaints.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalOverduecomplaints()));
                                 tvClosureComplaints.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalClosedcomplaints()));

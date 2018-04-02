@@ -70,7 +70,7 @@ public class TotalConsumerListActivity extends AppCompatActivity implements View
         ButterKnife.bind(this);
         ivBackIcon.setOnClickListener(this);
         tvAppTitle.setText("TOTAL CONSUMERS");
-
+        userType =PrefUtils.getUserType(this);
         setUpRestAdapter();
         getTotalConsumers();
 
@@ -83,7 +83,6 @@ public class TotalConsumerListActivity extends AppCompatActivity implements View
 
     private void getTotalConsumers() {
         LoadingDialog.showLoadingDialog(this,"Loading...");
-        userType ="Admin";
         Call<TotalConsumerListResponse> call = totalConsumerAdapter.totalConsumer(PrefUtils.getFkId(TotalConsumerListActivity.this),userType,"consumerlist");
         if (NetworkUtils.isNetworkConnected(this)) {
             call.enqueue(new Callback<TotalConsumerListResponse>() {
