@@ -29,7 +29,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.InformationActivity"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             />
         <activity
             android:name=".ui.activities.NavigationalActivity"

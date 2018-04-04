@@ -166,6 +166,7 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
 
                         if (response.body().getSuccess().equals("true")) {
                             Log.e("abhi", "onResponse: ..............admin data" +response.body().getMessage());
+                            Toast.makeText(getContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
                             ((TechnicalPartenerListActivity)getContext()).finish();
                             LoadingDialog.cancelLoading();
 

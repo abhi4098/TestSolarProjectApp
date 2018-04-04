@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/rectangular_background_curved_edges_consumer"
+    android:background="@drawable/shadow_layout"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"
     android:layout_marginTop="10dp"
@@ -100,7 +100,7 @@
         android:textColor="@color/white"
         android:layout_gravity="end"
         android:layout_marginStart="20dp"
-        android:background="@color/solar_yellow"
+        android:background="@drawable/rectangular_button_with_curves_orange"
         android:layout_height="25dp"
         android:text="Assign"/>
 

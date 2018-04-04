@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/rectangular_background_curved_edges_consumer"
+    android:background="@drawable/shadow_layout"
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"
     android:layout_marginTop="10dp"
@@ -144,9 +144,9 @@
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:textColor="@color/white"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:background="@color/solar_pink"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:background="@drawable/rectangular_button_with_curves_pink"
             android:layout_alignParentStart="true"
             android:text="View Details"/>
         <Button
@@ -156,7 +156,7 @@
             android:layout_centerHorizontal="true"
             android:textColor="@color/white"
             android:layout_marginStart="20dp"
-            android:background="@color/solar_yellow"
+            android:background="@drawable/rectangular_button_with_curves_orange"
             android:layout_height="25dp"
             android:text="Assign"/>
 
@@ -165,7 +165,7 @@
             android:layout_alignParentEnd="true"
             android:visibility="gone"
             android:textColor="@color/white"
-            android:background="@color/solar_blue"
+            android:background="@drawable/rectangular_button_with_curves_blue"
             android:layout_height="25dp"
             android:text="Reject"/>
     </RelativeLayout>

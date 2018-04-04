@@ -17,11 +17,8 @@ import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.ApproveComplaintResponse;
 import com.solarprojectapp.generated.model.ComplaintListsDatum;
-import com.solarprojectapp.generated.model.DashboardDataResponse;
 import com.solarprojectapp.ui.activities.NewComplaintListActivity;
-import com.solarprojectapp.ui.activities.OpenComplaintListActivity;
 import com.solarprojectapp.ui.activities.ShowNewComplaintDetailsActivity;
-import com.solarprojectapp.ui.activities.SparePartsRequestedActivity;
 import com.solarprojectapp.ui.activities.TechnicalPartenerListActivity;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
@@ -45,15 +42,17 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
     int groupid;
     ArrayList<ComplaintListsDatum> newComplaintList;
     FragmentActivity context;
+    String fromActivity;
     private RetrofitInterface.AdminApproveCompaintClient adminApproveCompaintClient;
     String priorityName,statusName;
 
-    public ComplaintAdapter(FragmentActivity navigationalActivity, int layout_bank_details, int complaint_id, ArrayList<ComplaintListsDatum> newComplaintList)
+    public ComplaintAdapter(FragmentActivity navigationalActivity, int layout_bank_details, int complaint_id, ArrayList<ComplaintListsDatum> newComplaintList, String fromActivity)
     {
         super(navigationalActivity,layout_bank_details,complaint_id,newComplaintList);
         groupid=layout_bank_details;
         this.context = navigationalActivity;
         this.newComplaintList = newComplaintList;
+        this.fromActivity=fromActivity;
 
     }
 
@@ -115,39 +114,100 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
                 holder.approveBtn.setVisibility(View.GONE);
             }
             else {
-                holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent i = new Intent(getContext(), ShowNewComplaintDetailsActivity.class);
-                        i.putExtra("COMPLAINT_DESC", complaintListsDatum.getComplainDescription());
-                        i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
-                        i.putExtra("COMPLAINT", complaintListsDatum.getComplaint());
-                        i.putExtra("COMPLAINT_END_CONSUMER", complaintListsDatum.getEndConsumer());
-                        i.putExtra("COMPLAINT_PROJECT_OWNER", complaintListsDatum.getProjectOwner());
-                        i.putExtra("COMPLAINT_PROJECT_TYPE", complaintListsDatum.getProjectType());
-                        i.putExtra("COMPLAINT_STATE", complaintListsDatum.getState());
-                        i.putExtra("COMPLAINT_CONTACT", complaintListsDatum.getEndConsumerContactno());
-                        //i.putExtra("INTENT_FROM","EditButton");
+                if (fromActivity.equals("NewComplaintListActivity")) {
+                    holder.viewDetailsBtn.setVisibility(View.VISIBLE);
+                    holder.approveBtn.setVisibility(View.VISIBLE);
 
-                        getContext().startActivity(i);
+                    holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getContext(), ShowNewComplaintDetailsActivity.class);
+                            i.putExtra("COMPLAINT_DESC", complaintListsDatum.getComplainDescription());
+                            i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                            i.putExtra("COMPLAINT", complaintListsDatum.getComplaint());
+                            i.putExtra("COMPLAINT_END_CONSUMER", complaintListsDatum.getEndConsumer());
+                            i.putExtra("COMPLAINT_PROJECT_OWNER", complaintListsDatum.getProjectOwner());
+                            i.putExtra("COMPLAINT_PROJECT_TYPE", complaintListsDatum.getProjectType());
+                            i.putExtra("COMPLAINT_STATE", complaintListsDatum.getState());
+                            i.putExtra("COMPLAINT_CONTACT", complaintListsDatum.getEndConsumerContactno());
+                            //i.putExtra("INTENT_FROM","EditButton");
 
-                    }
-                });
+                            getContext().startActivity(i);
 
-                holder.approveBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                        }
+                    });
 
-                        Intent i = new Intent(((NewComplaintListActivity) getContext()), TechnicalPartenerListActivity.class);
-                        i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
-                        ((NewComplaintListActivity) getContext()).startActivity(i);
-                        //setUpRestAdapter();
-                        //getApproval(v,complaintListsDatum);
+                    holder.approveBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            setUpRestAdapter();
+                            getApproval(v, complaintListsDatum);
 
-                    }
-                });
-            }
+                        }
+                    });
+                }
+                else if (fromActivity.equals("OpenComplaintListActivity"))
+                {
 
+                }
+                else if (fromActivity.equals("OverDueComplaintListActivity"))
+                {
+                    holder.viewDetailsBtn.setVisibility(View.VISIBLE);
+                    holder.approveBtn.setVisibility(View.VISIBLE);
+
+                    holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getContext(), ShowNewComplaintDetailsActivity.class);
+                            i.putExtra("COMPLAINT_DESC", complaintListsDatum.getComplainDescription());
+                            i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                            i.putExtra("COMPLAINT", complaintListsDatum.getComplaint());
+                            i.putExtra("COMPLAINT_END_CONSUMER", complaintListsDatum.getEndConsumer());
+                            i.putExtra("COMPLAINT_PROJECT_OWNER", complaintListsDatum.getProjectOwner());
+                            i.putExtra("COMPLAINT_PROJECT_TYPE", complaintListsDatum.getProjectType());
+                            i.putExtra("COMPLAINT_STATE", complaintListsDatum.getState());
+                            i.putExtra("COMPLAINT_CONTACT", complaintListsDatum.getEndConsumerContactno());
+                            //i.putExtra("INTENT_FROM","EditButton");
+
+                            getContext().startActivity(i);
+
+                        }
+                    });
+
+                    holder.approveBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            setUpRestAdapter();
+                            getApproval(v, complaintListsDatum);
+
+                        }
+                    });
+                }
+                else
+                {
+                    holder.viewDetailsBtn.setVisibility(View.VISIBLE);
+                    holder.approveBtn.setVisibility(View.GONE);
+                    holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getContext(), ShowNewComplaintDetailsActivity.class);
+                            i.putExtra("COMPLAINT_DESC", complaintListsDatum.getComplainDescription());
+                            i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                            i.putExtra("COMPLAINT", complaintListsDatum.getComplaint());
+                            i.putExtra("COMPLAINT_END_CONSUMER", complaintListsDatum.getEndConsumer());
+                            i.putExtra("COMPLAINT_PROJECT_OWNER", complaintListsDatum.getProjectOwner());
+                            i.putExtra("COMPLAINT_PROJECT_TYPE", complaintListsDatum.getProjectType());
+                            i.putExtra("COMPLAINT_STATE", complaintListsDatum.getState());
+                            i.putExtra("COMPLAINT_CONTACT", complaintListsDatum.getEndConsumerContactno());
+                            //i.putExtra("INTENT_FROM","EditButton");
+
+                            getContext().startActivity(i);
+
+                        }
+                    });
+
+                }
+                }
 
         }
 
@@ -156,12 +216,12 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
         return rowView;
     }
 
-  /*  private void setUpRestAdapter() {
+    private void setUpRestAdapter() {
         adminApproveCompaintClient = ApiAdapter.createRestAdapter(RetrofitInterface.AdminApproveCompaintClient.class, MAIN_BASE_URL, getContext());
     }
 
 
-    private void getApproval(View v, ComplaintListsDatum complaintListsDatum) {
+    private void getApproval(View v, final ComplaintListsDatum complaintListsDatum) {
         LoadingDialog.showLoadingDialog(getContext(),"Loading...");
         Call<ApproveComplaintResponse> call = adminApproveCompaintClient.AdminApproval(complaintListsDatum.getComplainId(),"Approved","complaintsapproved");
         if (NetworkUtils.isNetworkConnected(getContext())) {
@@ -174,7 +234,9 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
 
                         if (response.body().getSuccess().equals("true")) {
                             Log.e("abhi", "onResponse: ..............admin data" +response.body().getComplaintsApproved());
-                            ((NewComplaintListActivity)getContext()).finish();
+                            Intent i = new Intent(((NewComplaintListActivity) getContext()), TechnicalPartenerListActivity.class);
+                            i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                            ((NewComplaintListActivity) getContext()).startActivity(i);
                             LoadingDialog.cancelLoading();
 
                         }
@@ -203,6 +265,6 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
         } else {
             SnakBarUtils.networkConnected(getContext());
         }
-    }*/
+    }
 
 }

@@ -34,7 +34,7 @@ public class InformationActivity extends AppCompatActivity implements View.OnCli
         skip = (Button)findViewById(R.id.skip);
         videoview = (VideoView) findViewById(R.id.videoView);
 
-        uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.myway);
+        uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.myway01);
 
         videoview.setVideoURI(uri);
         videoview.start();

@@ -138,7 +138,7 @@ public class OpenComplaintListActivity extends AppCompatActivity implements View
             }
         }
 
-        complaintAdapter = new ComplaintAdapter(this, R.layout.layout_new_complaint_list, R.id.complaint_name, complaintList);
+        complaintAdapter = new ComplaintAdapter(this, R.layout.layout_new_complaint_list, R.id.complaint_name, complaintList, "OpenComplaintListActivity");
         listview.setAdapter(complaintAdapter);
         LoadingDialog.cancelLoading();
         listview.setDivider(new ColorDrawable(Color.TRANSPARENT));  //hide the divider

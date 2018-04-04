@@ -52,6 +52,7 @@ public class NewComplaintListActivity extends AppCompatActivity implements View.
     @BindView(R.id.listview)
     ListView listview;
 
+
     ArrayList<ComplaintListsDatum> newComplaintList = null;
     ComplaintAdapter newComplaintAdapter;
 
@@ -145,7 +146,7 @@ public class NewComplaintListActivity extends AppCompatActivity implements View.
             }
         }
 
-        newComplaintAdapter = new ComplaintAdapter(this, R.layout.layout_new_complaint_list, R.id.complaint_name, newComplaintList);
+        newComplaintAdapter = new ComplaintAdapter(this, R.layout.layout_new_complaint_list, R.id.complaint_name, newComplaintList,"NewComplaintListActivity");
         listview.setAdapter(newComplaintAdapter);
         LoadingDialog.cancelLoading();
         listview.setDivider(new ColorDrawable(Color.TRANSPARENT));  //hide the divider
