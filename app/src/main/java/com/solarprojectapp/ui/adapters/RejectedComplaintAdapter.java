@@ -18,7 +18,10 @@ import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.ApproveComplaintResponse;
 import com.solarprojectapp.generated.model.RejectedComplaintListsDatum;
 import com.solarprojectapp.ui.activities.NewComplaintListActivity;
+import com.solarprojectapp.ui.activities.OpenComplaintListActivity;
+import com.solarprojectapp.ui.activities.RejectedComplaintListActivity;
 import com.solarprojectapp.ui.activities.ShowNewComplaintDetailsActivity;
+import com.solarprojectapp.ui.activities.TechnicalPartenerListActivity;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.PrefUtils;
@@ -62,6 +65,7 @@ public class RejectedComplaintAdapter extends ArrayAdapter<RejectedComplaintList
         public TextView projectType;
         public Button viewDetailsBtn;
         public Button approveBtn;
+        public Button assignBtn;
 
 
 
@@ -87,6 +91,7 @@ public class RejectedComplaintAdapter extends ArrayAdapter<RejectedComplaintList
             viewHolder.projectType= (TextView) rowView.findViewById(R.id.project_type);
             viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
             viewHolder.approveBtn= (Button) rowView.findViewById(R.id.approve_button);
+            viewHolder.assignBtn= (Button) rowView.findViewById(R.id.assign_button);
 
 
 
@@ -111,6 +116,8 @@ public class RejectedComplaintAdapter extends ArrayAdapter<RejectedComplaintList
                 holder.approveBtn.setVisibility(View.GONE);
             }
             else {
+                holder.assignBtn.setVisibility(View.VISIBLE);
+                holder.approveBtn.setVisibility(View.GONE);
                 holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -130,13 +137,13 @@ public class RejectedComplaintAdapter extends ArrayAdapter<RejectedComplaintList
                     }
                 });
 
-                holder.approveBtn.setOnClickListener(new View.OnClickListener() {
+                holder.assignBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-
-                        setUpRestAdapter();
-                        getApproval(v, complaintListsDatum);
+                        Intent i = new Intent(((RejectedComplaintListActivity) getContext()), TechnicalPartenerListActivity.class);
+                        i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                        ((RejectedComplaintListActivity) getContext()).startActivity(i);
                     }
                 });
 

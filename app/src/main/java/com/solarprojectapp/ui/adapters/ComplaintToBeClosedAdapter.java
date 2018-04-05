@@ -10,14 +10,30 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.solarprojectapp.R;
+import com.solarprojectapp.api.ApiAdapter;
+import com.solarprojectapp.api.RetrofitInterface;
+import com.solarprojectapp.generated.model.ApproveComplaintResponse;
 import com.solarprojectapp.generated.model.ComplaintListsDatum;
+import com.solarprojectapp.ui.activities.ComplaintsToBeClosedTodayActivity;
+import com.solarprojectapp.ui.activities.NewComplaintListActivity;
 import com.solarprojectapp.ui.activities.ShowComplaintsToBeClosedDetailsActivity;
 import com.solarprojectapp.ui.activities.ShowNewComplaintDetailsActivity;
+import com.solarprojectapp.ui.activities.TechnicalPartenerListActivity;
+import com.solarprojectapp.utils.LoadingDialog;
+import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.PrefUtils;
+import com.solarprojectapp.utils.SnakBarUtils;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
 
 /**
  * Created by Abhinandan on 26/12/17.
@@ -29,7 +45,7 @@ public class ComplaintToBeClosedAdapter extends ArrayAdapter<ComplaintListsDatum
     ArrayList<ComplaintListsDatum> newComplaintList;
     FragmentActivity context;
     String priorityName,statusName;
-
+    private RetrofitInterface.AdminApproveCompaintClient adminApproveCompaintClient;
     public ComplaintToBeClosedAdapter(FragmentActivity navigationalActivity, int layout_bank_details, int complaint_id, ArrayList<ComplaintListsDatum> newComplaintList)
     {
         super(navigationalActivity,layout_bank_details,complaint_id,newComplaintList);
@@ -98,6 +114,7 @@ public class ComplaintToBeClosedAdapter extends ArrayAdapter<ComplaintListsDatum
                 holder.approveBtn.setVisibility(View.GONE);
             }
             else {
+                holder.approveBtn.setVisibility(View.VISIBLE);
                 holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -116,6 +133,14 @@ public class ComplaintToBeClosedAdapter extends ArrayAdapter<ComplaintListsDatum
 
                     }
                 });
+                holder.approveBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setUpRestAdapter();
+                        getApproval(v, complaintListsDatum);
+
+                    }
+                });
             }
 
 
@@ -126,5 +151,54 @@ public class ComplaintToBeClosedAdapter extends ArrayAdapter<ComplaintListsDatum
 
         return rowView;
     }
+    private void setUpRestAdapter() {
+        adminApproveCompaintClient = ApiAdapter.createRestAdapter(RetrofitInterface.AdminApproveCompaintClient.class, MAIN_BASE_URL, getContext());
+    }
 
+
+    private void getApproval(View v, final ComplaintListsDatum complaintListsDatum) {
+        LoadingDialog.showLoadingDialog(getContext(),"Loading...");
+        Call<ApproveComplaintResponse> call = adminApproveCompaintClient.AdminApproval(complaintListsDatum.getComplainId(),"Approved","complaintsapproved");
+        if (NetworkUtils.isNetworkConnected(getContext())) {
+            call.enqueue(new Callback<ApproveComplaintResponse>() {
+
+                @Override
+                public void onResponse(Call<ApproveComplaintResponse> call, Response<ApproveComplaintResponse> response) {
+
+                    if (response.isSuccessful()) {
+
+                        if (response.body().getSuccess().equals("true")) {
+                            Log.e("abhi", "onResponse: ..............admin data" +response.body().getComplaintsApproved());
+                            Intent i = new Intent(((ComplaintsToBeClosedTodayActivity) getContext()), TechnicalPartenerListActivity.class);
+                            i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                            ((ComplaintsToBeClosedTodayActivity) getContext()).startActivity(i);
+                            LoadingDialog.cancelLoading();
+
+                        }
+                        else
+                        {
+                            LoadingDialog.cancelLoading();
+
+                            Toast.makeText(getContext(),response.body().getComplaintsApproved(),Toast.LENGTH_SHORT).show();
+                        }
+
+
+
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<ApproveComplaintResponse> call, Throwable t) {
+                    Toast.makeText(getContext(),"Error occur",Toast.LENGTH_SHORT).show();
+                    LoadingDialog.cancelLoading();
+                }
+
+
+            });
+
+        } else {
+            SnakBarUtils.networkConnected(getContext());
+        }
+    }
 }

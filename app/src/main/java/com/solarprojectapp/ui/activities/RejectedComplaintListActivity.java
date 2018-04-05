@@ -74,6 +74,12 @@ public class RejectedComplaintListActivity extends AppCompatActivity implements 
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setUpRestAdapter();
+        getRejectedComplaints();
+    }
     private void setUpRestAdapter() {
         UserRejectedCompaintListAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.UserRejectedCompaintListClient.class, MAIN_BASE_URL, this);
     }
