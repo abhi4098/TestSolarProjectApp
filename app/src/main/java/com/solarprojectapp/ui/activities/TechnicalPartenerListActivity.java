@@ -91,7 +91,7 @@ public class TechnicalPartenerListActivity extends AppCompatActivity implements 
 
     private void getTechPartnerList() {
         LoadingDialog.showLoadingDialog(this,"Loading...");
-        Call<TechnicalPartnerListResponse> call = TechnicalPartnerAdapter.TechPartnerList("technicalpartnerlist","2");
+        Call<TechnicalPartnerListResponse> call = TechnicalPartnerAdapter.TechPartnerList("technicalpartnerlist",complaintId);
         if (NetworkUtils.isNetworkConnected(this)) {
             call.enqueue(new Callback<TechnicalPartnerListResponse>() {
 

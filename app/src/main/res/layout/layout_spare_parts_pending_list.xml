@@ -154,7 +154,7 @@
             android:layout_centerHorizontal="true"
             android:textColor="@color/white"
             android:layout_marginStart="20dp"
-            android:background="@drawable/rectangular_button_with_curves_orange"
+            android:background="@drawable/rectangular_button_with_curves_green"
             android:layout_height="25dp"
             android:text="Approve"/>
 

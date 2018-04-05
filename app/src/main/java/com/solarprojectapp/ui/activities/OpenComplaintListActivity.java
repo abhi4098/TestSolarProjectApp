@@ -71,6 +71,13 @@ public class OpenComplaintListActivity extends AppCompatActivity implements View
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setUpRestAdapter();
+        getOpenComplaints();
+    }
+
     private void setUpRestAdapter() {
         UserCompaintListAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.UserCompaintListClient.class, MAIN_BASE_URL, this);
     }
@@ -78,7 +85,7 @@ public class OpenComplaintListActivity extends AppCompatActivity implements View
 
     private void getOpenComplaints() {
         LoadingDialog.showLoadingDialog(this,"Loading...");
-        Call<NewComplaintResponse> call = UserCompaintListAdapter.userNewComplaintList("opencomplainlist");
+        Call<NewComplaintResponse> call = UserCompaintListAdapter.userNewComplaintList("opencomplain");
         if (NetworkUtils.isNetworkConnected(this)) {
             call.enqueue(new Callback<NewComplaintResponse>() {
 
@@ -132,6 +139,8 @@ public class OpenComplaintListActivity extends AppCompatActivity implements View
                 complaintListsDatum.setProjectOwner(response.body().getComplaintListsData().get(i).get(j).getProjectOwner());
                 complaintListsDatum.setProjectType(response.body().getComplaintListsData().get(i).get(j).getProjectType());
                 complaintListsDatum.setState(response.body().getComplaintListsData().get(i).get(j).getState());
+                complaintListsDatum.setEndConsumerContactno(response.body().getComplaintListsData().get(i).get(j).getEndConsumerContactno());
+                complaintListsDatum.setTechincalPartnerAssignStatus(response.body().getComplaintListsData().get(i).get(j).getTechincalPartnerAssignStatus());
                 complaintList.add(complaintListsDatum);
                 Log.e("abhi", "onResponse:..new complaint list " + complaintList.get(i).getComplaint());
 

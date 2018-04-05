@@ -18,6 +18,7 @@ import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.ApproveComplaintResponse;
 import com.solarprojectapp.generated.model.ComplaintListsDatum;
 import com.solarprojectapp.ui.activities.NewComplaintListActivity;
+import com.solarprojectapp.ui.activities.OpenComplaintListActivity;
 import com.solarprojectapp.ui.activities.ShowNewComplaintDetailsActivity;
 import com.solarprojectapp.ui.activities.TechnicalPartenerListActivity;
 import com.solarprojectapp.utils.LoadingDialog;
@@ -65,6 +66,8 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
         public TextView projectType;
         public Button viewDetailsBtn;
         public Button approveBtn;
+        public Button assignBtn;
+
 
 
 
@@ -90,7 +93,7 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
             viewHolder.projectType= (TextView) rowView.findViewById(R.id.project_type);
             viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
             viewHolder.approveBtn= (Button) rowView.findViewById(R.id.approve_button);
-
+            viewHolder.assignBtn= (Button) rowView.findViewById(R.id.assign_button);
 
 
 
@@ -149,6 +152,43 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
                 else if (fromActivity.equals("OpenComplaintListActivity"))
                 {
 
+                    holder.viewDetailsBtn.setVisibility(View.VISIBLE);
+                    holder.approveBtn.setVisibility(View.GONE);
+
+
+                    holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent i = new Intent(getContext(), ShowNewComplaintDetailsActivity.class);
+                            i.putExtra("COMPLAINT_DESC", complaintListsDatum.getComplainDescription());
+                            i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                            i.putExtra("COMPLAINT", complaintListsDatum.getComplaint());
+                            i.putExtra("COMPLAINT_END_CONSUMER", complaintListsDatum.getEndConsumer());
+                            i.putExtra("COMPLAINT_PROJECT_OWNER", complaintListsDatum.getProjectOwner());
+                            i.putExtra("COMPLAINT_PROJECT_TYPE", complaintListsDatum.getProjectType());
+                            i.putExtra("COMPLAINT_STATE", complaintListsDatum.getState());
+                            i.putExtra("COMPLAINT_CONTACT", complaintListsDatum.getEndConsumerContactno());
+                            //i.putExtra("INTENT_FROM","EditButton");
+
+                            getContext().startActivity(i);
+
+                        }
+                    });
+                     if (complaintListsDatum.getTechincalPartnerAssignStatus().equals("0")) {
+                         holder.assignBtn.setVisibility(View.VISIBLE);
+                         holder.assignBtn.setOnClickListener(new View.OnClickListener() {
+                             @Override
+                             public void onClick(View v) {
+                                 Intent i = new Intent(((OpenComplaintListActivity) getContext()), TechnicalPartenerListActivity.class);
+                                 i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                                 ((OpenComplaintListActivity) getContext()).startActivity(i);
+                             }
+                         });
+                     }
+                     else
+                     {
+                         holder.assignBtn.setVisibility(View.GONE);
+                     }
                 }
                 else if (fromActivity.equals("OverDueComplaintListActivity"))
                 {

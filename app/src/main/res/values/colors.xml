@@ -17,10 +17,12 @@
     <color name="solar_pink">#ea466b</color>
     <color name="solar_pink_gradient">#C73B5B</color>
     <color name="solar_yellow">#fcb261</color>
+    <color name="solar_green">#008000</color>
     <color name="solar_yellow_trans">#80fcb261</color>
     <color name="complaint_background">#fdf6f5</color>
     <color name="solar_pink_trans">#80ea466b</color>
     <color name="solar_blue_trans">#801c7cb2</color>
+    <color name="solar_green_trans">#80008000</color>
 
 
 

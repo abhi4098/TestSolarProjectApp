@@ -30,11 +30,22 @@ public class ComplaintListsDatum {
     @SerializedName("state")
     @Expose
     private String state;
+    @SerializedName("techincal_partner_assign_status")
+    @Expose
+    private String techincalPartnerAssignStatus;
 
     @SerializedName("complain_technicalpartnerstatus")
     @Expose
     private String complainTechnicalpartnerstatus;
 
+
+    public String getTechincalPartnerAssignStatus() {
+        return techincalPartnerAssignStatus;
+    }
+
+    public void setTechincalPartnerAssignStatus(String techincalPartnerAssignStatus) {
+        this.techincalPartnerAssignStatus = techincalPartnerAssignStatus;
+    }
 
     public String getComplainTechnicalpartnerstatus() {
         return complainTechnicalpartnerstatus;
