@@ -12,6 +12,7 @@ import com.solarprojectapp.generated.model.LoginResponse;
 import com.solarprojectapp.generated.model.NewComplaintResponse;
 import com.solarprojectapp.generated.model.ProfileResponse;
 import com.solarprojectapp.generated.model.RejectedComplaintListResponse;
+import com.solarprojectapp.generated.model.SparePartAdminAproveResponse;
 import com.solarprojectapp.generated.model.SparePartsPendingResponse;
 import com.solarprojectapp.generated.model.SparePartsRequestResponse;
 import com.solarprojectapp.generated.model.SubmitComplaintResponse;
@@ -140,6 +141,15 @@ public class RetrofitInterface {
                 @Field("admin_status") String admin_status,
                 @Field("type") String type);
     }
+
+    public interface AdminApprovesparePartClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<SparePartAdminAproveResponse> AdminSparePartApproval(
+                @Field("sparepart_requestid") String sparepart_requestid,
+                @Field("type") String type);
+    }
+
 
     public interface TotalConsumerClient {
         @FormUrlEncoded
