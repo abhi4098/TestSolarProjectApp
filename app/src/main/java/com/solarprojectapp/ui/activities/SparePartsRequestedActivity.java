@@ -1,6 +1,7 @@
 package com.solarprojectapp.ui.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.solarprojectapp.R;
 import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
+import com.solarprojectapp.generated.model.ComplaintListsDatum;
 import com.solarprojectapp.generated.model.SparePartsPendingResponse;
 import com.solarprojectapp.generated.model.SparePartsRequestResponse;
 import com.solarprojectapp.generated.model.SparepartsrequestList;
@@ -35,12 +37,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
+import static java.security.AccessController.getContext;
 
 
 public class SparePartsRequestedActivity extends AppCompatActivity implements View.OnClickListener {
 
     Context mContext;
     private RetrofitInterface.SparePartsRequestClient spPartsRequested;
+
     @BindView(R.id.back_icon)
     ImageView ivBackIcon;
     @BindView(R.id.toolbar)
@@ -53,6 +57,7 @@ public class SparePartsRequestedActivity extends AppCompatActivity implements Vi
 */
     @BindView(R.id.listview)
     ListView listview;
+    String intentFrom,complaintId;
 
     ArrayList<SparepartsrequestList> sparePartsRequestedList = null;
     SparePartRequestededAdapter sparePartRequestededAdapter;
@@ -66,12 +71,15 @@ public class SparePartsRequestedActivity extends AppCompatActivity implements Vi
         mContext = SparePartsRequestedActivity.this;
         ButterKnife.bind(this);
         ivBackIcon.setOnClickListener(this);
-        tvAppTitle.setText("SPARE PARTS REQUESTED");
 
-        setUpRestAdapter();
-        getSparePartRequested();
+            tvAppTitle.setText("SPARE PARTS REQUESTED");
+            setUpRestAdapter();
+            getSparePartRequested();
+        }
 
-    }
+
+
+
 
     private void setUpRestAdapter() {
         spPartsRequested = ApiAdapter.createRestAdapter(RetrofitInterface.SparePartsRequestClient.class, MAIN_BASE_URL, this);
@@ -127,7 +135,7 @@ public class SparePartsRequestedActivity extends AppCompatActivity implements Vi
         for (int i = 0; i < response.body().getSparepartsrequestList().size(); i++) {
             for (int j = 0; j < response.body().getSparepartsrequestList().get(i).size(); j++) {
                 SparepartsrequestList sparepartsrequestList = new SparepartsrequestList();
-                sparepartsrequestList.setSparepartId(response.body().getSparepartsrequestList().get(i).get(j).getSparepartId());
+                sparepartsrequestList.setSparepartUniquid(response.body().getSparepartsrequestList().get(i).get(j).getSparepartUniquid());
                 sparepartsrequestList.setSparepartBrand(response.body().getSparepartsrequestList().get(i).get(j).getSparepartBrand());
                 sparepartsrequestList.setSparepartName(response.body().getSparepartsrequestList().get(i).get(j).getSparepartName());
                 sparepartsrequestList.setSparepartCreatedate(response.body().getSparepartsrequestList().get(i).get(j).getSparepartCreatedate());
@@ -153,6 +161,8 @@ public class SparePartsRequestedActivity extends AppCompatActivity implements Vi
 
 
     }
+
+
 
 
     @Override

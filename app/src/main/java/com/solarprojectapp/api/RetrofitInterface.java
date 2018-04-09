@@ -111,6 +111,14 @@ public class RetrofitInterface {
                 @Field("type") String type);
     }
 
+
+    public interface SparePartsRequestByTechPartnerClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<SparePartsRequestResponse> sparePartsRequestBtPartnerList(
+                @Field("complaintstypeid") String complaintstypeid,
+                @Field("type") String type);
+    }
     public interface SparePartsToBeClosedTodayClient {
         @FormUrlEncoded
         @POST("query.php")
@@ -176,6 +184,18 @@ public class RetrofitInterface {
         public Call<TechnicalPartnerFunctionResponse> technicalPartnerFunction(
                 @Field("tech_userid") String tech_userid,
                 @Field("complaintstypeid") String complaintstypeid,
+                @Field("type") String type);
+    }
+
+    public interface UserSubmitSparePartClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<SubmitComplaintResponse> userSubmitSparePart(
+                @Field("sparepartid") String sparepartid,
+                @Field("technicalpartnerid") String technicalpartnerid,
+                @Field("complainid") String complainid,
+                @Field("quantity") String quantity,
+                @Field("request_image") String request_image,
                 @Field("type") String type);
     }
 }

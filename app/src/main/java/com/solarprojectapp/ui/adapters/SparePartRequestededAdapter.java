@@ -15,15 +15,10 @@ import android.widget.Toast;
 import com.solarprojectapp.R;
 import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
-import com.solarprojectapp.generated.model.ApproveComplaintResponse;
-import com.solarprojectapp.generated.model.ComplaintListsDatum;
 import com.solarprojectapp.generated.model.SparePartAdminAproveResponse;
 import com.solarprojectapp.generated.model.SparepartsrequestList;
-import com.solarprojectapp.ui.activities.NewComplaintListActivity;
-import com.solarprojectapp.ui.activities.ShowSparePartsPendingDetailsActivity;
 import com.solarprojectapp.ui.activities.ShowSparePartsRequestedDetailsActivity;
 import com.solarprojectapp.ui.activities.SparePartsRequestedActivity;
-import com.solarprojectapp.ui.activities.TechnicalPartenerListActivity;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.PrefUtils;
@@ -55,6 +50,7 @@ public class SparePartRequestededAdapter extends ArrayAdapter<SparepartsrequestL
         groupid=layout_spare_parts_pending;
         this.context = navigationalActivity;
         this.sparePartsList = sparePartsList;
+
 
     }
 
@@ -109,7 +105,7 @@ public class SparePartRequestededAdapter extends ArrayAdapter<SparepartsrequestL
 
         if (sparepartsrequestList !=null) {
             holder.sparePartName.setText(sparepartsrequestList.getSparepartName());
-            holder.sparePartId.setText(sparepartsrequestList.getSparepartId());
+            holder.sparePartId.setText(sparepartsrequestList.getSparepartUniquid());
             holder.sparePartBrand.setText(sparepartsrequestList.getSparepartBrand());
             holder.sparePartStatusName.setText(sparepartsrequestList.getStatusName());
             holder.sparePartPrice.setText(sparepartsrequestList.getSparepartPrice());
@@ -117,7 +113,22 @@ public class SparePartRequestededAdapter extends ArrayAdapter<SparepartsrequestL
             if (PrefUtils.getUserFrag(getContext()).equals("Client")) {
                 holder.viewDetailsBtn.setVisibility(View.GONE);
                 holder.approveBtn.setVisibility(View.GONE);
-            } else {
+            }/*else if (PrefUtils.getUserFrag(getContext()).equals("Technical Partner"))
+            {
+                holder.viewDetailsBtn.setVisibility(View.GONE);
+                holder.approveBtn.setText("Request");
+                holder.approveBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.e("abhi", "onClick:...................... " );
+                        *//*setUpRestAdapter();
+                        getApproval(v, sparepartsrequestList);*//*
+
+                    }
+                });
+
+            }*/
+            else {
                 holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

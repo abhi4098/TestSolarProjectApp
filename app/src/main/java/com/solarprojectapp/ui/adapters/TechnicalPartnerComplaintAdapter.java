@@ -16,10 +16,13 @@ import com.solarprojectapp.R;
 import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.ComplaintListsDatum;
+import com.solarprojectapp.generated.model.SparePartsRequestResponse;
 import com.solarprojectapp.generated.model.TechnicalPartnerFunctionResponse;
 import com.solarprojectapp.ui.activities.CustomTecnicalPartnerTabActivity;
 import com.solarprojectapp.ui.activities.NewComplaintListActivity;
+import com.solarprojectapp.ui.activities.RequestSparePartByTechPartnerActivity;
 import com.solarprojectapp.ui.activities.ShowNewComplaintDetailsActivity;
+import com.solarprojectapp.ui.activities.SparePartsRequestedActivity;
 import com.solarprojectapp.ui.activities.TechnicalPartenerListActivity;
 import com.solarprojectapp.ui.fragments.OpenTabFragment;
 import com.solarprojectapp.utils.LoadingDialog;
@@ -42,6 +45,7 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
     ArrayList<ComplaintListsDatum> newTechPartnerComplaintList;
     FragmentActivity context;
     private RetrofitInterface.TechnicalPartnerFunctionClient technicalPartnerFunctionAdapter;
+
     String apiType;
 
     public TechnicalPartnerComplaintAdapter(FragmentActivity navigationalActivity, int layout_complaint, int complaint_id, ArrayList<ComplaintListsDatum> newTechPartnerComplaintList)
@@ -194,10 +198,12 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
                holder.requestSparePartBtn.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {
-
-                       //setUpRestAdapter();
-                       //getApproval(v,complaintListsDatum);
-
+                       Intent i = new Intent(((CustomTecnicalPartnerTabActivity) getContext()), RequestSparePartByTechPartnerActivity.class);
+                       i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                       ((CustomTecnicalPartnerTabActivity) getContext()).startActivity(i);
+                       /*setUpRestAdapter();
+                       getRequestForSparePartsByTechPartner(v,complaintListsDatum);
+*/
                    }
                });
 
@@ -250,6 +256,7 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
 
     private void setUpRestAdapter() {
         technicalPartnerFunctionAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.TechnicalPartnerFunctionClient.class, MAIN_BASE_URL, getContext());
+
     }
 
 
@@ -298,5 +305,8 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
             SnakBarUtils.networkConnected(getContext());
         }
     }
+
+
+
 
 }

@@ -141,17 +141,7 @@
             android:background="@drawable/rectangular_button_with_curves_orange"
             android:layout_height="25dp"
             android:text="Accept"/>
-        <Button
-            android:id="@+id/request_spare_part_button"
-            android:layout_width="wrap_content"
-            android:visibility="gone"
-            android:layout_toEndOf="@+id/view_detail_button"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/white"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/rectangular_button_with_curves_orange"
-            android:layout_height="25dp"
-            android:text="Request"/>
+
 
         <Button
             android:id="@+id/close_button"
@@ -172,5 +162,15 @@
             android:layout_height="25dp"
             android:text="Reject"/>
     </RelativeLayout>
-
+    <Button
+        android:id="@+id/request_spare_part_button"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="5dp"
+        android:visibility="gone"
+        android:textColor="@color/white"
+        android:background="@drawable/rectangular_button_with_curves_orange"
+        android:layout_height="25dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:text="Request Spare Part"/>
 </LinearLayout>

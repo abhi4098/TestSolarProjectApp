@@ -80,6 +80,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.activities.CustomTecnicalPartnerTabActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activities.RequestSparePartByTechPartnerActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

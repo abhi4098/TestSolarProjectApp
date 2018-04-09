@@ -86,7 +86,7 @@ public class CustomTecnicalPartnerTabActivity extends AppCompatActivity implemen
             @Override
             public void onPageSelected(int position) {
                 viewPager.setCurrentItem(position,false);
-                Log.e("abhi", "onPageSelected: ............." +position);
+
 
             }
 
