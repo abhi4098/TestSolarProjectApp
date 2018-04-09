@@ -10,15 +10,30 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.solarprojectapp.R;
+import com.solarprojectapp.api.ApiAdapter;
+import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.ComplaintListsDatum;
+import com.solarprojectapp.generated.model.SparePartAdminAproveResponse;
 import com.solarprojectapp.generated.model.SparepartsrequestList;
+import com.solarprojectapp.ui.activities.NewSparePartsPendingActivity;
 import com.solarprojectapp.ui.activities.ShowNewComplaintDetailsActivity;
 import com.solarprojectapp.ui.activities.ShowSparePartsPendingDetailsActivity;
+import com.solarprojectapp.ui.activities.SparePartsRequestedActivity;
+import com.solarprojectapp.utils.LoadingDialog;
+import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.PrefUtils;
+import com.solarprojectapp.utils.SnakBarUtils;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
 
 /**
  * Created by Abhinandan on 26/12/17.
@@ -30,7 +45,7 @@ public class UserSparePartsPendingAdapter extends ArrayAdapter<Sparepartsrequest
     ArrayList<SparepartsrequestList> sparePartsList;
     FragmentActivity context;
     String priorityName,statusName;
-
+    private RetrofitInterface.AdminApprovesparePartClient adminApprovesparePartClient;
     public UserSparePartsPendingAdapter(FragmentActivity navigationalActivity, int layout_spare_parts_pending, int complaint_id, ArrayList<SparepartsrequestList> sparePartsList)
     {
         super(navigationalActivity,layout_spare_parts_pending,complaint_id,sparePartsList);
@@ -115,12 +130,69 @@ public class UserSparePartsPendingAdapter extends ArrayAdapter<Sparepartsrequest
 
                     }
                 });
+                holder.approveBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        setUpRestAdapter();
+                        getApproval(v, sparepartsrequestList);
+
+                    }
+                });
             }
         }
 
 
 
         return rowView;
+    }
+    private void setUpRestAdapter() {
+        adminApprovesparePartClient = ApiAdapter.createRestAdapter(RetrofitInterface.AdminApprovesparePartClient.class, MAIN_BASE_URL, getContext());
+    }
+    private void getApproval(View v, final SparepartsrequestList complaintListsDatum) {
+        LoadingDialog.showLoadingDialog(getContext(),"Loading...");
+        Call<SparePartAdminAproveResponse> call = adminApprovesparePartClient.AdminSparePartApproval(complaintListsDatum.getSparepartRequestId(),"approvesparepartbyadmin");
+        if (NetworkUtils.isNetworkConnected(getContext())) {
+            call.enqueue(new Callback<SparePartAdminAproveResponse>() {
+
+                @Override
+                public void onResponse(Call<SparePartAdminAproveResponse> call, Response<SparePartAdminAproveResponse> response) {
+
+                    if (response.isSuccessful()) {
+
+                        if (response.body().getSuccess().equals("true")) {
+                            Log.e("abhi", "onResponse: ..............admin data" +response.body().getSparePartRequestApproved());
+                           /* Intent i = new Intent(((NewComplaintListActivity) getContext()), TechnicalPartenerListActivity.class);
+                            i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());*/
+                            Toast.makeText(getContext(),response.body().getSparePartRequestApproved(),Toast.LENGTH_SHORT).show();
+                            ((NewSparePartsPendingActivity) getContext()).finish();
+                            LoadingDialog.cancelLoading();
+
+                        }
+                        else
+                        {
+                            LoadingDialog.cancelLoading();
+
+                            Toast.makeText(getContext(),response.body().getSparePartRequestApproved(),Toast.LENGTH_SHORT).show();
+                        }
+
+
+
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<SparePartAdminAproveResponse> call, Throwable t) {
+                    Toast.makeText(getContext(),"Error occur",Toast.LENGTH_SHORT).show();
+                    LoadingDialog.cancelLoading();
+                }
+
+
+            });
+
+        } else {
+            SnakBarUtils.networkConnected(getContext());
+        }
     }
 
 }
