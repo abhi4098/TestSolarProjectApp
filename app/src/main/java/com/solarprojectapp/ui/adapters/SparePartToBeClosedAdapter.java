@@ -120,7 +120,7 @@ public class SparePartToBeClosedAdapter extends ArrayAdapter<SparepartsrequestLi
                         Intent i = new Intent(getContext(), ShowSparePartsToBeClosedDetailsActivity.class);
                         i.putExtra("SPARE_PART_NAME", sparepartsrequestList.getSparepartName());
                         i.putExtra("SPARE_PART_ID", sparepartsrequestList.getSparepartId());
-                        i.putExtra("SPARE_PART_STATUS", sparepartsrequestList.getStatusName());
+                        i.putExtra("SPARE_PART_STATUS", sparepartsrequestList.getSparepartStatus());
                         i.putExtra("SPARE_PART_REQUESTED_PRICE", sparepartsrequestList.getSparepartRequestPrice());
                         i.putExtra("SPARE_PART_PRICE", sparepartsrequestList.getSparepartPrice());
                         i.putExtra("SPARE_PART_REQUESTED_QUANTITY", sparepartsrequestList.getSparepartRequestQuantity());

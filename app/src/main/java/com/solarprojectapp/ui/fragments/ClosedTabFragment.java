@@ -23,6 +23,7 @@ import com.solarprojectapp.generated.model.NewComplaintResponse;
 import com.solarprojectapp.ui.adapters.TechnicalPartnerComplaintAdapter;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
+import com.solarprojectapp.utils.PrefUtils;
 import com.solarprojectapp.utils.SnakBarUtils;
 
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class ClosedTabFragment extends Fragment {
 
     private void getTabList() {
         LoadingDialog.showLoadingDialog(getContext(),"Loading...");
-        Call<NewComplaintResponse> call = UserTabAdapter.userTechComplaintList("techinprogresscomplaintslist","2");
+        Call<NewComplaintResponse> call = UserTabAdapter.userTechComplaintList("techinprogresscomplaintslist", PrefUtils.getFkId(getContext()));
         if (NetworkUtils.isNetworkConnected(getContext())) {
             call.enqueue(new Callback<NewComplaintResponse>() {
 
