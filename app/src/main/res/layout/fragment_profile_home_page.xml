@@ -159,17 +159,7 @@
             </LinearLayout>
 
         </LinearLayout>
-        <ProgressBar
-            android:id="@+id/progress_bar_blue"
-            android:layout_width="fill_parent"
-            android:max="100"
-            android:layout_height="8dp"
-            android:background="@drawable/blue_progress"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginTop="20dp"
-            style="@style/CustomProgressBarHorizontalBlue"
-            android:progress="1"/>
+
 
         <ProgressBar
             android:id="@+id/progress_bar_pink"
@@ -180,8 +170,9 @@
             android:layout_height="8dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
+            android:layout_marginTop="20dp"
             style="@style/CustomProgressBarHorizontalPink"
-            android:progress="1"/>
+            android:progress="0"/>
         <ProgressBar
             android:id="@+id/progress_bar_yellow"
             android:layout_width="fill_parent"
@@ -191,7 +182,19 @@
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
             style="@style/CustomProgressBarHorizontalYellow"
-            android:progress="1"/>
+            android:progress="0"/>
+
+        <ProgressBar
+            android:id="@+id/progress_bar_blue"
+            android:layout_width="fill_parent"
+            android:max="100"
+            android:layout_height="8dp"
+            android:background="@drawable/blue_progress"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+
+            style="@style/CustomProgressBarHorizontalBlue"
+            android:progress="0"/>
 
     </LinearLayout>
 
@@ -275,7 +278,7 @@
                     android:textColor="@color/white"
                     android:layout_marginTop="20dp"
                     android:textSize="12sp"
-                    android:text="To be closed by today"
+                    android:text="Pending For Approval"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/complaints_to_be_closed_today"
@@ -334,12 +337,14 @@
             android:layout_height="120dp"
             android:orientation="horizontal"
             android:weightSum="1"
+            android:layout_marginBottom="20dp"
 
             >
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:orientation="vertical"
+
                 android:id="@+id/ll_spare_part_request"
                 android:background="@color/solar_blue"
                 android:layout_weight=".5"
@@ -410,6 +415,7 @@
             android:id="@+id/ll_spare_parts_to_be_closed_today"
             android:layout_width="match_parent"
             android:layout_height="120dp"
+            android:visibility="gone"
             android:orientation="vertical"
             android:background="@color/solar_pink"
 

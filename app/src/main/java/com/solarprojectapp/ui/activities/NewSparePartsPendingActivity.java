@@ -64,7 +64,7 @@ public class NewSparePartsPendingActivity extends AppCompatActivity implements V
         mContext = NewSparePartsPendingActivity.this;
         ButterKnife.bind(this);
         ivBackIcon.setOnClickListener(this);
-        tvAppTitle.setText("SPARE PARTS PENDING");
+        tvAppTitle.setText("SPARE PARTS REQUESTS PENDING");
 
         setUpRestAdapter();
         getSparePartsPending();

@@ -72,7 +72,7 @@ public class SparePartsRequestedActivity extends AppCompatActivity implements Vi
         ButterKnife.bind(this);
         ivBackIcon.setOnClickListener(this);
 
-            tvAppTitle.setText("SPARE PARTS REQUESTED");
+            tvAppTitle.setText("SPARE PARTS REQUESTS");
             setUpRestAdapter();
             getSparePartRequested();
         }

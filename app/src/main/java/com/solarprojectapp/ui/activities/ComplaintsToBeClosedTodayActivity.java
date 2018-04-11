@@ -64,7 +64,7 @@ public class ComplaintsToBeClosedTodayActivity extends AppCompatActivity impleme
         mContext = ComplaintsToBeClosedTodayActivity.this;
         ButterKnife.bind(this);
         ivBackIcon.setOnClickListener(this);
-        tvAppTitle.setText("COMPLAINT TO BE CLOSED TODAY");
+        tvAppTitle.setText("PENDING FOR APPROVAL");
 
         setUpRestAdapter();
         getComplaintsToBeClosed();

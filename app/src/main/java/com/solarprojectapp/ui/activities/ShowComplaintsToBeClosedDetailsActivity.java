@@ -58,7 +58,7 @@ public class ShowComplaintsToBeClosedDetailsActivity extends AppCompatActivity i
         mContext = ShowComplaintsToBeClosedDetailsActivity.this;
         ButterKnife.bind(this);
         ivBackIcon.setOnClickListener(this);
-        tvAppTitle.setText("COMPLAINT TO BE CLOSED TODAY DETAILS");
+        tvAppTitle.setText("PENDING FOR APPROVAL DETAILS");
         complaintDesc = getIntent().getExtras().getString("COMPLAINT_DESC");
         complaintId = getIntent().getExtras().getString("COMPLAINT_ID");
         complaintName = getIntent().getExtras().getString("COMPLAINT");

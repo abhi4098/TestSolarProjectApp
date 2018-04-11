@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_blue"
-            android:text="Status Name "/>
+            android:text="Status :"/>
 
         <TextView
             android:id="@+id/spare_part_status_name"

@@ -281,8 +281,10 @@ public class ProfileHomePageFragment extends Fragment {
                     //Update progress bar with completion of operation
                     handler.post(new Runnable() {
                         public void run() {
-                            Log.e(TAG, "run: ...............closure" +blueprogressStatus );
-                            progressBlue.setProgress(blueprogressStatus);
+                            Log.e(TAG, "run: ...............closure" +closureprogressStatus );
+                            if (closureprogressStatus!=0) {
+                                progressBlue.setProgress(blueprogressStatus);
+                            }
 
                         }
                     });
@@ -304,8 +306,10 @@ public class ProfileHomePageFragment extends Fragment {
                     //Update progress bar with completion of operation
                     handler.post(new Runnable() {
                         public void run() {
-                            Log.e(TAG, "run: ...............open" +pinkprogressStatus );
-                            progressPink.setProgress(pinkprogressStatus);
+                            Log.e(TAG, "run: ...............open" +openprogressStatus );
+                            if (openprogressStatus!=0) {
+                                progressPink.setProgress(pinkprogressStatus);
+                            }
 
                         }
                     });
@@ -328,8 +332,10 @@ public class ProfileHomePageFragment extends Fragment {
                     //Update progress bar with completion of operation
                     handler.post(new Runnable() {
                         public void run() {
-                            Log.e(TAG, "run: ...............overdue" +yellowprogressStatus );
-                            progressYellow.setProgress(yellowprogressStatus);
+                            Log.e(TAG, "run: ...............overdue" +overdueprogressStatus );
+                            if (overdueprogressStatus !=0) {
+                                progressYellow.setProgress(yellowprogressStatus);
+                            }
 
                         }
                     });

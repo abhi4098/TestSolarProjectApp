@@ -106,7 +106,7 @@ public class UserSparePartsPendingAdapter extends ArrayAdapter<Sparepartsrequest
             holder.sparePartName.setText(sparepartsrequestList.getSparepartName());
             holder.sparePartId.setText(sparepartsrequestList.getSparepartId());
             holder.sparePartBrand.setText(sparepartsrequestList.getSparepartBrand());
-            holder.sparePartStatusName.setText(sparepartsrequestList.getStatusName());
+            holder.sparePartStatusName.setText(sparepartsrequestList.getSparepartStatus());
             holder.sparePartPrice.setText(sparepartsrequestList.getSparepartPrice());
             if (PrefUtils.getUserFrag(getContext()).equals("Client")) {
                 holder.viewDetailsBtn.setVisibility(View.GONE);

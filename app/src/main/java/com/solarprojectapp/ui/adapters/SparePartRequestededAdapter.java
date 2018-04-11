@@ -107,7 +107,7 @@ public class SparePartRequestededAdapter extends ArrayAdapter<SparepartsrequestL
             holder.sparePartName.setText(sparepartsrequestList.getSparepartName());
             holder.sparePartId.setText(sparepartsrequestList.getSparepartUniquid());
             holder.sparePartBrand.setText(sparepartsrequestList.getSparepartBrand());
-            holder.sparePartStatusName.setText(sparepartsrequestList.getStatusName());
+            holder.sparePartStatusName.setText(sparepartsrequestList.getSparepartStatus());
             holder.sparePartPrice.setText(sparepartsrequestList.getSparepartPrice());
 
             if (PrefUtils.getUserFrag(getContext()).equals("Client")) {
