@@ -124,7 +124,7 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
 
             }
         });
-        populateAutoComplete();
+       // populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -194,7 +194,7 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
                                            @NonNull int[] grantResults) {
         if (requestCode == REQUEST_READ_CONTACTS) {
             if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                populateAutoComplete();
+                //populateAutoComplete();
             }
         }
     }

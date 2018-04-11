@@ -1,12 +1,29 @@
 package com.solarprojectapp.ui.activities;
 
+import android.Manifest;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
+import android.util.TypedValue;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -25,6 +42,8 @@ import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.PrefUtils;
 import com.solarprojectapp.utils.SnakBarUtils;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -41,6 +60,7 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
 
     Context mContext;
     String complaintId;
+    String imgDecodableString;
     private RetrofitInterface.UserCompaintTypeClient userCompaintTypeAdapter;
     private RetrofitInterface.UserSubmitSparePartClient userSubmitSparePartClient;
     ArrayList<SparepartsrequestList> sparePartsRequestedList = null;
@@ -55,10 +75,108 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
     TextView tvAppTitle;
     String spComplaintSelectedItem = "Select Spare Part";
     private RetrofitInterface.SparePartsRequestByTechPartnerClient sparePartsRequestByTechPartnerClient;
+    private int PICK_FROM_GALLERY = 1;
+    private static final int REQUEST_WRITE_STORAGE = 112;
+    private final String[] requiredPermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA};
+
 
     @BindView(R.id.spinner_complaint)
     Spinner spinner;
     String projectid,sparePartId;
+    @OnClick(R.id.add_spare_part_image)
+    public void addSparePartImage()
+    {
+        Log.e("abhi", "addSparePartImage: .........." );
+        Checkpermission();
+    }
+
+    private void Checkpermission() {
+
+        if (getPermissions()) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) || ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE) || ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.CAMERA)) {
+                Log.e("abhi", "Checkpermission:..........if " );
+                makeRequest();
+            } else {
+                Log.e("abhi", "Checkpermission:..........else " );
+                makeRequest();
+            }
+        } else {
+            Log.e("abhi", "Checkpermission:..........set dialog for image" );
+          setDialogForImage();
+        }
+    }
+
+
+    private void setDialogForImage() {
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_select_from_source);
+        ImageView btnCamera = (ImageView) dialog.findViewById(R.id.btnCamera);
+        ImageView btnDocs = (ImageView) dialog.findViewById(R.id.btnDoc);
+        TextView txtDoc = (TextView) dialog.findViewById(R.id.txtDoc);
+        btnDocs.setVisibility(View.GONE);
+        txtDoc.setVisibility(View.GONE);
+        ImageView btnGallery = (ImageView) dialog.findViewById(R.id.btnGallery);
+
+        WindowManager.LayoutParams wmlp = dialog.getWindow().getAttributes();
+        wmlp.gravity = Gravity.TOP;
+        wmlp.x = 0;   //x position
+        Resources r = getResources();
+        float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, r.getDisplayMetrics());
+        wmlp.y = (int) px; //y position
+        Display display = ((WindowManager) getSystemService(WINDOW_SERVICE)).getDefaultDisplay();
+        int width = display.getWidth();
+        int height = display.getHeight();
+        dialog.getWindow().setLayout((6 * width) / 10, Toolbar.LayoutParams.WRAP_CONTENT);
+        dialog.show();
+
+
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent, 0);
+
+                dialog.cancel();
+            }
+        });
+
+        btnGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                startActivityForResult(Intent.createChooser(galleryIntent, "Select Picture"), PICK_FROM_GALLERY);
+                dialog.cancel();
+
+            }
+        });
+
+    }
+
+    private boolean getPermissions() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED)
+            return true;
+        else if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED)
+            return true;
+        return false;
+    }
+    protected void makeRequest() {
+        ActivityCompat.requestPermissions(this,
+                requiredPermissions,
+                REQUEST_WRITE_STORAGE);
+    }
 
 
     //private EditText result;
@@ -81,6 +199,82 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
             submitComplaintToAdmin();
         }
     }
+
+
+
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+
+    private String getRealPathFromURI(Uri tempUri) {
+        Cursor cursor = getContentResolver().query(tempUri, null, null, null, null);
+        cursor.moveToFirst();
+        int idx = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        return cursor.getString(idx);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+        if (requestCode == 0 && resultCode == RESULT_OK) {
+
+
+            Bitmap bp = (Bitmap) data.getExtras().get("data");
+            Log.e("abhi", "onActivityResult: bp---------"+bp );
+            if (bp !=null) {
+
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bp.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+                byte[] byteFormat = stream.toByteArray();
+                // get the base 64 string
+                String imgString = Base64.encodeToString(byteFormat, Base64.NO_WRAP);
+                Log.e("abhi", "onActivityResult:.......... camera" + imgString);
+
+
+            }
+
+
+        } else if (requestCode == PICK_FROM_GALLERY && resultCode == RESULT_OK) {
+            if(data.getClipData() != null) {
+                int count = data.getClipData().getItemCount();
+                int currentItem = 0;
+                while(currentItem < count) {
+                    Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
+
+                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
+                    Cursor cursor = getContentResolver().query(imageUri, filePathColumn, null, null, null);
+                    if (cursor != null) {
+                        cursor.moveToFirst();
+                        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                        imgDecodableString = cursor.getString(columnIndex);
+                        cursor.close();
+                        // sendImagesToServerFromCamera(imgDecodableString);
+                    }
+
+                    Bitmap bm = BitmapFactory.decodeFile(imgDecodableString);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bm.compress(Bitmap.CompressFormat.JPEG, 70, baos); //bm is the bitmap object
+                    byte[] b = baos.toByteArray();
+                    String imgString = Base64.encodeToString(b, Base64.NO_WRAP);
+                    Log.e("abhi", "onActivityResult: .........image uri"+imgString );
+                    currentItem = currentItem + 1;
+                }
+            } else if(data.getData() != null) {
+                String imagePath = data.getData().getPath();
+                Log.e("abhi", "onActivityResult:.... image path"+imagePath );
+                //do something with the image (save it to some directory or whatever you need to do with it here)
+            }
+
+
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
