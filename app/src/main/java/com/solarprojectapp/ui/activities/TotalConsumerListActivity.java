@@ -138,6 +138,8 @@ public class TotalConsumerListActivity extends AppCompatActivity implements View
                 consumerList.setGeoAddress(response.body().getConsumerList().get(i).get(j).getGeoAddress());
                 consumerList.setMobileNo(response.body().getConsumerList().get(i).get(j).getMobileNo());
                 consumerList.setPinNo(response.body().getConsumerList().get(i).get(j).getPinNo());
+                consumerList.setOwnerName(response.body().getConsumerList().get(i).get(j).getOwnerName());
+                consumerList.setProjectType(response.body().getConsumerList().get(i).get(j).getProjectType());
                 totalConsumerList.add(consumerList);
                 Log.e("abhi", "onResponse:..new complaint list " + totalConsumerList.get(i).getConsumerName());
 

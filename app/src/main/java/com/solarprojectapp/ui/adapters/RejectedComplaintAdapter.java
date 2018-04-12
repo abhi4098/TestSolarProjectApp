@@ -130,6 +130,8 @@ public class RejectedComplaintAdapter extends ArrayAdapter<RejectedComplaintList
                         i.putExtra("COMPLAINT_PROJECT_TYPE", complaintListsDatum.getProjectType());
                         i.putExtra("COMPLAINT_STATE", complaintListsDatum.getState());
                         i.putExtra("COMPLAINT_CONTACT", complaintListsDatum.getEndConsumerContactno());
+                        i.putExtra("COMPLAINT_CREATION_DATE", complaintListsDatum.getCreateDate());
+                        i.putExtra("COMPLAINT_CLOSE_DATE", complaintListsDatum.getComplainCloseDate());
                         //i.putExtra("INTENT_FROM","EditButton");
 
                         getContext().startActivity(i);

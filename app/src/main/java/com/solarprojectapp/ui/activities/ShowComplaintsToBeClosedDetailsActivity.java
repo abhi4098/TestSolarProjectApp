@@ -5,11 +5,16 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.solarprojectapp.R;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,12 +47,16 @@ public class ShowComplaintsToBeClosedDetailsActivity extends AppCompatActivity i
     TextView tvProjectType;
     @BindView(R.id.contact_no)
     TextView tvContactNum;
+    @BindView(R.id.creation_date)
+    TextView tvCreationDate;
+    @BindView(R.id.closed_date)
+    TextView tvClosedDate;
 
 
 
 
     //private EditText result;
-   String  complaintDesc,complaintId,complaintName,complaintEndConsumer,complaintProjectOwner,complaintProjectType,complaintState,complaintContact;
+   String  complaintCreationDate,complaintCloseDate,complaintDesc,complaintId,complaintName,complaintEndConsumer,complaintProjectOwner,complaintProjectType,complaintState,complaintContact;
 
 
     @Override
@@ -67,6 +76,8 @@ public class ShowComplaintsToBeClosedDetailsActivity extends AppCompatActivity i
         complaintProjectType = getIntent().getExtras().getString("COMPLAINT_PROJECT_TYPE");
         complaintState = getIntent().getExtras().getString("COMPLAINT_STATE");
         complaintContact = getIntent().getExtras().getString("COMPLAINT_CONTACT");
+        complaintCreationDate = getIntent().getExtras().getString("COMPLAINT_CREATION_DATE");
+        complaintCloseDate = getIntent().getExtras().getString("COMPLAINT_CLOSE_DATE");
 
         tvComplaintId.setText(complaintId);
         tvComplaintName.setText(complaintName);
@@ -76,13 +87,41 @@ public class ShowComplaintsToBeClosedDetailsActivity extends AppCompatActivity i
         tvDescription.setText(complaintDesc);
         tvProjectOwner.setText(complaintProjectOwner);
         tvEndConsumer.setText(complaintEndConsumer);
-
+        if (!complaintCreationDate.equals("")||complaintCreationDate !=null) {
+            tvCreationDate.setText(parseTodaysDate(complaintCreationDate));
+        }
+        if (!complaintCloseDate.equals("")||complaintCloseDate !=null) {
+            tvClosedDate.setText(parseTodaysDate(complaintCloseDate));
+        }
 
 
 
 
     }
 
+    public static String parseTodaysDate(String time) {
+
+
+
+        String inputPattern = "yyyy-MM-dd HH:mm:ss";
+        String outputPattern = "dd-MM-yyyy";
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+
+        Date date = null;
+        String str = null;
+
+        try {
+            date = inputFormat.parse(time);
+            str = outputFormat.format(date);
+
+            Log.i("mini", "Converted Date Today:" + str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
 
 
 

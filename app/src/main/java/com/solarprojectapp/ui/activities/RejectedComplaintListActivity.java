@@ -142,6 +142,8 @@ public class RejectedComplaintListActivity extends AppCompatActivity implements 
                 rejectedComplaintListsDatum.setProjectType(response.body().getRejectedComplaintListsData().get(i).get(j).getProjectType());
                 rejectedComplaintListsDatum.setState(response.body().getRejectedComplaintListsData().get(i).get(j).getState());
                 rejectedComplaintListsDatum.setEndConsumerContactno(response.body().getRejectedComplaintListsData().get(i).get(j).getEndConsumerContactno());
+                rejectedComplaintListsDatum.setCreateDate(response.body().getRejectedComplaintListsData().get(i).get(j).getCreateDate());
+                rejectedComplaintListsDatum.setComplainCloseDate(response.body().getRejectedComplaintListsData().get(i).get(j).getComplainCloseDate());
 
                 rejectedComplaintList.add(rejectedComplaintListsDatum);
                 Log.e("abhi", "onResponse:..new complaint list " + rejectedComplaintList.get(i).getComplaint());

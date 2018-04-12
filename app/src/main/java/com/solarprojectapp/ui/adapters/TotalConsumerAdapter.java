@@ -60,6 +60,9 @@ public class TotalConsumerAdapter extends ArrayAdapter<ConsumerList> {
         public TextView consumerEmailId;
         public TextView consumerPhoneNum;
         public TextView consumerAdd;
+        public TextView consumerProjectOwner;
+        public TextView consumerProjectType;
+
 
 
 
@@ -84,6 +87,8 @@ public class TotalConsumerAdapter extends ArrayAdapter<ConsumerList> {
             viewHolder.consumerEmailId= (TextView) rowView.findViewById(R.id.consumer_email_id);
             viewHolder.consumerPhoneNum= (TextView) rowView.findViewById(R.id.consumer_contact_num);
             viewHolder.consumerAdd= (TextView) rowView.findViewById(R.id.consumer_add);
+            viewHolder.consumerProjectOwner= (TextView) rowView.findViewById(R.id.consumer_project_owner);
+            viewHolder.consumerProjectType= (TextView) rowView.findViewById(R.id.consumer_project_type);
 
 
 
@@ -103,6 +108,8 @@ public class TotalConsumerAdapter extends ArrayAdapter<ConsumerList> {
             holder.consumerEmailId.setText(consumerList.getEmailId());
             holder.consumerPhoneNum.setText(consumerList.getMobileNo());
             holder.consumerAdd.setText(consumerList.getGeoAddress());
+            holder.consumerProjectType.setText(consumerList.getProjectType());
+            holder.consumerProjectOwner.setText(consumerList.getOwnerName());
 
 
 

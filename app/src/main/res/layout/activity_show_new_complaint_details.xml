@@ -9,6 +9,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,7 +49,6 @@
             android:textColor="@color/black"
             android:lines="1"
             android:textSize="15sp"
-            android:text="2 Units"
             android:layout_gravity="center_horizontal"
             />
 
@@ -85,7 +94,6 @@
             android:textColor="@color/black"
             android:lines="1"
             android:textSize="15sp"
-            android:text="Solar Roof Top"
             android:layout_gravity="center_horizontal"
             />
 
@@ -131,7 +139,6 @@
                 android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="15sp"
-                android:text="My Way Solar"
                 android:layout_gravity="center_horizontal"
                 />
 
@@ -177,7 +184,6 @@
                 android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="15sp"
-                android:text="08/02/2018"
                 android:layout_gravity="center_horizontal"
                 />
 
@@ -223,7 +229,6 @@
                 android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="15sp"
-                android:text="08/02/2018"
                 android:layout_gravity="center_horizontal"
                 />
 
@@ -238,6 +243,98 @@
 
             <View style="@style/Divider_light_gray" />
         </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:textStyle="bold"
+            android:textColor="@color/solar_blue"
+            android:lines="1"
+            android:textSize="15sp"
+            android:text="Creation Date"
+
+            />
+
+        <TextView
+            android:id="@+id/creation_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/black"
+            android:lines="1"
+            android:textSize="15sp"
+            android:layout_gravity="center_horizontal"
+            />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp">
+
+        <View style="@style/Divider_light_gray" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:textStyle="bold"
+            android:textColor="@color/solar_blue"
+            android:lines="1"
+            android:textSize="15sp"
+            android:text="To Be Closed Date"
+
+            />
+
+        <TextView
+            android:id="@+id/closed_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/black"
+            android:lines="1"
+            android:textSize="15sp"
+            android:layout_gravity="center_horizontal"
+            />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp">
+
+        <View style="@style/Divider_light_gray" />
+    </LinearLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -269,7 +366,6 @@
                 android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="15sp"
-                android:text="Solar Roof Top"
                 android:layout_gravity="center_horizontal"
                 />
 
@@ -315,7 +411,6 @@
                 android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="15sp"
-                android:text="10kw"
                 android:layout_gravity="center_horizontal"
                 />
 
@@ -361,7 +456,6 @@
                 android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="15sp"
-                android:text="2 Units"
                 android:layout_gravity="center_horizontal"
                 />
 
@@ -380,5 +474,6 @@
             android:background="@color/solar_pink"
             android:text="ADD A COMPLAINT"/>
 
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -139,6 +139,9 @@ public class OpenComplaintListActivity extends AppCompatActivity implements View
                 complaintListsDatum.setProjectOwner(response.body().getComplaintListsData().get(i).get(j).getProjectOwner());
                 complaintListsDatum.setProjectType(response.body().getComplaintListsData().get(i).get(j).getProjectType());
                 complaintListsDatum.setState(response.body().getComplaintListsData().get(i).get(j).getState());
+                complaintListsDatum.setCreateDate(response.body().getComplaintListsData().get(i).get(j).getCreateDate());
+                complaintListsDatum.setComplainCloseDate(response.body().getComplaintListsData().get(i).get(j).getComplainCloseDate());
+
                 complaintListsDatum.setEndConsumerContactno(response.body().getComplaintListsData().get(i).get(j).getEndConsumerContactno());
                 complaintListsDatum.setTechincalPartnerAssignStatus(response.body().getComplaintListsData().get(i).get(j).getTechincalPartnerAssignStatus());
                 complaintList.add(complaintListsDatum);

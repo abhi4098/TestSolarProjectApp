@@ -30,6 +30,27 @@ public class RejectedComplaintListsDatum {
     @SerializedName("end_consumer_contactno")
     @Expose
     private String endConsumerContactno;
+    @SerializedName("create_date")
+    @Expose
+    private String createDate;
+    @SerializedName("complain_close_date")
+    @Expose
+    private String complainCloseDate;
+    public String getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(String createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getComplainCloseDate() {
+        return complainCloseDate;
+    }
+
+    public void setComplainCloseDate(String complainCloseDate) {
+        this.complainCloseDate = complainCloseDate;
+    }
 
     public String getComplainId() {
         return complainId;

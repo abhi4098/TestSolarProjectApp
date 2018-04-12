@@ -128,6 +128,9 @@ public class OpenTabFragment extends Fragment {
                     complaintListsDatum.setProjectOwner(response.body().getComplaintListsData().get(i).get(j).getProjectOwner());
                     complaintListsDatum.setProjectType(response.body().getComplaintListsData().get(i).get(j).getProjectType());
                     complaintListsDatum.setState(response.body().getComplaintListsData().get(i).get(j).getState());
+                    complaintListsDatum.setCreateDate(response.body().getComplaintListsData().get(i).get(j).getCreateDate());
+                    complaintListsDatum.setComplainCloseDate(response.body().getComplaintListsData().get(i).get(j).getComplainCloseDate());
+
                     complaintListsDatum.setComplainTechnicalpartnerstatus(response.body().getComplaintListsData().get(i).get(j).getComplainTechnicalpartnerstatus());
                     complaintListsDatum.setEndConsumerContactno(response.body().getComplaintListsData().get(i).get(j).getEndConsumerContactno());
 

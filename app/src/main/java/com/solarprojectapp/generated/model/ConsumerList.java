@@ -31,6 +31,30 @@ public class ConsumerList {
     @Expose
     private String image;
 
+    @SerializedName("owner_name")
+    @Expose
+    private String ownerName;
+    @SerializedName("project_type")
+    @Expose
+    private String projectType;
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public String getProjectType() {
+        return projectType;
+    }
+
+    public void setProjectType(String projectType) {
+        this.projectType = projectType;
+    }
+
+
     public String getConsumerName() {
         return consumerName;
     }
@@ -38,6 +62,7 @@ public class ConsumerList {
     public void setConsumerName(String consumerName) {
         this.consumerName = consumerName;
     }
+
 
     public String getFlatNo() {
         return flatNo;

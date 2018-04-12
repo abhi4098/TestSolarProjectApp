@@ -133,6 +133,9 @@ public class ClosureComplaintListActivity extends AppCompatActivity implements V
                 complaintListsDatum.setProjectType(response.body().getComplaintListsData().get(i).get(j).getProjectType());
                 complaintListsDatum.setState(response.body().getComplaintListsData().get(i).get(j).getState());
                 complaintListsDatum.setEndConsumerContactno(response.body().getComplaintListsData().get(i).get(j).getEndConsumerContactno());
+                complaintListsDatum.setCreateDate(response.body().getComplaintListsData().get(i).get(j).getCreateDate());
+                complaintListsDatum.setComplainCloseDate(response.body().getComplaintListsData().get(i).get(j).getComplainCloseDate());
+
                 complaintList.add(complaintListsDatum);
                 Log.e("abhi", "onResponse:..new complaint list " + complaintList.get(i).getComplaint());
 

@@ -188,7 +188,7 @@
                 android:textColor="@color/solar_blue"
                 android:lines="1"
                 android:textSize="15sp"
-                android:text="ONM Started on"
+                android:text="O&amp;M Started on"
 
                 />
 
