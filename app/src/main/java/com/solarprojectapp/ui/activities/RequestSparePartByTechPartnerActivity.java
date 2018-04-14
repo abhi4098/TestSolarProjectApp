@@ -65,6 +65,8 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
     private RetrofitInterface.UserSubmitSparePartClient userSubmitSparePartClient;
     ArrayList<SparepartsrequestList> sparePartsRequestedList = null;
     ArrayList<String> showSparePartsRequestedList = null;
+    String imgString;
+    File imagFileFromGallery;
 
 
     @BindView(R.id.back_icon)
@@ -152,8 +154,11 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
 
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+               galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                //startActivityForResult(galleryIntent, PICK_FROM_GALLERY);
+
                 startActivityForResult(Intent.createChooser(galleryIntent, "Select Picture"), PICK_FROM_GALLERY);
+
                 dialog.cancel();
 
             }
@@ -226,15 +231,16 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
 
 
             Bitmap bp = (Bitmap) data.getExtras().get("data");
-            Log.e("abhi", "onActivityResult: bp---------"+bp );
+            Log.e("abhi", "onActivityResult: bp---------"+data.getExtras().get("data") );
             if (bp !=null) {
 
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bp.compress(Bitmap.CompressFormat.JPEG, 70, stream);
                 byte[] byteFormat = stream.toByteArray();
                 // get the base 64 string
-                String imgString = Base64.encodeToString(byteFormat, Base64.NO_WRAP);
+                imgString = Base64.encodeToString(byteFormat, Base64.NO_WRAP);
                 Log.e("abhi", "onActivityResult:.......... camera" + imgString);
+              //  sendImagesToServerFromCamera(imgDecodableString);
 
 
             }
@@ -253,21 +259,31 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
                         cursor.moveToFirst();
                         int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                         imgDecodableString = cursor.getString(columnIndex);
+                        imagFileFromGallery = new  File(imgDecodableString);
+                        Log.e("abhi", "onActivityResult:  from gallery............."+imgDecodableString );
                         cursor.close();
                         // sendImagesToServerFromCamera(imgDecodableString);
                     }
 
-                    Bitmap bm = BitmapFactory.decodeFile(imgDecodableString);
+                    Bitmap bm = BitmapFactory.decodeFile(imagFileFromGallery.getAbsolutePath());
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     bm.compress(Bitmap.CompressFormat.JPEG, 70, baos); //bm is the bitmap object
                     byte[] b = baos.toByteArray();
-                    String imgString = Base64.encodeToString(b, Base64.NO_WRAP);
-                    Log.e("abhi", "onActivityResult: .........image uri"+imgString );
+                    imgString = Base64.encodeToString(b, Base64.NO_WRAP);
+                    Log.e("abhi", "onActivityResult: .........image "+imgString );
                     currentItem = currentItem + 1;
                 }
             } else if(data.getData() != null) {
                 String imagePath = data.getData().getPath();
-                Log.e("abhi", "onActivityResult:.... image path"+imagePath );
+                Log.e("abhi", "onActivityResult: encoded path"+imagePath );
+                imagFileFromGallery = new  File(imagePath);
+                Bitmap bm = BitmapFactory.decodeFile(imagFileFromGallery.getAbsolutePath());
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bm.compress(Bitmap.CompressFormat.JPEG, 70, baos); //bm is the bitmap object
+                byte[] b = baos.toByteArray();
+                imgString = Base64.encodeToString(b, Base64.NO_WRAP);
+                Log.e("abhi", "onActivityResult:.... image base64"+imgString );
+
                 //do something with the image (save it to some directory or whatever you need to do with it here)
             }
 
