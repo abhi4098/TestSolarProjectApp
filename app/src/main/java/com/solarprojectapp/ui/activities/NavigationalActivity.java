@@ -144,14 +144,14 @@ public class NavigationalActivity extends AppCompatActivity
         }
         else
         {
-            PrefUtils.storeUserFrag("Admin",getBaseContext());
+            PrefUtils.storeUserFrag(loginType,getBaseContext());
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            profileTechnicalFragment = new ProfileTechnicalFragment();
-            fragmentTransaction.add(R.id.fragment_container, profileTechnicalFragment, "PROFILE").addToBackStack(null);
+            profileHomePageFragment = new ProfileHomePageFragment();
+            fragmentTransaction.add(R.id.fragment_container, profileHomePageFragment, "PROFILE").addToBackStack(null);
             fragmentTransaction.commit();
         }
-        tvAppTitle.setText("DASHBOARD");
+        tvAppTitle.setText("MANAGEMENT");
 
 
 

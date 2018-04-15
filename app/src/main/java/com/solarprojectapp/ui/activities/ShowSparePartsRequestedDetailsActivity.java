@@ -81,7 +81,10 @@ public class ShowSparePartsRequestedDetailsActivity extends AppCompatActivity im
         tvSparePartRequestedQuantity.setText(sparePartRequestedQuantity);
       //  tvSparePartCreatedDate.setText(sparePartCreatedDate);
         tvSparePartBrand.setText(sparePartBrand);
-        tvSparePartCreatedDate.setText(parseTodaysDate(sparePartCreatedDate));
+        if (!sparePartCreatedDate.equals("")&&sparePartCreatedDate !=null) {
+            tvSparePartCreatedDate.setText(parseTodaysDate(sparePartCreatedDate));
+        }
+
 
 
     }

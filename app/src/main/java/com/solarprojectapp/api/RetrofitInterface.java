@@ -10,6 +10,7 @@ import com.solarprojectapp.generated.model.ComplaintTypeDropdown;
 import com.solarprojectapp.generated.model.DashboardDataResponse;
 import com.solarprojectapp.generated.model.LoginResponse;
 import com.solarprojectapp.generated.model.NewComplaintResponse;
+import com.solarprojectapp.generated.model.PreventiveMaintainanceResponse;
 import com.solarprojectapp.generated.model.ProfileResponse;
 import com.solarprojectapp.generated.model.RejectedComplaintListResponse;
 import com.solarprojectapp.generated.model.SparePartAdminAproveResponse;
@@ -196,6 +197,14 @@ public class RetrofitInterface {
                 @Field("complainid") String complainid,
                 @Field("quantity") String quantity,
                 @Field("request_image") String request_image,
+                @Field("type") String type);
+    }
+
+    public interface PreventiveMaintainanceClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<PreventiveMaintainanceResponse> preventiveMaintainanceList(
+                @Field("userid") String userid,
                 @Field("type") String type);
     }
 }

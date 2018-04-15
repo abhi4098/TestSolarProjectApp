@@ -87,10 +87,10 @@ public class ShowComplaintsToBeClosedDetailsActivity extends AppCompatActivity i
         tvDescription.setText(complaintDesc);
         tvProjectOwner.setText(complaintProjectOwner);
         tvEndConsumer.setText(complaintEndConsumer);
-        if (!complaintCreationDate.equals("")||complaintCreationDate !=null) {
+        if (!complaintCreationDate.equals("")&&complaintCreationDate !=null) {
             tvCreationDate.setText(parseTodaysDate(complaintCreationDate));
         }
-        if (!complaintCloseDate.equals("")||complaintCloseDate !=null) {
+        if (!complaintCloseDate.equals("")&&complaintCloseDate !=null) {
             tvClosedDate.setText(parseTodaysDate(complaintCloseDate));
         }
 

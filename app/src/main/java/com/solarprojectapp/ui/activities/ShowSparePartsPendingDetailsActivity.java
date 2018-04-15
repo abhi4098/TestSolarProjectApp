@@ -79,7 +79,11 @@ public class ShowSparePartsPendingDetailsActivity extends AppCompatActivity impl
         tvSparePartRequestedPrice.setText(sparePartRequestedPrice);
         tvSparePartPrice.setText(sparePartPrice);
         tvSparePartRequestedQuantity.setText(sparePartRequestedQuantity);
-        tvSparePartCreatedDate.setText(parseTodaysDate(sparePartCreatedDate));
+        if (!sparePartCreatedDate.equals("")&&sparePartCreatedDate !=null) {
+            tvSparePartCreatedDate.setText(parseTodaysDate(sparePartCreatedDate));
+        }
+
+
         tvSparePartBrand.setText(sparePartBrand);
 
 

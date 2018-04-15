@@ -154,7 +154,7 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
 
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-               galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+              galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
                 //startActivityForResult(galleryIntent, PICK_FROM_GALLERY);
 
                 startActivityForResult(Intent.createChooser(galleryIntent, "Select Picture"), PICK_FROM_GALLERY);
