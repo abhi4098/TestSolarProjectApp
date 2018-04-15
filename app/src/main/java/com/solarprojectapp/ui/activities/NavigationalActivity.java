@@ -151,7 +151,7 @@ public class NavigationalActivity extends AppCompatActivity
             fragmentTransaction.add(R.id.fragment_container, profileHomePageFragment, "PROFILE").addToBackStack(null);
             fragmentTransaction.commit();
         }
-        tvAppTitle.setText("MANAGEMENT");
+        tvAppTitle.setText("DASHBOARD");
 
 
 

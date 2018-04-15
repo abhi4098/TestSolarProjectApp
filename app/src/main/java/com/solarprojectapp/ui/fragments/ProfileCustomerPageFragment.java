@@ -1,6 +1,7 @@
 package com.solarprojectapp.ui.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.solarprojectapp.R;
@@ -56,14 +58,18 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
     private static final String TAG = "ProfileHomePageFragment";
 
     private RetrofitInterface.PreventiveMaintainanceClient UsePreventiveMaintainanceAdapter;
+    //private final OneDayDecorator oneDayDecorator = new OneDayDecorator();
+    private TextView complaintName = null;
+
+
     @BindView(R.id.information)
     LinearLayout llInformation;
 
     @BindView(R.id.maintenance_data)
     LinearLayout llMaintenancedData;
 
-    @BindView(R.id.selected_complaint_name)
-    TextView tvSelectedComplaint;
+    /*@BindView(R.id.ll_complaintList)
+    LinearLayout llComplaintListItems;*/
 
 
 
@@ -209,20 +215,40 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
         for (int i = 0; i < response.body().getPreventiveDateListsData().size(); i++) {
             for (int j = 0; j < response.body().getPreventiveDateListsData().get(i).size();j++) {
                // Log.e(TAG, "setDateInCalender: .......size"+response.body().getPreventiveDateListsData().get(i).size() );
+                /*if (!response.body().getPreventiveDateListsData().get(i).get(j).getComplaint().equals("")&&response.body().getPreventiveDateListsData().get(i).get(j).getComplaint() !=null
+                        &&!response.body().getPreventiveDateListsData().get(i).get(j).getComplainCloseDate().equals("")&&response.body().getPreventiveDateListsData().get(i).get(j).getComplainCloseDate() !=null) {
 
+                    complaintName = new TextView(getContext());
+                    complaintName.setText(response.body().getPreventiveDateListsData().get(i).get(j).getComplaint().concat(" ").concat(parseTodaysDate(response.body().getPreventiveDateListsData().get(i).get(j).getComplainCloseDate())));
+                    llComplaintListItems.addView(complaintName);
+                }*/
                 PreventiveDateListsDatum preventiveDateListsDatum = new PreventiveDateListsDatum();
                 preventiveDateListsDatum.setComplaint(response.body().getPreventiveDateListsData().get(i).get(j).getComplaint());
+              /*  if (!response.body().getPreventiveDateListsData().get(i).get(j).getInstallationDate().equals("")&&response.body().getPreventiveDateListsData().get(i).get(j).getInstallationDate() !=null)
+                {
+                    String installationDate =parseTodaysDate(response.body().getPreventiveDateListsData().get(i).get(j).getInstallationDate());
+                    Log.e(TAG, "setDateInCalender: .......installation date"+installationDate );
+                    String parts[] = installationDate.split("/");
+                    int day = Integer.parseInt(parts[0]);
+                    int month = Integer.parseInt(parts[1])-1;
+                    int year = Integer.parseInt(parts[2]);
+
+                    mCalendarView.setDateSelected(CalendarDay.from(year, month, day), true);
+                }*/
                 preventiveDateListsDatum.setInstallationDate(response.body().getPreventiveDateListsData().get(i).get(j).getInstallationDate());
+                Log.e(TAG, "installation date: ............"+response.body().getPreventiveDateListsData().get(i).get(j).getInstallationDate() );
                 preventiveDateListsDatum.setCreateDate(response.body().getPreventiveDateListsData().get(i).get(j).getCreateDate());
                 preventiveDateListsDatum.setComplainCloseDate(response.body().getPreventiveDateListsData().get(i).get(j).getComplainCloseDate());
-                preventiveDateListsDatum.setComplainCloseDate(response.body().getPreventiveDateListsData().get(i).get(j).getComplainCloseDate());
+               // preventiveDateListsDatum.setComplainCloseDate(response.body().getPreventiveDateListsData().get(i).get(j).getComplainCloseDate());
 
                 preventiveMainatainanceDateLists.add(preventiveDateListsDatum);
                 setDates.add(response.body().getPreventiveDateListsData().get(i).get(j).getComplainCloseDate());
+                setDates.add(response.body().getPreventiveDateListsData().get(i).get(j).getInstallationDate());
 
 
             }
         }
+
         setClosingDateInCalendar(setDates);
     }
 
@@ -232,20 +258,18 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
             if (!s.get(i).equals("") && s.get(i) != null) {
 
                 String date = parseTodaysDate(s.get(i));
-                Log.e(TAG, "setClosingDateInCalendar: ............."+date );
+                //Log.e(TAG, "setClosingDateInCalendar: ............."+date );
                 String parts[] = date.split("/");
                 int day = Integer.parseInt(parts[0]);
                 int month = Integer.parseInt(parts[1])-1;
                 int year = Integer.parseInt(parts[2]);
 
-                /*Calendar calendar = Calendar.getInstance();
-                calendar.set(Calendar.YEAR, year);
-                calendar.set(Calendar.MONTH, month);
-                calendar.set(Calendar.DAY_OF_MONTH, day);*/
-
-               // long milliTime = calendar.getTimeInMillis();
-
                 mCalendarView.setDateSelected(CalendarDay.from(year, month, day), true);
+               mCalendarView.setSelectionMode(MaterialCalendarView.SELECTION_MODE_NONE);
+
+
+
+
             }
 
 
@@ -286,7 +310,7 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay date, boolean selected) {
-        Log.e(TAG, "onDateSelected: ......................." );
-          tvSelectedComplaint.setText("---------------Got it---------------");
+       /* Log.e(TAG, "onDateSelected: ......................." );
+          tvSelectedComplaint.setText("---------------Got it---------------");*/
     }
 }
