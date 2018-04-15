@@ -133,6 +133,7 @@ public class NewSparePartsPendingActivity extends AppCompatActivity implements V
                 sparepartsrequestList.setSparepartRequestPrice(response.body().getSparepartsrequestList().get(i).get(j).getSparepartRequestPrice());
                 sparepartsrequestList.setSparepartStatus(response.body().getSparepartsrequestList().get(i).get(j).getSparepartStatus());
                 sparepartsrequestList.setSparepartPrice(response.body().getSparepartsrequestList().get(i).get(j).getSparepartPrice());
+                sparepartsrequestList.setSparepartRequestId(response.body().getSparepartsrequestList().get(i).get(j).getSparepartRequestId());
                 sparePartsPendingList.add(sparepartsrequestList);
                 Log.e("abhi", "onResponse:..new complaint list " + sparePartsPendingList.get(i).getSparepartName());
 

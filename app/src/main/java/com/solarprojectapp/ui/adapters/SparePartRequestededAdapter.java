@@ -129,6 +129,7 @@ public class SparePartRequestededAdapter extends ArrayAdapter<SparepartsrequestL
 
             }*/
             else {
+                holder.approveBtn.setVisibility(View.GONE);
                 holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -146,7 +147,7 @@ public class SparePartRequestededAdapter extends ArrayAdapter<SparepartsrequestL
                         getContext().startActivity(i);
 
                     }
-                });  holder.approveBtn.setOnClickListener(new View.OnClickListener() {
+                });  /*holder.approveBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         setUpRestAdapter();
@@ -154,7 +155,7 @@ public class SparePartRequestededAdapter extends ArrayAdapter<SparepartsrequestL
 
                     }
                 });
-
+*/
             }
         }
 

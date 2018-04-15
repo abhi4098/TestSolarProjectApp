@@ -160,7 +160,7 @@ public class UserSparePartsPendingAdapter extends ArrayAdapter<Sparepartsrequest
                     if (response.isSuccessful()) {
 
                         if (response.body().getSuccess().equals("true")) {
-                            Log.e("abhi", "onResponse: ..............admin data" +response.body().getSparePartRequestApproved());
+                            Log.e("abhi", "onResponse: ..............pending................................" +response.body().getSparePartRequestApproved());
                            /* Intent i = new Intent(((NewComplaintListActivity) getContext()), TechnicalPartenerListActivity.class);
                             i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());*/
                             Toast.makeText(getContext(),response.body().getSparePartRequestApproved(),Toast.LENGTH_SHORT).show();
