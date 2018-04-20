@@ -19,6 +19,7 @@ import com.solarprojectapp.generated.model.ApproveComplaintResponse;
 import com.solarprojectapp.generated.model.ComplaintListsDatum;
 import com.solarprojectapp.ui.activities.NewComplaintListActivity;
 import com.solarprojectapp.ui.activities.OpenComplaintListActivity;
+import com.solarprojectapp.ui.activities.OverDueComplaintListActivity;
 import com.solarprojectapp.ui.activities.ShowNewComplaintDetailsActivity;
 import com.solarprojectapp.ui.activities.TechnicalPartenerListActivity;
 import com.solarprojectapp.utils.LoadingDialog;
@@ -282,9 +283,17 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
 
                         if (response.body().getSuccess().equals("true")) {
                             Log.e("abhi", "onResponse: ..............admin data" +response.body().getComplaintsApproved());
-                            Intent i = new Intent(((NewComplaintListActivity) getContext()), TechnicalPartenerListActivity.class);
-                            i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
-                            ((NewComplaintListActivity) getContext()).startActivity(i);
+                            if (fromActivity.equals("NewComplaintListActivity")) {
+                                Intent i = new Intent(((NewComplaintListActivity) getContext()), TechnicalPartenerListActivity.class);
+                                i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                                ((NewComplaintListActivity) getContext()).startActivity(i);
+                            }
+                            else {
+
+                                Intent intent = new Intent(((OverDueComplaintListActivity) getContext()), TechnicalPartenerListActivity.class);
+                                intent.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                                ((OverDueComplaintListActivity) getContext()).startActivity(intent);
+                            }
                             LoadingDialog.cancelLoading();
 
                         }

@@ -213,7 +213,7 @@ public class NavigationalActivity extends AppCompatActivity
             {
                 fragment = new ProfileTechnicalFragment();
             }
-            tvAppTitle.setText("DASHBOARD");
+            tvAppTitle.setText( "DASHBOARD");
 
         } else if (id == R.id.nav_profile) {
 
