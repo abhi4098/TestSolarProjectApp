@@ -33,10 +33,12 @@ import android.widget.Toast;
 
 import com.solarprojectapp.R;
 import com.solarprojectapp.api.ApiAdapter;
+import com.solarprojectapp.api.ApiEndPoints;
 import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.SparePartsRequestResponse;
 import com.solarprojectapp.generated.model.SparepartsrequestList;
 import com.solarprojectapp.generated.model.SubmitComplaintResponse;
+import com.solarprojectapp.generated.model.UploadPhotoResponse;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.PrefUtils;
@@ -49,6 +51,10 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,7 +66,9 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
 
     Context mContext;
     String complaintId;
+    File filePath;
     String imgDecodableString;
+    private RetrofitInterface.updateProfilePicClient UpdatePhotoAdapter;
     private RetrofitInterface.UserCompaintTypeClient userCompaintTypeAdapter;
     private RetrofitInterface.UserSubmitSparePartClient userSubmitSparePartClient;
     ArrayList<SparepartsrequestList> sparePartsRequestedList = null;
@@ -154,10 +162,10 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
 
                 Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-              galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                //startActivityForResult(galleryIntent, PICK_FROM_GALLERY);
+             // galleryIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                startActivityForResult(galleryIntent, PICK_FROM_GALLERY);
 
-                startActivityForResult(Intent.createChooser(galleryIntent, "Select Picture"), PICK_FROM_GALLERY);
+                //startActivityForResult(Intent.createChooser(galleryIntent, "Select Picture"), PICK_FROM_GALLERY);
 
                 dialog.cancel();
 
@@ -221,7 +229,7 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
         return cursor.getString(idx);
     }
 
-    @Override
+   /* @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode != RESULT_OK) {
@@ -291,7 +299,51 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
         }
     }
 
+*/
 
+   @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode != RESULT_OK) {
+            return;
+        }
+        if (requestCode == 0 && resultCode == RESULT_OK) {
+
+
+            Bitmap bp = (Bitmap) data.getExtras().get("data");
+            Log.e("abhi", "onActivityResult: bp---------"+bp );
+            if (bp !=null) {
+               // personImage.setImageBitmap(getCircularBitmap(bp));
+                Uri tempUri = getImageUri(getApplicationContext(), bp);
+                filePath = new File(getRealPathFromURI(tempUri));
+                Log.e("abhi", "onActivityResult:.......... " + filePath.getPath());
+                imgString =filePath.getPath();
+              // sendImagesToServerFromCamera(filePath.getPath());
+            }
+
+
+        } else if (requestCode == PICK_FROM_GALLERY && resultCode == RESULT_OK) {
+
+
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                imgString = cursor.getString(columnIndex);
+                cursor.close();
+                //sendImagesToServerFromCamera(imgString);
+            }
+
+            Log.e("abhi", "onActivityResult: image decodable "+imgString );
+         //   imageProgressBar.setVisibility(View.VISIBLE);
+            //Log.e("abhi", "onActivityResult:.......... " +imgDecodableString );
+
+
+
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -309,9 +361,59 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
 
     }
 
+    private void sendImagesToServerFromCamera(String imgDecodableString) {
+
+        File imgPath = new File(imgDecodableString);
+        RequestBody mFile = RequestBody.create(MediaType.parse("image/jpg"), imgPath);
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("request_image", imgPath.getName(), mFile);
+        RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), imgPath.getName());
+        LoadingDialog.showLoadingDialog(this,"Loading...");
+        Call<ResponseBody> call = UpdatePhotoAdapter.uploadImageData(fileToUpload,filename);
+        if (NetworkUtils.isNetworkConnected(this)) {
+            call.enqueue(new Callback<ResponseBody>() {
+
+                @Override
+                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                    if (response.isSuccessful()) {
+                      //  if (response.body().getType() == 1) {
+
+                            Log.e("abhi", "onResponse: .............................................." + response.message());
+                           // Log.e("abhi", "onResponse: image link............" + response.body().getTokenid());
+                                /*profilePicUrl = response.body().getTokenid();
+                                String profilePictureUrlComplete = BASE_URL_FOR_IMAGE + profilePicUrl;
+                                PrefUtils.storeUserImage(profilePictureUrlComplete, NavigationalActivity.this);
+                                Log.e(TAG, "onResponse: image link............" + profilePictureUrlComplete);*/
+                          //  sendImageNameToServer(response.body().getTokenid());
+
+
+
+                     //   }
+                        LoadingDialog.cancelLoading();
+
+
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ResponseBody> call, Throwable t) {
+                    Log.e("abhi", "onFailure: ............" + t.getCause() );
+                    LoadingDialog.cancelLoading();
+                }
+
+
+            });
+
+        } else {
+            SnakBarUtils.networkConnected(this);
+        }
+    }
 
     private void setUpRestAdapter() {
         sparePartsRequestByTechPartnerClient = ApiAdapter.createRestAdapter(RetrofitInterface.SparePartsRequestByTechPartnerClient.class, MAIN_BASE_URL, this);
+        UpdatePhotoAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.updateProfilePicClient.class, ApiEndPoints.BASE_URL_FOR_IMAGE, this);
+
         userSubmitSparePartClient = ApiAdapter.createRestAdapter(RetrofitInterface.UserSubmitSparePartClient.class, MAIN_BASE_URL, this);
     }
 
@@ -362,8 +464,17 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
 
 
     private void submitComplaintToAdmin() {
+
+        File imgPath = new File(imgString);
+        RequestBody mFile = RequestBody.create(MediaType.parse("image/jpg"), imgPath);
+        Log.e("abhi", "submitComplaintToAdmin: "+mFile );
+        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("request_image", imgPath.getName(), mFile);
+        Log.e("abhi", "submitComplaintToAdmin: "+fileToUpload );
+       // RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), imgPath.getName());
+       // MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", imgPath.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+
         LoadingDialog.showLoadingDialog(this,"Loading...");
-        Call<SubmitComplaintResponse> call = userSubmitSparePartClient.userSubmitSparePart(sparePartId,PrefUtils.getFkId(RequestSparePartByTechPartnerActivity.this),complaintId,"0","nil","requestsparepartbychnicalpartner");
+        Call<SubmitComplaintResponse> call = userSubmitSparePartClient.userSubmitSparePart(sparePartId,PrefUtils.getFkId(RequestSparePartByTechPartnerActivity.this),complaintId,"0",fileToUpload,"requestsparepartbychnicalpartner");
         if (NetworkUtils.isNetworkConnected(this)) {
             call.enqueue(new Callback<SubmitComplaintResponse>() {
 
@@ -393,7 +504,8 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
 
                 @Override
                 public void onFailure(Call<SubmitComplaintResponse> call, Throwable t) {
-                    Toast.makeText(getApplicationContext(),"Error occur",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),t.getMessage(),Toast.LENGTH_SHORT).show();
+                    Log.e("abhi", "onFailure: " +t.getMessage() );
                     LoadingDialog.cancelLoading();
                 }
 

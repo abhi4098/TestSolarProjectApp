@@ -8,7 +8,7 @@ public class ApiEndPoints {
 
     public static String MAIN_BASE_URL = "http://www.iweblogix.com/demo/solar/webapp/SolarApi/";
     //public static String BASE_URL = "https://"+MAIN_BASE_URL;
-    public static String BASE_URL_FOR_IMAGE = "http://www.iweblogix.com/demo/solar/webapp/resources/upload/";
+    public static String BASE_URL_FOR_IMAGE = "http://www.iweblogix.com/demo/solar/webapp/resources/upload/sparepart/";
     /*public static String SERVER = MAIN_BASE_URL;
     public static String CHAT_URL = "https://"+MAIN_BASE_URL+"/";
     public static String CHAT_SERVER = MAIN_BASE_URL;

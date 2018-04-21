@@ -13,6 +13,7 @@ import com.solarprojectapp.generated.model.NewComplaintResponse;
 import com.solarprojectapp.generated.model.PreventiveMaintainanceResponse;
 import com.solarprojectapp.generated.model.ProfileResponse;
 import com.solarprojectapp.generated.model.RejectedComplaintListResponse;
+import com.solarprojectapp.generated.model.SendTokenToServerResponse;
 import com.solarprojectapp.generated.model.SparePartAdminAproveResponse;
 import com.solarprojectapp.generated.model.SparePartsPendingResponse;
 import com.solarprojectapp.generated.model.SparePartsRequestResponse;
@@ -20,11 +21,19 @@ import com.solarprojectapp.generated.model.SubmitComplaintResponse;
 import com.solarprojectapp.generated.model.TechnicalPartnerFunctionResponse;
 import com.solarprojectapp.generated.model.TechnicalPartnerListResponse;
 import com.solarprojectapp.generated.model.TotalConsumerListResponse;
+import com.solarprojectapp.generated.model.UploadPhotoResponse;
 
+import java.io.File;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 
 public class RetrofitInterface {
 
@@ -189,15 +198,15 @@ public class RetrofitInterface {
     }
 
     public interface UserSubmitSparePartClient {
-        @FormUrlEncoded
+        @Multipart
         @POST("query.php")
         public Call<SubmitComplaintResponse> userSubmitSparePart(
-                @Field("sparepartid") String sparepartid,
-                @Field("technicalpartnerid") String technicalpartnerid,
-                @Field("complainid") String complainid,
-                @Field("quantity") String quantity,
-                @Field("request_image") String request_image,
-                @Field("type") String type);
+                @Part("sparepartid") String sparepartid,
+                @Part("technicalpartnerid") String technicalpartnerid,
+                @Part("complainid") String complainid,
+                @Part("quantity") String quantity,
+                @Part MultipartBody.Part requestimage,
+                @Part("type") String type);
     }
 
     public interface PreventiveMaintainanceClient {
@@ -206,5 +215,22 @@ public class RetrofitInterface {
         public Call<PreventiveMaintainanceResponse> preventiveMaintainanceList(
                 @Field("userid") String userid,
                 @Field("type") String type);
+    }
+
+    public interface SendTokenToServerClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<SendTokenToServerResponse> sendTokenToServer(
+                @Field("userid") String userid,
+                @Field("token_id") String token_id,
+                @Field("type") String type);
+    }
+
+    public interface updateProfilePicClient {
+        @Multipart
+        @POST("query.php")
+        Call<ResponseBody> uploadImageData(@Part MultipartBody.Part profilepic ,
+                                           @Part("request_image") RequestBody name);
+
     }
 }

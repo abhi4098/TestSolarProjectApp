@@ -33,6 +33,21 @@
         <activity
             android:name=".ui.activities.SolarProjectLoginActivity"
             android:screenOrientation="portrait" />
+
+        <service
+            android:name=".utils.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <!-- [END firebase_service] -->
+        <!-- [START firebase_iid_service] -->
+        <service
+            android:name=".utils.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
         <activity
             android:name=".ui.activities.InformationActivity"
             android:screenOrientation="portrait"

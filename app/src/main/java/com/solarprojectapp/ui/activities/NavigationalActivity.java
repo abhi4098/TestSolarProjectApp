@@ -29,11 +29,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.bumptech.glide.request.target.Target;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.solarprojectapp.R;
 import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.LoginResponse;
 import com.solarprojectapp.generated.model.ProfileResponse;
+import com.solarprojectapp.generated.model.SendTokenToServerResponse;
 import com.solarprojectapp.ui.fragments.ProfileCustomerPageFragment;
 import com.solarprojectapp.ui.fragments.ProfileHomePageFragment;
 import com.solarprojectapp.ui.fragments.ProfileTechnicalFragment;
@@ -57,7 +59,9 @@ public class NavigationalActivity extends AppCompatActivity
     private String profilePicUrl;
     private RetrofitInterface.UserLoginClient UserLoginAdapter;
     private RetrofitInterface.UserProfileClient UserProfileAdapter;
+    private RetrofitInterface.SendTokenToServerClient SendTokenAdapter;
     de.hdodenhof.circleimageview.CircleImageView personImage;
+    String tokenId;
 
     Fragment profileHomePageFragment,profileCustomerFragment,profileTechnicalFragment;
     @BindView(R.id.toolbar)
@@ -91,10 +95,13 @@ public class NavigationalActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
         personImage = (de.hdodenhof.circleimageview.CircleImageView)navigationView.getHeaderView(0).findViewById(R.id.person_image);
-
+        tokenId = FirebaseInstanceId.getInstance().getToken();
+        Log.e("abhi", "onCreate:................. "+tokenId );
         setUserLoggedIn();
         setUpRestAdapter();
+
         setHeaderData();
+        sendFirebaseTokenToServer();
     }
 
     private void setHeaderData() {
@@ -273,8 +280,55 @@ public class NavigationalActivity extends AppCompatActivity
     private void setUpRestAdapter() {
         UserLoginAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.UserLoginClient.class, MAIN_BASE_URL, this);
         UserProfileAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.UserProfileClient.class, MAIN_BASE_URL, this);
+        SendTokenAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.SendTokenToServerClient.class, MAIN_BASE_URL, this);
+
     }
 
+
+    private void sendFirebaseTokenToServer() {
+        LoadingDialog.showLoadingDialog(this,"Loading...");
+        Log.e("abhi123", "onResponse: tokennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn..............."+PrefUtils.getUserId(NavigationalActivity.this) );
+
+        Call<SendTokenToServerResponse> call = SendTokenAdapter.sendTokenToServer( PrefUtils.getUserId(NavigationalActivity.this),tokenId,"addtokenid");
+        if (NetworkUtils.isNetworkConnected(this)) {
+            call.enqueue(new Callback<SendTokenToServerResponse>() {
+
+                @Override
+                public void onResponse(Call<SendTokenToServerResponse> call, Response<SendTokenToServerResponse> response) {
+
+                    if (response.isSuccessful()) {
+
+                        if (response.body().getSuccess().equals("true")) {
+                            Log.e("abhi", "onResponse: ..............."+tokenId );
+                            Toast.makeText(getApplicationContext(),response.body().getTokenId(),Toast.LENGTH_SHORT).show();
+                            LoadingDialog.cancelLoading();
+                        }
+                        else
+                        {
+                            LoadingDialog.cancelLoading();
+
+                            Toast.makeText(getApplicationContext(),response.body().getTokenId(),Toast.LENGTH_SHORT).show();
+                        }
+
+
+
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<SendTokenToServerResponse> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(),"Error occur",Toast.LENGTH_SHORT).show();
+                    LoadingDialog.cancelLoading();
+                }
+
+
+            });
+
+        } else {
+            SnakBarUtils.networkConnected(this);
+        }
+    }
 
     private void getProfileDetails() {
         LoadingDialog.showLoadingDialog(this,"Loading...");
@@ -294,7 +348,9 @@ public class NavigationalActivity extends AppCompatActivity
                                     profilePicUrl = response.body().getProfileDetailsData().get(i).get(i).getImage() ;
                                     String profilePictureUrlComplete = BASE_URL_FOR_IMAGE + profilePicUrl;
                                     PrefUtils.storeUserImage(profilePictureUrlComplete,NavigationalActivity.this);
-                                    Log.e("abhi", "onResponse: image link............"+ profilePictureUrlComplete);
+                                    PrefUtils.storeUserId(response.body().getProfileDetailsData().get(i).get(i).getUserId(),NavigationalActivity.this);
+
+                                    Log.e("abhi", "onResponse: image link............"+ response.body().getProfileDetailsData().get(i).get(i).getUserId());
                                     setProfilePicURL(profilePictureUrlComplete);
                                 }
                                 else {

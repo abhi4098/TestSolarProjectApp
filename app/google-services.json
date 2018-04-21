@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "316204977322",
+    "firebase_url": "https://myway-solar.firebaseio.com",
+    "project_id": "myway-solar",
+    "storage_bucket": "myway-solar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:316204977322:android:306ad734dd0c3496",
+        "android_client_info": {
+          "package_name": "com.solarprojectapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "316204977322-dpk298lfvs4q27ihqq75ohc7d0mao6n2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuhB2siNR635mEhrbZwET4kI2h4qS-QPQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

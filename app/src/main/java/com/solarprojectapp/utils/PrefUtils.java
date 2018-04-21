@@ -14,6 +14,7 @@ public class PrefUtils {
     public static String KEY_USER_LOGGED_IN = "user_logged_in";
     public static String USER_STATUS = "user_status";
     public static String USER_FK_ID = "user_fk_id";
+    public static String USER_ID = "user_id";
     public static String USER_NAME = "user_name";
     public static String USER_PASSWORD = "user_password";
     public static String USER_TYPE = "user_type";
@@ -157,6 +158,18 @@ public class PrefUtils {
         return sharedPreferences.getString(USER_FK_ID, "");
     }
 
+    public static void storeUserId(String userId, Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        sharedPreferences.edit()
+                .putString(USER_ID, userId)
+                .apply();
+
+    }
+
+    public static String getUserId(Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        return sharedPreferences.getString(USER_ID, "");
+    }
 
     public static void storeUserType(String roleId, Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
