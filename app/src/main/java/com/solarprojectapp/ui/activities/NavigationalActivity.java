@@ -44,6 +44,10 @@ import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.PrefUtils;
 import com.solarprojectapp.utils.SnakBarUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -83,7 +87,7 @@ public class NavigationalActivity extends AppCompatActivity
        // setSupportActionBar(toolbar);
         ivBackIcon.setVisibility(View.INVISIBLE);
         loginType= getIntent().getStringExtra("LOGIN_TYPE");
-        setFragment();
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -101,6 +105,7 @@ public class NavigationalActivity extends AppCompatActivity
         setUpRestAdapter();
 
         setHeaderData();
+        setFragment();
         sendFirebaseTokenToServer();
     }
 
@@ -298,14 +303,14 @@ public class NavigationalActivity extends AppCompatActivity
 
                         if (response.body().getSuccess().equals("true")) {
                             Log.e("abhi", "onResponse: ..............."+tokenId );
-                            Toast.makeText(getApplicationContext(),response.body().getTokenId(),Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(),response.body().getTokenId(),Toast.LENGTH_SHORT).show();
                             LoadingDialog.cancelLoading();
                         }
                         else
                         {
                             LoadingDialog.cancelLoading();
 
-                            Toast.makeText(getApplicationContext(),response.body().getTokenId(),Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getApplicationContext(),response.body().getTokenId(),Toast.LENGTH_SHORT).show();
                         }
 
 
@@ -328,6 +333,30 @@ public class NavigationalActivity extends AppCompatActivity
         }
     }
 
+    public static String parseTodaysDate(String time) {
+
+
+
+        String inputPattern = "yyyy-MM-dd HH:mm:ss";
+        String outputPattern = "dd-MM-yyyy";
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+
+        Date date = null;
+        String str = null;
+
+        try {
+            date = inputFormat.parse(time);
+            str = outputFormat.format(date);
+
+            Log.i("mini", "Converted Date Today:" + str);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return str;
+    }
+
     private void getProfileDetails() {
         LoadingDialog.showLoadingDialog(this,"Loading...");
         Call<ProfileResponse> call = UserProfileAdapter.userProfile( PrefUtils.getUserName(NavigationalActivity.this),PrefUtils.getUserType(NavigationalActivity.this),PrefUtils.getFkId(NavigationalActivity.this),"userprofiledetails");
@@ -342,6 +371,15 @@ public class NavigationalActivity extends AppCompatActivity
                         if (response.body().getSuccess().equals("true")) {
                             for (int i = 0; i < response.body().getProfileDetailsData().size(); i++) {
 
+                                PrefUtils.storeProject(response.body().getProfileDetailsData().get(i).get(i).getProjectName(),NavigationalActivity.this);
+                                PrefUtils.storeProjectOwner(response.body().getProfileDetailsData().get(i).get(i).getProjectOwner(),NavigationalActivity.this);
+                                if (response.body().getProfileDetailsData().get(i).get(i).getDateOfCommission() !=null) {
+                                    PrefUtils.storeCommisionDate(parseTodaysDate(response.body().getProfileDetailsData().get(i).get(i).getDateOfCommission()), NavigationalActivity.this);
+                                }
+                                if (response.body().getProfileDetailsData().get(i).get(i).getOMStartedOn() !=null) {
+                                    PrefUtils.storeOM(parseTodaysDate(response.body().getProfileDetailsData().get(i).get(i).getOMStartedOn()), NavigationalActivity.this);
+                                }
+                                PrefUtils.storeOtherDetails(response.body().getProfileDetailsData().get(i).get(i).getOtherDetails(),NavigationalActivity.this);
                                 if (response.body().getProfileDetailsData().get(i).get(i).getImage() != null) {
                                     profilePicUrl = response.body().getProfileDetailsData().get(i).get(i).getImage() ;
                                     String profilePictureUrlComplete = BASE_URL_FOR_IMAGE + profilePicUrl;

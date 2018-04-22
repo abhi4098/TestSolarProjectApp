@@ -20,6 +20,12 @@ public class PrefUtils {
     public static String USER_TYPE = "user_type";
     public static String USER_IMAGE= "user_image";
     public static String USER_FRAG_SELECTED= "user_frah_selected";
+    public static String PROJECT= "project";
+    public static String PROJECT_OWNER= "project_owner";
+    public static String COMMISION_DATE= "commision_date";
+    public static String OM_STARTED= "om_started";
+    public static String OTHER_DETAILS= "other_detail";
+
   /*  public static String LOGGED_IN_USER_EMAIL = "user_email";
     public static String LOGGED_IN_USER_ADD = "user_add";
     public static String LOGGED_IN_USER_ROLE_ID = "user_role_id";
@@ -89,6 +95,72 @@ public class PrefUtils {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
         return sharedPreferences.getString(PrefUtils.KEY_AUTH_TOKEN, "");
     }*/
+
+    public static void storeProject(String project, Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        sharedPreferences.edit()
+                .putString(PROJECT, project)
+                .apply();
+
+    }
+
+    public static String getProject(Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        return sharedPreferences.getString(PROJECT, "");
+    }
+
+    public static void storeProjectOwner(String owner, Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        sharedPreferences.edit()
+                .putString(PROJECT_OWNER, owner)
+                .apply();
+
+    }
+
+    public static String getProjectOwner(Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        return sharedPreferences.getString(PROJECT_OWNER, "");
+    }
+
+    public static void storeCommisionDate(String commision, Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        sharedPreferences.edit()
+                .putString(COMMISION_DATE, commision)
+                .apply();
+
+    }
+
+    public static String getCommisionDate(Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        return sharedPreferences.getString(COMMISION_DATE, "");
+    }
+
+    public static void storeOM(String om, Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        sharedPreferences.edit()
+                .putString(OM_STARTED, om)
+                .apply();
+
+    }
+
+    public static String getOM(Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        return sharedPreferences.getString(OM_STARTED, "");
+    }
+
+    public static void storeOtherDetails(String other, Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        sharedPreferences.edit()
+                .putString(OTHER_DETAILS, other)
+                .apply();
+
+    }
+
+    public static String getOtherDetails(Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        return sharedPreferences.getString(OTHER_DETAILS, "");
+    }
+
 
     public static void storeUserLoggedIn(Boolean isLoggedIn, Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);

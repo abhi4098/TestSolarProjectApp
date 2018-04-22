@@ -6,15 +6,21 @@ import com.google.gson.annotations.SerializedName;
 
 public class ProfileDetailsDatum {
 
+    @SerializedName("user_id")
+    @Expose
+    private String userId;
     @SerializedName("user_type")
     @Expose
     private String userType;
     @SerializedName("image")
     @Expose
     private String image;
-    @SerializedName("user_id")
+    @SerializedName("name")
     @Expose
-    private String userId;
+    private String name;
+    @SerializedName("user_id1")
+    @Expose
+    private String userId1;
     @SerializedName("email_id")
     @Expose
     private String emailId;
@@ -24,9 +30,29 @@ public class ProfileDetailsDatum {
     @SerializedName("other_details")
     @Expose
     private String otherDetails;
-    @SerializedName("name")
+    @SerializedName("project_owner")
     @Expose
-    private String name;
+    private String projectOwner;
+    @SerializedName("project_name")
+    @Expose
+    private String projectName;
+    @SerializedName("date_of_commission")
+    @Expose
+    private String dateOfCommission;
+    @SerializedName("complaintstype_name")
+    @Expose
+    private String complaintstypeName;
+    @SerializedName("OM_started_on")
+    @Expose
+    private String oMStartedOn;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getUserType() {
         return userType;
@@ -44,12 +70,20 @@ public class ProfileDetailsDatum {
         this.image = image;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getName() {
+        return name;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getUserId1() {
+        return userId1;
+    }
+
+    public void setUserId1(String userId1) {
+        this.userId1 = userId1;
     }
 
     public String getEmailId() {
@@ -76,12 +110,44 @@ public class ProfileDetailsDatum {
         this.otherDetails = otherDetails;
     }
 
-    public String getName() {
-        return name;
+    public String getProjectOwner() {
+        return projectOwner;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProjectOwner(String projectOwner) {
+        this.projectOwner = projectOwner;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public String getDateOfCommission() {
+        return dateOfCommission;
+    }
+
+    public void setDateOfCommission(String dateOfCommission) {
+        this.dateOfCommission = dateOfCommission;
+    }
+
+    public String getComplaintstypeName() {
+        return complaintstypeName;
+    }
+
+    public void setComplaintstypeName(String complaintstypeName) {
+        this.complaintstypeName = complaintstypeName;
+    }
+
+    public String getOMStartedOn() {
+        return oMStartedOn;
+    }
+
+    public void setOMStartedOn(String oMStartedOn) {
+        this.oMStartedOn = oMStartedOn;
     }
 
 }

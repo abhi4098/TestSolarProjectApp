@@ -21,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.solarprojectapp.R;
+import com.solarprojectapp.utils.PrefUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +41,21 @@ public class BreakdownActivity extends AppCompatActivity implements View.OnClick
     Toolbar toolbar;
     @BindView(R.id.tv_app_title)
     TextView tvAppTitle;
+
+    @BindView(R.id.project_name)
+    TextView tvProjectName;
+
+    @BindView(R.id.project_owner)
+    TextView tvProjectOwner;
+
+    @BindView(R.id.commisioning_date)
+    TextView tvCommisionDate;
+
+    @BindView(R.id.onm_date)
+    TextView tvOnDate;
+
+    @BindView(R.id.other_details)
+    TextView tvOtherDetail;
 
     @BindView(R.id.add_complaint_button)
     Button addComplaintBtn;
@@ -65,6 +81,11 @@ public class BreakdownActivity extends AppCompatActivity implements View.OnClick
         //addComplaintBtn.setOnClickListener(this);
         ivBackIcon.setOnClickListener(this);
         tvAppTitle.setText("BREAKDOWN");
+        tvProjectName.setText(PrefUtils.getProject(this));
+        tvProjectOwner.setText(PrefUtils.getProjectOwner(this));
+        tvCommisionDate.setText(PrefUtils.getCommisionDate(this));
+        tvOnDate.setText(PrefUtils.getOM(this));
+        tvOtherDetail.setText(PrefUtils.getOtherDetails(this));
 
 
     }

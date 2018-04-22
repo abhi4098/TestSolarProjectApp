@@ -66,7 +66,6 @@
             android:textColor="@color/black"
             android:lines="1"
             android:textSize="15sp"
-            android:text="Solar Roof Top"
             android:layout_gravity="center_horizontal"
             />
 
@@ -111,7 +110,6 @@
                 android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="15sp"
-                android:text="My Way Solar"
                 android:layout_gravity="center_horizontal"
                 />
 
@@ -156,7 +154,6 @@
                 android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="15sp"
-                android:text="08/02/2018"
                 android:layout_gravity="center_horizontal"
                 />
 
@@ -201,7 +198,6 @@
                 android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="15sp"
-                android:text="08/02/2018"
                 android:layout_gravity="center_horizontal"
                 />
 
@@ -246,7 +242,6 @@
                 android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="15sp"
-                android:text="Solar Roof Top"
                 android:layout_gravity="center_horizontal"
                 />
 

@@ -170,11 +170,15 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
             tvProjectName.setVisibility(View.VISIBLE);
             tvProjectType.setVisibility(View.VISIBLE);
             tvProjectOwner.setVisibility(View.VISIBLE);
-        }
-        else
-        {
+
+            tvProjectType.setText(PrefUtils.getProject(getContext()));
+            tvProjectName.setText(PrefUtils.getProjectOwner(getContext()));
+
+
+
 
         }
+
 
         return view;
 
