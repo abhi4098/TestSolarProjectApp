@@ -79,6 +79,18 @@ public class SparepartsrequestList {
     @Expose
     private String statusModifiedadte;
 
+    @SerializedName("image_path")
+    @Expose
+    private String imagePath;
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     public String getSparepartRequestId() {
         return sparepartRequestId;
     }

@@ -10,7 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.solarprojectapp.R;
+import com.solarprojectapp.utils.LoadingDialog;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -47,12 +49,15 @@ public class ShowSparePartsPendingDetailsActivity extends AppCompatActivity impl
     TextView tvSparePartRequestedQuantity;
     @BindView(R.id.spare_part_status_name)
     TextView tvSparePartStatusName;
+    @BindView(R.id.spare_part_requested_Image)
+    ImageView personImage;
+
 
 
 
 
     //private EditText result;
-   String  sparePartName,sparePartCreatedDate,sparePartBrand,sparePartId,sparePartPrice,sparePartRequestedPrice,sparePartRequestedQuantity,sparePartStatusName;
+   String  sparePartImage,sparePartName,sparePartCreatedDate,sparePartBrand,sparePartId,sparePartPrice,sparePartRequestedPrice,sparePartRequestedQuantity,sparePartStatusName;
 
 
     @Override
@@ -64,6 +69,8 @@ public class ShowSparePartsPendingDetailsActivity extends AppCompatActivity impl
         ButterKnife.bind(this);
         ivBackIcon.setOnClickListener(this);
         tvAppTitle.setText("SPARE PARTS REQUESTS PENDING DETAILS");
+        LoadingDialog.showLoadingDialog(this,"Loading...");
+
         sparePartName = getIntent().getExtras().getString("SPARE_PART_NAME");
         sparePartId = getIntent().getExtras().getString("SPARE_PART_ID");
         sparePartStatusName = getIntent().getExtras().getString("SPARE_PART_STATUS");
@@ -72,6 +79,7 @@ public class ShowSparePartsPendingDetailsActivity extends AppCompatActivity impl
         sparePartRequestedQuantity = getIntent().getExtras().getString("SPARE_PART_REQUESTED_QUANTITY");
         sparePartCreatedDate = getIntent().getExtras().getString("SPARE_PART_CREATED_DATE");
         sparePartBrand = getIntent().getExtras().getString("SPARE_PART_BRAND");
+        sparePartImage = getIntent().getExtras().getString("SPARE_PART_IMAGE");
 
         tvSparePartName.setText(sparePartName);
         tvSparePartId.setText(sparePartId);
@@ -86,9 +94,12 @@ public class ShowSparePartsPendingDetailsActivity extends AppCompatActivity impl
 
         tvSparePartBrand.setText(sparePartBrand);
 
+        Log.e("abhi", "onCreate: .................image spare part link"+sparePartImage );
 
+        //setSparePartImage(sparePartImage);
+        Glide.with(this).load(sparePartImage).into(personImage);
 
-
+        LoadingDialog.cancelLoading();
 
     }
 

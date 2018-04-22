@@ -142,6 +142,8 @@ public class SparePartRequestededAdapter extends ArrayAdapter<SparepartsrequestL
                         i.putExtra("SPARE_PART_REQUESTED_QUANTITY", sparepartsrequestList.getSparepartRequestQuantity());
                         i.putExtra("SPARE_PART_CREATED_DATE", sparepartsrequestList.getSparepartCreatedate());
                         i.putExtra("SPARE_PART_BRAND", sparepartsrequestList.getSparepartBrand());
+                        i.putExtra("SPARE_PART_IMAGE", sparepartsrequestList.getImagePath());
+
                         //i.putExtra("INTENT_FROM","EditButton");
 
                         getContext().startActivity(i);

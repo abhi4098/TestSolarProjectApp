@@ -146,7 +146,7 @@ public class SparePartsRequestedActivity extends AppCompatActivity implements Vi
                 sparepartsrequestList.setSparepartPrice(response.body().getSparepartsrequestList().get(i).get(j).getSparepartPrice());
                 sparepartsrequestList.setSparepartRequestId(response.body().getSparepartsrequestList().get(i).get(j).getSparepartRequestId());
                 sparepartsrequestList.setSparepartId(response.body().getSparepartsrequestList().get(i).get(j).getSparepartId());
-                //sparepartsrequestList.setSparepartStatus(response.body().getSparepartsrequestList().get(i).get(j).getSparepartRequestId());
+                sparepartsrequestList.setImagePath(response.body().getSparepartsrequestList().get(i).get(j).getImagePath());
                 sparePartsRequestedList.add(sparepartsrequestList);
                 Log.e("abhi", "onResponse:..new complaint list " + sparePartsRequestedList.get(i).getSparepartStatus());
 
