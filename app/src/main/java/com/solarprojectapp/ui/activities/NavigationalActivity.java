@@ -287,8 +287,6 @@ public class NavigationalActivity extends AppCompatActivity
 
     private void sendFirebaseTokenToServer() {
         LoadingDialog.showLoadingDialog(this,"Loading...");
-        Log.e("abhi123", "onResponse: tokennnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn..............."+PrefUtils.getUserId(NavigationalActivity.this) );
-
         Call<SendTokenToServerResponse> call = SendTokenAdapter.sendTokenToServer( PrefUtils.getUserId(NavigationalActivity.this),tokenId,"addtokenid");
         if (NetworkUtils.isNetworkConnected(this)) {
             call.enqueue(new Callback<SendTokenToServerResponse>() {

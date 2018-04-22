@@ -201,12 +201,13 @@ public class RetrofitInterface {
         @Multipart
         @POST("query.php")
         public Call<SubmitComplaintResponse> userSubmitSparePart(
-                @Part("sparepartid") String sparepartid,
-                @Part("technicalpartnerid") String technicalpartnerid,
-                @Part("complainid") String complainid,
-                @Part("quantity") String quantity,
-                @Part MultipartBody.Part requestimage,
-                @Part("type") String type);
+                @Part("sparepartid") RequestBody sparepartid,
+                @Part("technicalpartnerid") RequestBody technicalpartnerid,
+                @Part("complainid") RequestBody complainid,
+                @Part("quantity") RequestBody quantity,
+                @Part MultipartBody.Part request_image,
+                //@Part MultipartBody.Part requestimage,
+                @Part("type") RequestBody type);
     }
 
     public interface PreventiveMaintainanceClient {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyWay Solar</string>
+    <string name="app_name">myWay Solar</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Username</string>

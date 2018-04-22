@@ -59,6 +59,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.solarprojectapp.api.ApiEndPoints.BASE_URL_FOR_IMAGE;
 import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
 
 
@@ -92,6 +93,10 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
 
     @BindView(R.id.spinner_complaint)
     Spinner spinner;
+
+    @BindView(R.id.image_name)
+    TextView tvImageName;
+
     String projectid,sparePartId;
     @OnClick(R.id.add_spare_part_image)
     public void addSparePartImage()
@@ -318,6 +323,11 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
                 filePath = new File(getRealPathFromURI(tempUri));
                 Log.e("abhi", "onActivityResult:.......... " + filePath.getPath());
                 imgString =filePath.getPath();
+                String path=imgString;//it contain your path of image..im using a temp string..
+                String filename=path.substring(path.lastIndexOf("/")+1);
+                tvImageName.setVisibility(View.VISIBLE);
+                tvImageName.setText(filename);
+
               // sendImagesToServerFromCamera(filePath.getPath());
             }
 
@@ -333,16 +343,15 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 imgString = cursor.getString(columnIndex);
                 cursor.close();
+                String path=imgString;//it contain your path of image..im using a temp string..
+                String filename=path.substring(path.lastIndexOf("/")+1);
+                tvImageName.setVisibility(View.VISIBLE);
+                tvImageName.setText(filename);
+
                 //sendImagesToServerFromCamera(imgString);
             }
 
-            Log.e("abhi", "onActivityResult: image decodable "+imgString );
-         //   imageProgressBar.setVisibility(View.VISIBLE);
-            //Log.e("abhi", "onActivityResult:.......... " +imgDecodableString );
-
-
-
-        }
+            }
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -412,7 +421,7 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
 
     private void setUpRestAdapter() {
         sparePartsRequestByTechPartnerClient = ApiAdapter.createRestAdapter(RetrofitInterface.SparePartsRequestByTechPartnerClient.class, MAIN_BASE_URL, this);
-        UpdatePhotoAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.updateProfilePicClient.class, ApiEndPoints.BASE_URL_FOR_IMAGE, this);
+        UpdatePhotoAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.updateProfilePicClient.class, BASE_URL_FOR_IMAGE, this);
 
         userSubmitSparePartClient = ApiAdapter.createRestAdapter(RetrofitInterface.UserSubmitSparePartClient.class, MAIN_BASE_URL, this);
     }
@@ -467,14 +476,32 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
 
         File imgPath = new File(imgString);
         RequestBody mFile = RequestBody.create(MediaType.parse("image/jpg"), imgPath);
-        Log.e("abhi", "submitComplaintToAdmin: "+mFile );
         MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("request_image", imgPath.getName(), mFile);
-        Log.e("abhi", "submitComplaintToAdmin: "+fileToUpload );
-       // RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), imgPath.getName());
-       // MultipartBody.Part filePart = MultipartBody.Part.createFormData("file", imgPath.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+
+        RequestBody requestSparePartId = RequestBody.create(
+                MediaType.parse("text/plain"),
+                sparePartId);
+
+        RequestBody requestUserFkId = RequestBody.create(
+                MediaType.parse("text/plain"),
+                PrefUtils.getFkId(RequestSparePartByTechPartnerActivity.this));
+
+        RequestBody requestComplaintId = RequestBody.create(
+                MediaType.parse("text/plain"),
+                complaintId);
+
+        RequestBody requestQuantity = RequestBody.create(
+                MediaType.parse("text/plain"),
+                "0");
+
+        RequestBody requestType = RequestBody.create(
+                MediaType.parse("text/plain"),
+                "requestsparepartbychnicalpartner");
+
+
 
         LoadingDialog.showLoadingDialog(this,"Loading...");
-        Call<SubmitComplaintResponse> call = userSubmitSparePartClient.userSubmitSparePart(sparePartId,PrefUtils.getFkId(RequestSparePartByTechPartnerActivity.this),complaintId,"0",fileToUpload,"requestsparepartbychnicalpartner");
+        Call<SubmitComplaintResponse> call = userSubmitSparePartClient.userSubmitSparePart(requestSparePartId,requestUserFkId,requestComplaintId,requestQuantity,fileToUpload,requestType);
         if (NetworkUtils.isNetworkConnected(this)) {
             call.enqueue(new Callback<SubmitComplaintResponse>() {
 
@@ -484,7 +511,7 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
                     if (response.isSuccessful()) {
 
                         if (response.body().getSuccess().equals("true")) {
-
+                            Log.e("abhi123", "onResponse: ...................." +response.body().getSuccess());
                             Toast.makeText(getApplicationContext(),response.body().getMessage(),Toast.LENGTH_SHORT).show();
                             finish();
                             LoadingDialog.cancelLoading();

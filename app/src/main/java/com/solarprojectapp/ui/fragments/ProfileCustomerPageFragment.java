@@ -83,6 +83,19 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
     @BindView(R.id.text_information)
     TextView tvInformationData;
 
+    @BindView(R.id.project_name)
+    TextView tvProjectName;
+
+    @BindView(R.id.project_type)
+    TextView tvProjectType;
+
+    @BindView(R.id.project_owner)
+    TextView tvProjectOwner;
+
+
+    String loginType;
+
+
     @BindView(R.id.preventive_maintainace)
     LinearLayout llImageMaintenance;
 
@@ -151,6 +164,17 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile_customer_page, container, false);
         ButterKnife.bind(this, view);
+       if( PrefUtils.getUserType(getContext()).equals("End Consumer"))
+        {
+
+            tvProjectName.setVisibility(View.VISIBLE);
+            tvProjectType.setVisibility(View.VISIBLE);
+            tvProjectOwner.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+
+        }
 
         return view;
 
