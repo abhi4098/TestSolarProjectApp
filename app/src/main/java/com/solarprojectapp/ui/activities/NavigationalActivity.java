@@ -105,7 +105,6 @@ public class NavigationalActivity extends AppCompatActivity
         setUpRestAdapter();
 
         setHeaderData();
-        setFragment();
         sendFirebaseTokenToServer();
     }
 
@@ -380,6 +379,9 @@ public class NavigationalActivity extends AppCompatActivity
                                     PrefUtils.storeOM(parseTodaysDate(response.body().getProfileDetailsData().get(i).get(i).getOMStartedOn()), NavigationalActivity.this);
                                 }
                                 PrefUtils.storeOtherDetails(response.body().getProfileDetailsData().get(i).get(i).getOtherDetails(),NavigationalActivity.this);
+                                setFragment();
+
+
                                 if (response.body().getProfileDetailsData().get(i).get(i).getImage() != null) {
                                     profilePicUrl = response.body().getProfileDetailsData().get(i).get(i).getImage() ;
                                     String profilePictureUrlComplete = BASE_URL_FOR_IMAGE + profilePicUrl;
@@ -398,6 +400,7 @@ public class NavigationalActivity extends AppCompatActivity
                         }
                         else
                         {
+                            setFragment();
                             LoadingDialog.cancelLoading();
 
                             Toast.makeText(getApplicationContext(),response.body().getMsg(),Toast.LENGTH_SHORT).show();
