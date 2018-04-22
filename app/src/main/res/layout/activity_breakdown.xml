@@ -291,7 +291,7 @@
                 android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="15sp"
-                android:text="10kw"
+                android:text="N/A"
                 android:layout_gravity="center_horizontal"
                 />
 
@@ -336,7 +336,7 @@
                 android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="15sp"
-                android:text="2 Units"
+                android:text="N/A"
                 android:layout_gravity="center_horizontal"
                 />
 
@@ -381,11 +381,12 @@
                 android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="15sp"
-                android:text="2 Units"
+                android:text="N/A"
                 android:layout_gravity="center_horizontal"
                 />
             <TextView
                 android:id="@+id/as_on_date"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="normal"
