@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ import com.solarprojectapp.ui.activities.SparePartsToBeClosedTodayActivity;
 import com.solarprojectapp.ui.activities.TotalConsumerListActivity;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
+import com.solarprojectapp.utils.PrefUtils;
 import com.solarprojectapp.utils.SnakBarUtils;
 
 import butterknife.BindView;
@@ -56,6 +58,10 @@ public class ProfileHomePageFragment extends Fragment {
 
     @BindView(R.id.total_consumers)
     TextView tvTotalConsumers;
+
+    @BindView(R.id.admingraph)
+    ImageView ivAdminGraph ;
+
 
     @BindView(R.id.open_complaints)
     TextView tvOpenComplaints;
@@ -361,6 +367,10 @@ public class ProfileHomePageFragment extends Fragment {
         ButterKnife.bind(this, view);
         setUpRestAdapter();
         getDashboardData();
+        if (PrefUtils.getUserType(getContext()).equals("Admin"))
+        {
+            ivAdminGraph.setVisibility(View.VISIBLE);
+        }
         // Start long running operation in a background thread
        // progressBlue.setMax(100); // 100 maximum value for the progress value
        // progressBlue.setProgress(50); // 50 default progress value for the progress bar

@@ -180,6 +180,14 @@
 
         </LinearLayout>
 
+        <ImageView
+            android:visibility="gone"
+            android:adjustViewBounds="true"
+            android:id="@+id/endconsumeregraph"
+            android:src="@drawable/endconsumergraph680"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <TextView
             android:id="@+id/text_information"
             android:layout_width="wrap_content"

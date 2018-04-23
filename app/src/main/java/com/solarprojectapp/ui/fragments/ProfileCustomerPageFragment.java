@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -92,6 +93,10 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
     @BindView(R.id.project_owner)
     TextView tvProjectOwner;
 
+    @BindView(R.id.endconsumeregraph)
+    ImageView ivEndConsumerGraph;
+
+
 
     String loginType;
 
@@ -170,6 +175,7 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
             tvProjectName.setVisibility(View.VISIBLE);
             tvProjectType.setVisibility(View.VISIBLE);
             tvProjectOwner.setVisibility(View.VISIBLE);
+            ivEndConsumerGraph.setVisibility(View.VISIBLE);
 
             tvProjectType.setText(PrefUtils.getProject(getContext()));
             tvProjectName.setText(PrefUtils.getProjectOwner(getContext()));
