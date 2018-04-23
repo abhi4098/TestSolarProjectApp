@@ -198,7 +198,7 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
                 else if (fromActivity.equals("OverDueComplaintListActivity"))
                 {
                     holder.viewDetailsBtn.setVisibility(View.VISIBLE);
-                    holder.approveBtn.setVisibility(View.VISIBLE);
+                    holder.approveBtn.setVisibility(View.GONE);
 
                     holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -221,14 +221,21 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
                         }
                     });
 
-                    holder.approveBtn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            setUpRestAdapter();
-                            getApproval(v, complaintListsDatum);
-
-                        }
-                    });
+                    if (complaintListsDatum.getTechincalPartnerAssignStatus().equals("0")) {
+                        holder.assignBtn.setVisibility(View.VISIBLE);
+                        holder.assignBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent i = new Intent(((OverDueComplaintListActivity) getContext()), TechnicalPartenerListActivity.class);
+                                i.putExtra("COMPLAINT_ID", complaintListsDatum.getComplainId());
+                                ((OverDueComplaintListActivity) getContext()).startActivity(i);
+                            }
+                        });
+                    }
+                    else
+                    {
+                        holder.assignBtn.setVisibility(View.GONE);
+                    }
                 }
                 else
                 {

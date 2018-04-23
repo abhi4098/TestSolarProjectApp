@@ -135,6 +135,7 @@ public class OverDueComplaintListActivity extends AppCompatActivity implements V
                 complaintListsDatum.setEndConsumerContactno(response.body().getComplaintListsData().get(i).get(j).getEndConsumerContactno());
                 complaintListsDatum.setCreateDate(response.body().getComplaintListsData().get(i).get(j).getCreateDate());
                 complaintListsDatum.setComplainCloseDate(response.body().getComplaintListsData().get(i).get(j).getComplainCloseDate());
+                complaintListsDatum.setTechincalPartnerAssignStatus(response.body().getComplaintListsData().get(i).get(j).getTechincalPartnerAssignStatus());
 
 
                 complaintList.add(complaintListsDatum);
