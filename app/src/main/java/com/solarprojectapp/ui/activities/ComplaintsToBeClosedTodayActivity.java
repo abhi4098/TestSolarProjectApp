@@ -71,6 +71,13 @@ public class ComplaintsToBeClosedTodayActivity extends AppCompatActivity impleme
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setUpRestAdapter();
+        getComplaintsToBeClosed();
+    }
+
     private void setUpRestAdapter() {
         UserNewCompaintListAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.UserCompaintListClient.class, MAIN_BASE_URL, this);
     }

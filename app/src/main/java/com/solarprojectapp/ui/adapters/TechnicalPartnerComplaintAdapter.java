@@ -86,6 +86,7 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
 
         if(rowView==null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            //assert inflater != null;
             rowView= inflater.inflate(groupid, parent, false);
             ViewHolder viewHolder = new ViewHolder();
             viewHolder.complaintName= (TextView) rowView.findViewById(R.id.complaint_name);

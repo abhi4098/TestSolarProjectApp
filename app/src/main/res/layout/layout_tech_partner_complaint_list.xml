@@ -118,7 +118,7 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="start"
         android:layout_marginTop="20dp">
 
         <Button
@@ -138,7 +138,7 @@
             android:layout_centerHorizontal="true"
             android:textColor="@color/white"
             android:layout_marginStart="20dp"
-            android:background="@drawable/rectangular_button_with_curves_orange"
+            android:background="@drawable/rectangular_button_with_curves_green"
             android:layout_height="25dp"
             android:text="Accept"/>
 
