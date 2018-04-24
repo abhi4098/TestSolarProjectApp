@@ -258,22 +258,42 @@ public class ProfileHomePageFragment extends Fragment {
     private void setProgressBar(Response<DashboardDataResponse> response) {
          if (openComplaints>overdueComplaints && openComplaints>closureComplaints)
          {
-             Log.e(TAG, "setProgressBar: " +overdueComplaints  + openComplaints + closureComplaints );
-             openprogressStatus =100;
+             if(openComplaints == 0)
+             {
+                 openComplaints =1;
+                 openprogressStatus =0;
+             }
+             else
+                 openprogressStatus =100;
+
              overdueprogressStatus = (overdueComplaints*100)/openComplaints;
              closureprogressStatus = (closureComplaints*100)/openComplaints;
 
          }
          else if (overdueComplaints>openComplaints && overdueComplaints>closureComplaints)
          {
+             if (overdueComplaints ==0)
+             {
+                 overdueComplaints =1;
+                 overdueprogressStatus =0;
+             }
+             else
              overdueprogressStatus =100;
+
              openprogressStatus = (openComplaints*100)/overdueComplaints;
              Log.e(TAG, "setProgressBar: open"+openprogressStatus );
              closureprogressStatus = (closureComplaints*100)/overdueComplaints;
              Log.e(TAG, "setProgressBar: closure"+closureprogressStatus );
          }
          else {
+             if (closureComplaints ==0)
+             {
+                 closureComplaints =1;
+                 closureprogressStatus =0;
+             }
+             else
              closureprogressStatus =100;
+
              overdueprogressStatus = (overdueComplaints*100)/closureComplaints;
              Log.e(TAG, "setProgressBar: overdue"+overdueprogressStatus );
              openprogressStatus = (openComplaints*100)/closureComplaints;
