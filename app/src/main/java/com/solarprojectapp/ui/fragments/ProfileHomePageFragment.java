@@ -14,6 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.solarprojectapp.R;
 import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
@@ -34,6 +39,9 @@ import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.PrefUtils;
 import com.solarprojectapp.utils.SnakBarUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -62,7 +70,7 @@ public class ProfileHomePageFragment extends Fragment {
     TextView tvTotalConsumers;
 
     @BindView(R.id.admingraph)
-    ImageView ivAdminGraph ;
+    com.github.mikephil.charting.charts.BarChart bcAdminGraph ;
 
 
     @BindView(R.id.open_complaints)
@@ -257,6 +265,7 @@ public class ProfileHomePageFragment extends Fragment {
             SnakBarUtils.networkConnected(getActivity());
         }
     }
+
     private void getConsumerCountClient() {
         LoadingDialog.showLoadingDialog(getActivity(),"Loading...");
         Call<ConsumerCountClientResponse> call = TotalConsumerCountForClientDataAdapter.totalConsumerCountClient(PrefUtils.getFkId(getContext()),"consumercount");
@@ -450,12 +459,29 @@ public class ProfileHomePageFragment extends Fragment {
 
         if (PrefUtils.getUserType(getContext()).equals("Admin"))
         {
-            ivAdminGraph.setVisibility(View.VISIBLE);
-        }
-        // Start long running operation in a background thread
-       // progressBlue.setMax(100); // 100 maximum value for the progress value
-       // progressBlue.setProgress(50); // 50 default progress value for the progress bar
+            bcAdminGraph.setVisibility(View.VISIBLE);
+            List<BarEntry> entries = new ArrayList<>();
+            entries.add(new BarEntry( 5f, 2f));
+            entries.add(new BarEntry(6f, 1f));
+            entries.add(new BarEntry( 7f, 3f));
+            entries.add(new BarEntry( 8f, 3f));
+            entries.add(new BarEntry( 9f, 1f));
+            entries.add(new BarEntry(10f, 2f));
+            entries.add(new BarEntry(11f, 1f));
 
+            BarDataSet set = new BarDataSet(entries, "Yield(MWh)");
+            BarData data = new BarData(set);
+           // data.setBarWidth(0.9f); // set custom bar width
+            bcAdminGraph.setData(data);
+            bcAdminGraph.setBackgroundResource(R.color.white);
+            bcAdminGraph.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+            YAxis rightYAxis = bcAdminGraph.getAxisRight();
+            bcAdminGraph.getDescription().setEnabled(false);
+            bcAdminGraph.getLegend().setEnabled(true);
+            rightYAxis.setEnabled(false);
+            bcAdminGraph.setFitBars(true); // make the x-axis fit exactly all bars
+            bcAdminGraph.invalidate(); // refresh
+        }
 
         return view;
 
