@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.solarprojectapp.R;
 import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
+import com.solarprojectapp.generated.model.ConsumerCountClientResponse;
 import com.solarprojectapp.generated.model.DashboardDataResponse;
 import com.solarprojectapp.generated.model.NewComplaintResponse;
 import com.solarprojectapp.ui.activities.ClosureComplaintListActivity;
@@ -47,6 +48,7 @@ import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
 public class ProfileHomePageFragment extends Fragment {
     private static final String TAG = "ProfileHomePageFragment";
     private RetrofitInterface.AdminDataClient AdminDataAdapter;
+    private RetrofitInterface.TotalConsumerCountForClient TotalConsumerCountForClientDataAdapter;
     int openComplaints,overdueComplaints,closureComplaints;
 
     @BindView(R.id.progress_bar_blue)
@@ -85,6 +87,8 @@ public class ProfileHomePageFragment extends Fragment {
     TextView tvSparePartsPending;
     @BindView(R.id.spare_parts_to_be_closed_today)
     TextView tvSparePartsToBeClosedToday;
+
+    String consumerCount;
 
 
 
@@ -182,6 +186,8 @@ public class ProfileHomePageFragment extends Fragment {
 
     private void setUpRestAdapter() {
         AdminDataAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.AdminDataClient.class, MAIN_BASE_URL, getActivity());
+        TotalConsumerCountForClientDataAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.TotalConsumerCountForClient.class, MAIN_BASE_URL, getActivity());
+
     }
 
 
@@ -204,7 +210,11 @@ public class ProfileHomePageFragment extends Fragment {
                                 overdueComplaints =response.body().getAdminSummary().get(i).getTotalOverduecomplaints();
                                 closureComplaints =response.body().getAdminSummary().get(i).getTotalClosedcomplaints();
 
-                                tvTotalConsumers.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalConsumer()));
+                                if (PrefUtils.getUserType(getContext()).equals("Admin"))
+                                {
+                                    tvTotalConsumers.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalConsumer()));
+
+                                }
                                  tvRejectedComplaints.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalRejectedcomplaints()));
                                 tvOpenComplaints.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalOpencomplaints()));
                                 tvOverDueComplaints.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalOverduecomplaints()));
@@ -236,6 +246,51 @@ public class ProfileHomePageFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<DashboardDataResponse> call, Throwable t) {
+                    Toast.makeText(getActivity(),"Error occur",Toast.LENGTH_SHORT).show();
+                    LoadingDialog.cancelLoading();
+                }
+
+
+            });
+
+        } else {
+            SnakBarUtils.networkConnected(getActivity());
+        }
+    }
+    private void getConsumerCountClient() {
+        LoadingDialog.showLoadingDialog(getActivity(),"Loading...");
+        Call<ConsumerCountClientResponse> call = TotalConsumerCountForClientDataAdapter.totalConsumerCountClient(PrefUtils.getFkId(getContext()),"consumercount");
+        if (NetworkUtils.isNetworkConnected(getActivity())) {
+            call.enqueue(new Callback<ConsumerCountClientResponse>() {
+
+                @Override
+                public void onResponse(Call<ConsumerCountClientResponse> call, Response<ConsumerCountClientResponse> response) {
+
+                    if (response.isSuccessful()) {
+
+                        if (response.body().getSuccess().equals("true")) {
+                            Log.e(TAG, "onResponse: ..............admin data" +response.body().getClientConsumerCount().size() );
+                            for (int i=0; i<response.body().getClientConsumerCount().size(); i++) {
+                                tvTotalConsumers.setText(String.valueOf(response.body().getClientConsumerCount().get(i).getTotalConsumer()));
+
+                                LoadingDialog.cancelLoading();
+                            }
+                        }
+                        else
+                        {
+                            LoadingDialog.cancelLoading();
+
+                            Toast.makeText(getActivity(),response.body().getMsg(),Toast.LENGTH_SHORT).show();
+                        }
+
+
+
+                    }
+
+                }
+
+                @Override
+                public void onFailure(Call<ConsumerCountClientResponse> call, Throwable t) {
                     Toast.makeText(getActivity(),"Error occur",Toast.LENGTH_SHORT).show();
                     LoadingDialog.cancelLoading();
                 }
@@ -302,7 +357,7 @@ public class ProfileHomePageFragment extends Fragment {
 
         new Thread(new Runnable() {
             public void run() {
-                while (blueprogressStatus <= closureprogressStatus) {
+                 while (blueprogressStatus <= closureprogressStatus) {
                     blueprogressStatus += 5;
                     //Update progress bar with completion of operation
                     handler.post(new Runnable() {
@@ -386,7 +441,13 @@ public class ProfileHomePageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile_home_page, container, false);
         ButterKnife.bind(this, view);
         setUpRestAdapter();
+
         getDashboardData();
+        if (PrefUtils.getUserType(getContext()).equals("Client"))
+        {
+            getConsumerCountClient();
+        }
+
         if (PrefUtils.getUserType(getContext()).equals("Admin"))
         {
             ivAdminGraph.setVisibility(View.VISIBLE);

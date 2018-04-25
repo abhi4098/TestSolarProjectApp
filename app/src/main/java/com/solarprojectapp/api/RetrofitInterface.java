@@ -6,7 +6,9 @@ package com.solarprojectapp.api;
 import com.solarprojectapp.generated.model.ApproveComplaintResponse;
 import com.solarprojectapp.generated.model.AssignComplaintResponse;
 import com.solarprojectapp.generated.model.ChangePasswordResponse;
+import com.solarprojectapp.generated.model.ClientConsumerCount;
 import com.solarprojectapp.generated.model.ComplaintTypeDropdown;
+import com.solarprojectapp.generated.model.ConsumerCountClientResponse;
 import com.solarprojectapp.generated.model.DashboardDataResponse;
 import com.solarprojectapp.generated.model.LoginResponse;
 import com.solarprojectapp.generated.model.NewComplaintResponse;
@@ -175,6 +177,14 @@ public class RetrofitInterface {
         public Call<TotalConsumerListResponse> totalConsumer(
                 @Field("id") String id,
                 @Field("user_type") String user_type,
+                @Field("type") String type);
+    }
+
+    public interface TotalConsumerCountForClient {
+        @FormUrlEncoded
+        @POST("query.php")
+        public Call<ConsumerCountClientResponse> totalConsumerCountClient(
+                @Field("id") String id,
                 @Field("type") String type);
     }
 
