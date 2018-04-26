@@ -10,6 +10,7 @@ import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -74,7 +75,7 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
     private RetrofitInterface.UserSubmitSparePartClient userSubmitSparePartClient;
     ArrayList<SparepartsrequestList> sparePartsRequestedList = null;
     ArrayList<String> showSparePartsRequestedList = null;
-    String imgString;
+    String imgString ;
     File imagFileFromGallery;
 
 
@@ -370,54 +371,6 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
 
     }
 
-    private void sendImagesToServerFromCamera(String imgDecodableString) {
-
-        File imgPath = new File(imgDecodableString);
-        RequestBody mFile = RequestBody.create(MediaType.parse("image/jpg"), imgPath);
-        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("request_image", imgPath.getName(), mFile);
-        RequestBody filename = RequestBody.create(MediaType.parse("text/plain"), imgPath.getName());
-        LoadingDialog.showLoadingDialog(this,"Loading...");
-        Call<ResponseBody> call = UpdatePhotoAdapter.uploadImageData(fileToUpload,filename);
-        if (NetworkUtils.isNetworkConnected(this)) {
-            call.enqueue(new Callback<ResponseBody>() {
-
-                @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
-                    if (response.isSuccessful()) {
-                      //  if (response.body().getType() == 1) {
-
-                            Log.e("abhi", "onResponse: .............................................." + response.message());
-                           // Log.e("abhi", "onResponse: image link............" + response.body().getTokenid());
-                                /*profilePicUrl = response.body().getTokenid();
-                                String profilePictureUrlComplete = BASE_URL_FOR_IMAGE + profilePicUrl;
-                                PrefUtils.storeUserImage(profilePictureUrlComplete, NavigationalActivity.this);
-                                Log.e(TAG, "onResponse: image link............" + profilePictureUrlComplete);*/
-                          //  sendImageNameToServer(response.body().getTokenid());
-
-
-
-                     //   }
-                        LoadingDialog.cancelLoading();
-
-
-
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ResponseBody> call, Throwable t) {
-                    Log.e("abhi", "onFailure: ............" + t.getCause() );
-                    LoadingDialog.cancelLoading();
-                }
-
-
-            });
-
-        } else {
-            SnakBarUtils.networkConnected(this);
-        }
-    }
 
     private void setUpRestAdapter() {
         sparePartsRequestByTechPartnerClient = ApiAdapter.createRestAdapter(RetrofitInterface.SparePartsRequestByTechPartnerClient.class, MAIN_BASE_URL, this);
@@ -473,10 +426,27 @@ public class RequestSparePartByTechPartnerActivity extends AppCompatActivity imp
 
 
     private void submitComplaintToAdmin() {
+        MultipartBody.Part fileToUpload;
+        if (imgString !=null) {
+            File imgPath = new File(imgString);
+            Log.e("abhi123", "submitComplaintToAdmin:................ selected"+imgPath );
+            RequestBody mFile = RequestBody.create(MediaType.parse("image/jpg"), imgPath);
+            fileToUpload = MultipartBody.Part.createFormData("request_image", imgPath.getName(), mFile);
+        }
+        else {
 
-        File imgPath = new File(imgString);
-        RequestBody mFile = RequestBody.create(MediaType.parse("image/jpg"), imgPath);
-        MultipartBody.Part fileToUpload = MultipartBody.Part.createFormData("request_image", imgPath.getName(), mFile);
+            Bitmap bp = BitmapFactory.decodeResource(getResources(), R.drawable.notavailable);
+            if (bp !=null) {
+                Uri tempUri = getImageUri(getApplicationContext(), bp);
+                filePath = new File(getRealPathFromURI(tempUri));
+                Log.e("abhi", "onActivityResult:.......... " + filePath.getPath());
+                imgString =filePath.getPath();
+            }
+            File imgPath = new File(imgString);
+            Log.e("abhi123", "submitComplaintToAdmin:................ "+imgPath );
+            RequestBody mFile = RequestBody.create(MediaType.parse("image/jpg"), imgPath);
+            fileToUpload = MultipartBody.Part.createFormData("request_image", imgPath.getName(), mFile);
+        }
 
         RequestBody requestSparePartId = RequestBody.create(
                 MediaType.parse("text/plain"),
