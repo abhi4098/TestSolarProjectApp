@@ -99,6 +99,8 @@ public class NewComplaintListActivity extends AppCompatActivity implements View.
                         }
                         else
                         {
+                            setNewComplaints(response);
+
                             LoadingDialog.cancelLoading();
 
                             Toast.makeText(getApplicationContext(),response.body().getMsg(),Toast.LENGTH_SHORT).show();
@@ -127,9 +129,11 @@ public class NewComplaintListActivity extends AppCompatActivity implements View.
     private void setNewComplaints(Response<NewComplaintResponse> response) {
         newComplaintList = new ArrayList<>();
 
+        if (response.body().getSuccess().equals("true"))
+        {
         for (int i = 0; i < response.body().getComplaintListsData().size(); i++) {
             for (int j = 0; j < response.body().getComplaintListsData().get(i).size();j++) {
-                //Log.e("abhi", "setNewComplaints: "+response.body().getComplaintListsData().get(i).size() );
+
                 ComplaintListsDatum complaintListsDatum = new ComplaintListsDatum();
                 complaintListsDatum.setComplainId(response.body().getComplaintListsData().get(i).get(j).getComplainId());
                 complaintListsDatum.setComplainDescription(response.body().getComplaintListsData().get(i).get(j).getComplainDescription());
@@ -144,10 +148,10 @@ public class NewComplaintListActivity extends AppCompatActivity implements View.
 
 
                 newComplaintList.add(complaintListsDatum);
-                Log.e("abhi", "onResponse:..new complaint list " + newComplaintList.get(i).getComplaint());
+                Log.e("abhi123", "onResponse:..new complaint list ............... " + newComplaintList.get(j).getComplaint());
 
             }
-        }
+        }}
 
         newComplaintAdapter = new ComplaintAdapter(this, R.layout.layout_new_complaint_list, R.id.complaint_name, newComplaintList,"NewComplaintListActivity");
         listview.setAdapter(newComplaintAdapter);

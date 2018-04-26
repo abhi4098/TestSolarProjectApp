@@ -125,7 +125,7 @@ public class ShowNewComplaintDetailsActivity extends AppCompatActivity implement
         String str = null;
 
         try {
-            date = inputFormat.parse(time);
+             date = inputFormat.parse(time);
             str = outputFormat.format(date);
 
             Log.i("mini", "Converted Date Today:" + str);

@@ -100,6 +100,7 @@ public class ComplaintsToBeClosedTodayActivity extends AppCompatActivity impleme
                         }
                         else
                         {
+                            setNewComplaints(response);
                             LoadingDialog.cancelLoading();
 
                             Toast.makeText(getApplicationContext(),response.body().getMsg(),Toast.LENGTH_SHORT).show();
@@ -127,25 +128,26 @@ public class ComplaintsToBeClosedTodayActivity extends AppCompatActivity impleme
 
     private void setNewComplaints(Response<NewComplaintResponse> response) {
         complaintList = new ArrayList<>();
+        if (response.body().getSuccess().equals("true")) {
+            for (int i = 0; i < response.body().getComplaintListsData().size(); i++) {
+                for (int j = 0; j < response.body().getComplaintListsData().get(i).size(); j++) {
+                    //Log.e("abhi", "setNewComplaints: "+response.body().getComplaintListsData().get(i).size() );
+                    ComplaintListsDatum complaintListsDatum = new ComplaintListsDatum();
+                    complaintListsDatum.setComplainId(response.body().getComplaintListsData().get(i).get(j).getComplainId());
+                    complaintListsDatum.setComplainDescription(response.body().getComplaintListsData().get(i).get(j).getComplainDescription());
+                    complaintListsDatum.setComplaint(response.body().getComplaintListsData().get(i).get(j).getComplaint());
+                    complaintListsDatum.setEndConsumer(response.body().getComplaintListsData().get(i).get(j).getEndConsumer());
+                    complaintListsDatum.setProjectOwner(response.body().getComplaintListsData().get(i).get(j).getProjectOwner());
+                    complaintListsDatum.setProjectType(response.body().getComplaintListsData().get(i).get(j).getProjectType());
+                    complaintListsDatum.setState(response.body().getComplaintListsData().get(i).get(j).getState());
+                    complaintListsDatum.setEndConsumerContactno(response.body().getComplaintListsData().get(i).get(j).getEndConsumerContactno());
+                    complaintListsDatum.setCreateDate(response.body().getComplaintListsData().get(i).get(j).getCreateDate());
+                    complaintListsDatum.setComplainCloseDate(response.body().getComplaintListsData().get(i).get(j).getComplainCloseDate());
 
-        for (int i = 0; i < response.body().getComplaintListsData().size(); i++) {
-            for (int j = 0; j < response.body().getComplaintListsData().get(i).size();j++) {
-                //Log.e("abhi", "setNewComplaints: "+response.body().getComplaintListsData().get(i).size() );
-                ComplaintListsDatum complaintListsDatum = new ComplaintListsDatum();
-                complaintListsDatum.setComplainId(response.body().getComplaintListsData().get(i).get(j).getComplainId());
-                complaintListsDatum.setComplainDescription(response.body().getComplaintListsData().get(i).get(j).getComplainDescription());
-                complaintListsDatum.setComplaint(response.body().getComplaintListsData().get(i).get(j).getComplaint());
-                complaintListsDatum.setEndConsumer(response.body().getComplaintListsData().get(i).get(j).getEndConsumer());
-                complaintListsDatum.setProjectOwner(response.body().getComplaintListsData().get(i).get(j).getProjectOwner());
-                complaintListsDatum.setProjectType(response.body().getComplaintListsData().get(i).get(j).getProjectType());
-                complaintListsDatum.setState(response.body().getComplaintListsData().get(i).get(j).getState());
-                complaintListsDatum.setEndConsumerContactno(response.body().getComplaintListsData().get(i).get(j).getEndConsumerContactno());
-                complaintListsDatum.setCreateDate(response.body().getComplaintListsData().get(i).get(j).getCreateDate());
-                complaintListsDatum.setComplainCloseDate(response.body().getComplaintListsData().get(i).get(j).getComplainCloseDate());
+                    complaintList.add(complaintListsDatum);
+                    Log.e("abhi", "onResponse:..new complaint list " + complaintList.get(i).getComplaint());
 
-                complaintList.add(complaintListsDatum);
-                Log.e("abhi", "onResponse:..new complaint list " + complaintList.get(i).getComplaint());
-
+                }
             }
         }
 

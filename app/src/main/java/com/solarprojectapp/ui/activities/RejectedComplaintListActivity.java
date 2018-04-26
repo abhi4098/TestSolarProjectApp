@@ -103,6 +103,7 @@ public class RejectedComplaintListActivity extends AppCompatActivity implements 
                         else
                         {
                             LoadingDialog.cancelLoading();
+                            setRejectedComplaints(response);
 
                             Toast.makeText(getApplicationContext(),response.body().getMsg(),Toast.LENGTH_SHORT).show();
                         }
@@ -129,25 +130,26 @@ public class RejectedComplaintListActivity extends AppCompatActivity implements 
 
     private void setRejectedComplaints(Response<RejectedComplaintListResponse> response) {
         rejectedComplaintList = new ArrayList<>();
+        if (response.body().getSuccess().equals("true")) {
+            for (int i = 0; i < response.body().getRejectedComplaintListsData().size(); i++) {
+                for (int j = 0; j < response.body().getRejectedComplaintListsData().get(i).size(); j++) {
+                    //Log.e("abhi", "setNewComplaints: "+response.body().getRejectedComplaintListsData().get(i).size() );
+                    RejectedComplaintListsDatum rejectedComplaintListsDatum = new RejectedComplaintListsDatum();
+                    rejectedComplaintListsDatum.setComplainId(response.body().getRejectedComplaintListsData().get(i).get(j).getComplainId());
+                    rejectedComplaintListsDatum.setComplainDescription(response.body().getRejectedComplaintListsData().get(i).get(j).getComplainDescription());
+                    rejectedComplaintListsDatum.setComplaint(response.body().getRejectedComplaintListsData().get(i).get(j).getComplaint());
+                    rejectedComplaintListsDatum.setEndConsumer(response.body().getRejectedComplaintListsData().get(i).get(j).getEndConsumer());
+                    rejectedComplaintListsDatum.setProjectOwner(response.body().getRejectedComplaintListsData().get(i).get(j).getProjectOwner());
+                    rejectedComplaintListsDatum.setProjectType(response.body().getRejectedComplaintListsData().get(i).get(j).getProjectType());
+                    rejectedComplaintListsDatum.setState(response.body().getRejectedComplaintListsData().get(i).get(j).getState());
+                    rejectedComplaintListsDatum.setEndConsumerContactno(response.body().getRejectedComplaintListsData().get(i).get(j).getEndConsumerContactno());
+                    rejectedComplaintListsDatum.setCreateDate(response.body().getRejectedComplaintListsData().get(i).get(j).getCreateDate());
+                    rejectedComplaintListsDatum.setComplainCloseDate(response.body().getRejectedComplaintListsData().get(i).get(j).getComplainCloseDate());
 
-        for (int i = 0; i < response.body().getRejectedComplaintListsData().size(); i++) {
-            for (int j = 0; j < response.body().getRejectedComplaintListsData().get(i).size();j++) {
-                //Log.e("abhi", "setNewComplaints: "+response.body().getRejectedComplaintListsData().get(i).size() );
-                RejectedComplaintListsDatum rejectedComplaintListsDatum = new RejectedComplaintListsDatum();
-                rejectedComplaintListsDatum.setComplainId(response.body().getRejectedComplaintListsData().get(i).get(j).getComplainId());
-                rejectedComplaintListsDatum.setComplainDescription(response.body().getRejectedComplaintListsData().get(i).get(j).getComplainDescription());
-                rejectedComplaintListsDatum.setComplaint(response.body().getRejectedComplaintListsData().get(i).get(j).getComplaint());
-                rejectedComplaintListsDatum.setEndConsumer(response.body().getRejectedComplaintListsData().get(i).get(j).getEndConsumer());
-                rejectedComplaintListsDatum.setProjectOwner(response.body().getRejectedComplaintListsData().get(i).get(j).getProjectOwner());
-                rejectedComplaintListsDatum.setProjectType(response.body().getRejectedComplaintListsData().get(i).get(j).getProjectType());
-                rejectedComplaintListsDatum.setState(response.body().getRejectedComplaintListsData().get(i).get(j).getState());
-                rejectedComplaintListsDatum.setEndConsumerContactno(response.body().getRejectedComplaintListsData().get(i).get(j).getEndConsumerContactno());
-                rejectedComplaintListsDatum.setCreateDate(response.body().getRejectedComplaintListsData().get(i).get(j).getCreateDate());
-                rejectedComplaintListsDatum.setComplainCloseDate(response.body().getRejectedComplaintListsData().get(i).get(j).getComplainCloseDate());
+                    rejectedComplaintList.add(rejectedComplaintListsDatum);
+                    Log.e("abhi", "onResponse:..new complaint list " + rejectedComplaintList.get(i).getComplaint());
 
-                rejectedComplaintList.add(rejectedComplaintListsDatum);
-                Log.e("abhi", "onResponse:..new complaint list " + rejectedComplaintList.get(i).getComplaint());
-
+                }
             }
         }
 

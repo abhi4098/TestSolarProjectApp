@@ -108,6 +108,7 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
         final ViewHolder holder = (ViewHolder) rowView.getTag();
 
         if (complaintListsDatum !=null) {
+            Log.e("abhi", "getView: ...................."+complaintListsDatum.getComplaint() );
             holder.complaintName.setText(complaintListsDatum.getComplaint());
             holder.endConsumer.setText(complaintListsDatum.getEndConsumer());
             holder.projectType.setText(complaintListsDatum.getProjectType());
