@@ -8,37 +8,38 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.ChartTouchListener;
+import com.github.mikephil.charting.listener.OnChartGestureListener;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
-import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.solarprojectapp.R;
 import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
-import com.solarprojectapp.generated.model.ComplaintListsDatum;
-import com.solarprojectapp.generated.model.NewComplaintResponse;
 import com.solarprojectapp.generated.model.PreventiveDateListsDatum;
 import com.solarprojectapp.generated.model.PreventiveMaintainanceResponse;
 import com.solarprojectapp.ui.activities.AddComplaintActivity;
 import com.solarprojectapp.ui.activities.BreakdownActivity;
 import com.solarprojectapp.ui.activities.CustomTecnicalPartnerTabActivity;
-import com.solarprojectapp.ui.activities.MyProfileActivity;
-import com.solarprojectapp.ui.activities.NavigationalActivity;
-import com.solarprojectapp.ui.activities.SolarProjectLoginActivity;
 import com.solarprojectapp.utils.LoadingDialog;
 import com.solarprojectapp.utils.NetworkUtils;
 import com.solarprojectapp.utils.PrefUtils;
@@ -47,9 +48,7 @@ import com.solarprojectapp.utils.SnakBarUtils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,7 +60,7 @@ import retrofit2.Response;
 import static com.solarprojectapp.api.ApiEndPoints.MAIN_BASE_URL;
 
 
-public class ProfileCustomerPageFragment extends Fragment implements View.OnClickListener ,OnDateSelectedListener {
+public class ProfileCustomerPageFragment extends Fragment implements View.OnClickListener ,OnDateSelectedListener,OnChartGestureListener{
     private static final String TAG = "ProfileHomePageFragment";
 
     private RetrofitInterface.PreventiveMaintainanceClient UsePreventiveMaintainanceAdapter;
@@ -100,9 +99,7 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
     TextView tvProjectOwner;
 
     @BindView(R.id.endconsumeregraph)
-    com.github.mikephil.charting.charts.LineChart ivEndConsumerGraph;
-
-
+    LineChart ivEndConsumerGraph;
 
     String loginType;
 
@@ -185,35 +182,54 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
 
             tvProjectType.setText(PrefUtils.getProject(getContext()));
             tvProjectName.setText(PrefUtils.getProjectOwner(getContext()));
+            ivEndConsumerGraph.setOnChartGestureListener(this);
+           // ivEndConsumerGraph.setOnChartValueSelectedListener(this);
+            ivEndConsumerGraph.setDrawGridBackground(false);
 
-            List<Entry> valsComp1 = new ArrayList<Entry>();
-            List<Entry> valsComp2 = new ArrayList<Entry>();
+            // add data
+            setData();
 
-            Entry c1e1 = new Entry(0f, 100000f); // 0 == quarter 1
-            valsComp1.add(c1e1);
-            Entry c1e2 = new Entry(1f, 140000f); // 1 == quarter 2 ...
-            valsComp1.add(c1e2);
-            // and so on ...
+            // get the legend (only possible after setting data)
+            Legend l = ivEndConsumerGraph.getLegend();
 
-            Entry c2e1 = new Entry(0f, 130000f); // 0 == quarter 1
-            valsComp2.add(c2e1);
-            Entry c2e2 = new Entry(1f, 115000f); // 1 == quarter 2 ...
-            valsComp2.add(c2e2);
+            // modify the legend ...
+            // l.setPosition(LegendPosition.LEFT_OF_CHART);
+            l.setForm(Legend.LegendForm.LINE);
+
+            // no description text
+            ivEndConsumerGraph.setDescription("Time");
+            ivEndConsumerGraph.setNoDataTextDescription("You need to provide data for the chart.");
+
+            // enable touch gestures
+            ivEndConsumerGraph.setTouchEnabled(true);
+
+            // enable scaling and dragging
+            ivEndConsumerGraph.setDragEnabled(true);
+            ivEndConsumerGraph.setScaleEnabled(true);
+            YAxis leftAxis = ivEndConsumerGraph.getAxisLeft();
+            leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
+
+            leftAxis.setAxisMaxValue(220f);
+            leftAxis.setAxisMinValue(0f);
+            //leftAxis.setYOffset(20f);
+            leftAxis.enableGridDashedLine(10f, 10f, 0f);
+            leftAxis.setDrawZeroLine(false);
+
+            // limit lines are drawn behind data (and not on top)
+            leftAxis.setDrawLimitLinesBehindData(true);
+
+            ivEndConsumerGraph.getAxisRight().setEnabled(false);
+            ivEndConsumerGraph.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+
+            ivEndConsumerGraph.getXAxis().setSpaceBetweenLabels(1);
+
+            ivEndConsumerGraph.animateX(2500, Easing.EasingOption.EaseInOutQuart);
+
+            //  dont forget to refresh the drawing
+            ivEndConsumerGraph.invalidate();
 
 
-            LineDataSet setComp1 = new LineDataSet(valsComp1, "Company 1");
-            setComp1.setAxisDependency(YAxis.AxisDependency.LEFT);
-            LineDataSet setComp2 = new LineDataSet(valsComp2, "Company 2");
-            setComp2.setAxisDependency(YAxis.AxisDependency.LEFT);
 
-            // use the interface ILineDataSet
-            List<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
-            dataSets.add(setComp1);
-            dataSets.add(setComp2);
-
-            LineData data = new LineData(dataSets);
-            ivEndConsumerGraph.setData(data);
-            ivEndConsumerGraph  .invalidate(); // refresh
 
 
         }
@@ -222,6 +238,116 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
         return view;
 
     }
+
+
+
+
+    // This is used to store x-axis values
+    private ArrayList<String> setXAxisValues(){
+        ArrayList<String> xVals = new ArrayList<String>();
+        xVals.add("09:00");
+        xVals.add("10:00");
+        xVals.add("11:00");
+        xVals.add("12:00");
+        xVals.add("13:00");
+        xVals.add("14:00");
+        xVals.add("15:00");
+        xVals.add("16:00");
+        xVals.add("17:00");
+        xVals.add("18:00");
+
+
+        return xVals;
+    }
+
+    // This is used to store Y-axis values
+    private ArrayList<Entry> setYAxisValues(){
+        ArrayList<Entry> yVals = new ArrayList<Entry>();
+        yVals.add(new Entry(0f, 0));
+        yVals.add(new Entry(28, 1));
+        yVals.add(new Entry(50.5f, 2));
+        yVals.add(new Entry(80, 3));
+        yVals.add(new Entry(160.9f, 4));
+        yVals.add(new Entry(80f, 5));
+        yVals.add(new Entry(50.5f, 6));
+        yVals.add(new Entry(28f, 7));
+        yVals.add(new Entry(40f, 8));
+        yVals.add(new Entry(0f, 9));
+
+        return yVals;
+    }
+
+    private ArrayList<Entry> setYAxisValues1(){
+        ArrayList<Entry> yVals = new ArrayList<Entry>();
+        yVals.add(new Entry(0f, 0));
+        yVals.add(new Entry(55, 1));
+        yVals.add(new Entry(80.5f, 2));
+        yVals.add(new Entry(110, 3));
+        yVals.add(new Entry(190.9f, 4));
+        yVals.add(new Entry(110, 5));
+        yVals.add(new Entry(80.5f, 6));
+        yVals.add(new Entry(55f, 7));
+        yVals.add(new Entry(65f, 8));
+        yVals.add(new Entry(0f, 9));
+
+        return yVals;
+    }
+
+
+    private void setData() {
+        ArrayList<String> xVals = setXAxisValues();
+
+        ArrayList<Entry> yValseEstimated = setYAxisValues1();
+
+        LineDataSet set1;
+        set1 = new LineDataSet(yValseEstimated, "Estimated Power(kW)");
+        set1.setFillAlpha(110);
+        set1.setFillColor(Color.LTGRAY);
+
+        // set the line to be drawn like this "- - - - - -"
+        // set1.enableDashedLine(10f, 5f, 0f);
+        // set1.enableDashedHighlightLine(10f, 5f, 0f);
+        set1.setColor(Color.LTGRAY);
+        set1.setCircleColor(Color.BLACK);
+        set1.setLineWidth(1f);
+        set1.setCircleRadius(3f);
+        set1.setDrawCircleHole(false);
+        set1.setValueTextSize(7f);
+        set1.setDrawFilled(true);
+        // create a dataset and give it a type
+
+        ArrayList<Entry> yVals = setYAxisValues();
+
+        LineDataSet set2;
+        set2 = new LineDataSet(yVals, "Current Power(kW)");
+        set2.setFillAlpha(110);
+         //set2.setFillColor(Color.RED);
+
+        // set the line to be drawn like this "- - - - - -"
+        // set1.enableDashedLine(10f, 5f, 0f);
+        // set1.enableDashedHighlightLine(10f, 5f, 0f);
+        //set2.setColor(Color.BLACK);
+        set2.setCircleColor(Color.BLACK);
+        set2.setLineWidth(1f);
+        set2.setCircleRadius(3f);
+        set2.setDrawCircleHole(false);
+        set2.setValueTextSize(7f);
+        set2.setDrawFilled(true);
+
+        ArrayList<ILineDataSet> dataSets = new ArrayList<ILineDataSet>();
+        dataSets.add(set1);
+        dataSets.add(set2);// add the datasets
+
+        // create a data object with the datasets
+       LineData data = new LineData( xVals,dataSets);
+
+        ivEndConsumerGraph.setData(data);
+
+
+
+
+    }
+
 
     private void setUpRestAdapter() {
         UsePreventiveMaintainanceAdapter = ApiAdapter.createRestAdapter(RetrofitInterface.PreventiveMaintainanceClient.class, MAIN_BASE_URL, getContext());
@@ -380,4 +506,53 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
        /* Log.e(TAG, "onDateSelected: ......................." );
           tvSelectedComplaint.setText("---------------Got it---------------");*/
     }
+
+
+
+    @Override
+    public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+        Log.i("Gesture", "START, x: " + me.getX() + ", y: " + me.getY());
+    }
+
+    @Override
+    public void onChartGestureEnd(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
+        Log.i("Gesture", "END, lastGesture: " + lastPerformedGesture);
+
+        // un-highlight values after the gesture is finished and no single-tap
+        if(lastPerformedGesture != ChartTouchListener.ChartGesture.SINGLE_TAP)
+            ivEndConsumerGraph.highlightValues(null); // or highlightTouch(null) for callback to onNothingSelected(...)
+    }
+
+    @Override
+    public void onChartLongPressed(MotionEvent me) {
+        Log.i("LongPress", "Chart longpressed.");
+    }
+
+    @Override
+    public void onChartDoubleTapped(MotionEvent me) {
+        Log.i("DoubleTap", "Chart double-tapped.");
+    }
+
+    @Override
+    public void onChartSingleTapped(MotionEvent me) {
+        Log.i("SingleTap", "Chart single-tapped.");
+    }
+
+    @Override
+    public void onChartFling(MotionEvent me1, MotionEvent me2, float velocityX, float velocityY) {
+        Log.i("Fling", "Chart flinged. VeloX: " + velocityX + ", VeloY: " + velocityY);
+    }
+
+    @Override
+    public void onChartScale(MotionEvent me, float scaleX, float scaleY) {
+        Log.i("Scale / Zoom", "ScaleX: " + scaleX + ", ScaleY: " + scaleY);
+    }
+
+    @Override
+    public void onChartTranslate(MotionEvent me, float dX, float dY) {
+        Log.i("Translate / Move", "dX: " + dX + ", dY: " + dY);
+    }
+
+
+
 }

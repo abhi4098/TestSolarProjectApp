@@ -1,6 +1,7 @@
 package com.solarprojectapp.ui.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -8,23 +9,27 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.github.mikephil.charting.animation.Easing;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.solarprojectapp.R;
 import com.solarprojectapp.api.ApiAdapter;
 import com.solarprojectapp.api.RetrofitInterface;
 import com.solarprojectapp.generated.model.ConsumerCountClientResponse;
 import com.solarprojectapp.generated.model.DashboardDataResponse;
-import com.solarprojectapp.generated.model.NewComplaintResponse;
 import com.solarprojectapp.ui.activities.ClosureComplaintListActivity;
 import com.solarprojectapp.ui.activities.ComplaintsToBeClosedTodayActivity;
 import com.solarprojectapp.ui.activities.NewComplaintListActivity;
@@ -41,7 +46,6 @@ import com.solarprojectapp.utils.PrefUtils;
 import com.solarprojectapp.utils.SnakBarUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -460,30 +464,101 @@ public class ProfileHomePageFragment extends Fragment {
         if (PrefUtils.getUserType(getContext()).equals("Admin"))
         {
             bcAdminGraph.setVisibility(View.VISIBLE);
-            List<BarEntry> entries = new ArrayList<>();
-            entries.add(new BarEntry( 5f, 2f));
-            entries.add(new BarEntry(6f, 1f));
-            entries.add(new BarEntry( 7f, 3f));
-            entries.add(new BarEntry( 8f, 3f));
-            entries.add(new BarEntry( 9f, 1f));
-            entries.add(new BarEntry(10f, 2f));
-            entries.add(new BarEntry(11f, 1f));
+            setData();
 
-            BarDataSet set = new BarDataSet(entries, "Yield(MWh)");
-            BarData data = new BarData(set);
-           // data.setBarWidth(0.9f); // set custom bar width
-            bcAdminGraph.setData(data);
-            bcAdminGraph.setBackgroundResource(R.color.white);
+            // get the legend (only possible after setting data)
+            Legend l = bcAdminGraph.getLegend();
+
+            // modify the legend ...
+            // l.setPosition(LegendPosition.LEFT_OF_CHART);
+            l.setForm(Legend.LegendForm.LINE);
+
+            // no description text
+            bcAdminGraph.setDescription("Day");
+            bcAdminGraph.setNoDataTextDescription("You need to provide data for the chart.");
+
+            // enable touch gestures
+            bcAdminGraph.setTouchEnabled(true);
+
+            // enable scaling and dragging
+            bcAdminGraph.setDragEnabled(true);
+            bcAdminGraph.setScaleEnabled(true);
+            YAxis leftAxis = bcAdminGraph.getAxisLeft();
+            leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
+
+            leftAxis.setAxisMaxValue(5f);
+            leftAxis.setAxisMinValue(0f);
+            //leftAxis.setYOffset(20f);
+            leftAxis.enableGridDashedLine(10f, 10f, 0f);
+            leftAxis.setDrawZeroLine(false);
+
+            // limit lines are drawn behind data (and not on top)
+            leftAxis.setDrawLimitLinesBehindData(true);
+
+            bcAdminGraph.getAxisRight().setEnabled(false);
             bcAdminGraph.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-            YAxis rightYAxis = bcAdminGraph.getAxisRight();
-            bcAdminGraph.getDescription().setEnabled(false);
-            bcAdminGraph.getLegend().setEnabled(true);
-            rightYAxis.setEnabled(false);
-            bcAdminGraph.setFitBars(true); // make the x-axis fit exactly all bars
-            bcAdminGraph.invalidate(); // refresh
+
+            bcAdminGraph.getXAxis().setSpaceBetweenLabels(1);
+
+            bcAdminGraph.animateX(2500, Easing.EasingOption.EaseInOutQuart);
+
+            //  dont forget to refresh the drawing
+            bcAdminGraph.invalidate();
+
+
+
         }
 
         return view;
+
+    }
+
+    // This is used to store x-axis values
+    private ArrayList<String> setXAxisValues(){
+        ArrayList<String> xVals = new ArrayList<String>();
+        xVals.add("5 Apr");
+        xVals.add("6 Apr");
+        xVals.add("7 Apr");
+        xVals.add("8 Apr");
+        xVals.add("9 Apr");
+        xVals.add("10 Apr");
+        xVals.add("11 Apr");
+
+
+
+        return xVals;
+    }
+
+    // This is used to store Y-axis values
+    private ArrayList<BarEntry> setYAxisValues(){
+        ArrayList<BarEntry> yVals = new ArrayList<BarEntry>();
+        yVals.add(new BarEntry(3f, 0));
+        yVals.add(new BarEntry(2f, 1));
+        yVals.add(new BarEntry(5.5f, 2));
+        yVals.add(new BarEntry(4f, 3));
+        yVals.add(new BarEntry(2.5f, 4));
+        yVals.add(new BarEntry(3.5f, 5));
+        yVals.add(new BarEntry(2f, 6));
+
+        return yVals;
+    }
+
+    private void setData() {
+        ArrayList<String> xVals = setXAxisValues();
+        ArrayList<BarEntry> yVals = setYAxisValues();
+
+        BarDataSet set2;
+        set2 = new BarDataSet(yVals, "Yield(MWh)");
+        ArrayList<IBarDataSet> dataSets = new ArrayList<IBarDataSet>();
+        dataSets.add(set2);// add the datasets
+
+        // create a data object with the datasets
+        BarData data = new BarData( xVals,dataSets);
+
+        bcAdminGraph.setData(data);
+
+
+
 
     }
 
