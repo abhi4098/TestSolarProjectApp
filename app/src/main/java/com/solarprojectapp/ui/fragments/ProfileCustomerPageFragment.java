@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -98,6 +99,12 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
     @BindView(R.id.project_owner)
     TextView tvProjectOwner;
 
+    @BindView(R.id.graphdatatext)
+    TextView tvGraphDtaText;
+
+    @BindView(R.id.test_image)
+    ImageView ivTestImage;
+
     @BindView(R.id.endconsumeregraph)
     LineChart ivEndConsumerGraph;
 
@@ -179,6 +186,8 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
             tvProjectType.setVisibility(View.VISIBLE);
             tvProjectOwner.setVisibility(View.VISIBLE);
             ivEndConsumerGraph.setVisibility(View.VISIBLE);
+            tvGraphDtaText.setVisibility(View.VISIBLE);
+            ivTestImage.setVisibility(View.VISIBLE);
 
             tvProjectType.setText(PrefUtils.getProject(getContext()));
             tvProjectName.setText(PrefUtils.getProjectOwner(getContext()));
@@ -201,7 +210,7 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
             ivEndConsumerGraph.setNoDataTextDescription("You need to provide data for the chart.");
 
             // enable touch gestures
-            ivEndConsumerGraph.setTouchEnabled(true);
+            ivEndConsumerGraph.setTouchEnabled(false);
 
             // enable scaling and dragging
             ivEndConsumerGraph.setDragEnabled(true);

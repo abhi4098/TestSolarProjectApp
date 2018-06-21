@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:textStyle="bold"
             android:textColor="@color/solar_pink"
             android:text="Complaint: "/>
 
@@ -35,6 +36,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15sp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"

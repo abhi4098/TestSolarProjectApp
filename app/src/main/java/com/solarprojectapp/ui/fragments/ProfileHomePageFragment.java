@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,7 +77,8 @@ public class ProfileHomePageFragment extends Fragment {
     @BindView(R.id.admingraph)
     com.github.mikephil.charting.charts.BarChart bcAdminGraph ;
 
-
+    @BindView(R.id.graphdatatext)
+    TextView tvGraphDtaText;
     @BindView(R.id.open_complaints)
     TextView tvOpenComplaints;
     @BindView(R.id.overdue_complaint)
@@ -464,21 +466,25 @@ public class ProfileHomePageFragment extends Fragment {
         if (PrefUtils.getUserType(getContext()).equals("Admin"))
         {
             bcAdminGraph.setVisibility(View.VISIBLE);
+            tvGraphDtaText.setVisibility(View.VISIBLE);
             setData();
 
             // get the legend (only possible after setting data)
             Legend l = bcAdminGraph.getLegend();
 
             // modify the legend ...
-            // l.setPosition(LegendPosition.LEFT_OF_CHART);
+            l.setPosition(Legend.LegendPosition.BELOW_CHART_RIGHT);
             l.setForm(Legend.LegendForm.LINE);
 
             // no description text
             bcAdminGraph.setDescription("Day");
             bcAdminGraph.setNoDataTextDescription("You need to provide data for the chart.");
 
+
             // enable touch gestures
-            bcAdminGraph.setTouchEnabled(true);
+            bcAdminGraph.setTouchEnabled(false  );
+
+
 
             // enable scaling and dragging
             bcAdminGraph.setDragEnabled(true);
@@ -500,7 +506,7 @@ public class ProfileHomePageFragment extends Fragment {
 
             bcAdminGraph.getXAxis().setSpaceBetweenLabels(1);
 
-            bcAdminGraph.animateX(2500, Easing.EasingOption.EaseInOutQuart);
+            bcAdminGraph.animateX(1000, Easing.EasingOption.EaseInOutQuart);
 
             //  dont forget to refresh the drawing
             bcAdminGraph.invalidate();
@@ -554,6 +560,8 @@ public class ProfileHomePageFragment extends Fragment {
 
         // create a data object with the datasets
         BarData data = new BarData( xVals,dataSets);
+        int color = ContextCompat.getColor(getActivity(), R.color.deep_sky_blue);
+        set2.setColor(color);
 
         bcAdminGraph.setData(data);
 

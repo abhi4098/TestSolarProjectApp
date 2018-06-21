@@ -1,5 +1,6 @@
 package com.solarprojectapp.ui.activities;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -8,9 +9,11 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.support.design.internal.NavigationMenuView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -83,8 +86,6 @@ public class NavigationalActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigational);
         ButterKnife.bind(this);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-       // setSupportActionBar(toolbar);
         ivBackIcon.setVisibility(View.INVISIBLE);
         loginType= getIntent().getStringExtra("LOGIN_TYPE");
 
@@ -111,7 +112,6 @@ public class NavigationalActivity extends AppCompatActivity
     private void setHeaderData() {
 
         if (PrefUtils.getUserImage(NavigationalActivity.this) !=null) {
-            //imageUri = PrefUtils.getUserImage(NavigationalActivity.this);
             getProfileDetails();
         }
     }
@@ -172,7 +172,7 @@ public class NavigationalActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         navigationView.getMenu().getItem(0).setChecked(true);
-        Log.e("abhi", "onResume: ....................." );
+
     }
 
     @Override
@@ -213,7 +213,7 @@ public class NavigationalActivity extends AppCompatActivity
             {
                 fragment = new ProfileCustomerPageFragment();
             }
-            else if (loginType.equals("Technical Partener"))
+            else if (loginType.equals("Technical Partner"))
             {
                 fragment = new ProfileCustomerPageFragment();
             }else if (loginType.equals("Client"))
@@ -230,20 +230,12 @@ public class NavigationalActivity extends AppCompatActivity
 
             Intent i = new Intent(NavigationalActivity.this, MyProfileActivity.class);
             startActivity(i);
-            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-            drawer.closeDrawer(GravityCompat.START);
 
 
         } else if (id == R.id.nav_logout) {
             logoutSolarApp();
 
-        } /*else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }*/
+        }
 
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -265,11 +257,12 @@ public class NavigationalActivity extends AppCompatActivity
 
             MenuItem itemid = navigationView.getMenu().findItem(R.id.nav_dashboard);
             if (getFragmentManager().findFragmentById(R.id.fragment_container) == null) {
-                onNavigationItemSelected(itemid);
+               //onNavigationItemSelected(itemid);
+               openExitAppDialog();
+
             }
-            Log.e("abhi", "onBackPressed: "+getFragmentManager().getBackStackEntryCount() );
-            tvAppTitle.setText("DASHBOARD");
-            super.onBackPressed();
+           tvAppTitle.setText("DASHBOARD");
+           // super.onBackPressed();
 
 
         }
@@ -279,6 +272,33 @@ public class NavigationalActivity extends AppCompatActivity
             getFragmentManager().popBackStack();
 
         }
+    }
+
+    private void openExitAppDialog() {
+        AlertDialog.Builder ab = new AlertDialog.Builder(this);
+        ab.setTitle("Exit App?");
+        ab.setMessage("Are you sure you want to exit?");
+        ab.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                //if you want to kill app . from other then your main avtivity.(Launcher)
+                android.os.Process.killProcess(android.os.Process.myPid());
+                System.exit(1);
+
+                //if you want to finish just current activity
+
+                NavigationalActivity.this.finish();
+            }
+        });
+        ab.setNegativeButton("no", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        ab.show();
     }
 
     private void setUpRestAdapter() {

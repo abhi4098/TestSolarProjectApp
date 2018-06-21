@@ -19,8 +19,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:textStyle="bold"
             android:textColor="@color/solar_pink"
-            android:text="Spare Part: "/>
+            android:text="Spare Part : "/>
 
         <TextView
             android:id="@+id/spare_part_name"
@@ -35,13 +36,14 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15sp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_blue"
-            android:text="Spare Part Brand: "/>
+            android:text="Spare Part Brand : "/>
 
         <TextView
             android:id="@+id/spare_part_brand"
@@ -61,7 +63,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_blue"
-            android:text="Spare Part Id: "/>
+            android:text="Spare Part Id : "/>
 
         <TextView
             android:id="@+id/spare_part_id"
@@ -102,7 +104,7 @@
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_blue"
-            android:text="Spare Part Price "/>
+            android:text="Spare Part Price :"/>
 
         <TextView
             android:id="@+id/spare_part_price"
@@ -147,7 +149,7 @@
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:background="@drawable/rectangular_button_with_curves_pink"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:text="View Details"/>
         <Button
             android:id="@+id/approve_button"

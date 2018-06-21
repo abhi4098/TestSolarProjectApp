@@ -30,6 +30,8 @@
             android:textColor="@color/white"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="20dp"
             android:text="@string/total_consumers"/>
 
         <TextView
@@ -39,12 +41,14 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:layout_marginTop="5dp"
-            android:textSize="40dp"
+            android:textSize="25dp"
             android:textStyle="bold"/>
 
     </LinearLayout>
 
         <TextView
+            android:visibility="gone"
+            android:id="@+id/graphdatatext"
             android:layout_width="match_parent"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
@@ -59,24 +63,25 @@
             android:id="@+id/admingraph"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:src="@drawable/admingraph680"
+
             android:layout_width="match_parent"
             android:background="@color/white"
-            android:layout_height="180dp"  />
+            android:layout_height="190dp"  />
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="200dp"
         android:orientation="vertical"
+        android:paddingBottom="20dp"
         android:background="@color/complaint_background"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_grey"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:text="COMPLAINTS"/>
@@ -99,14 +104,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/dark_grey"
                     android:layout_gravity="center_horizontal"
                     android:text="@string/open"/>
                 <TextView
                     android:id="@+id/open_complaints"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/dark_grey"
                     android:textSize="25sp"
                     android:layout_gravity="center_horizontal"
                     />
@@ -129,14 +134,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/dark_grey"
                     android:layout_gravity="center_horizontal"
                     android:text="@string/overdue"/>
                 <TextView
                     android:id="@+id/overdue_complaint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/dark_grey"
                     android:textSize="25sp"
                     android:layout_gravity="center_horizontal"
                   />
@@ -160,13 +165,13 @@
                     android:layout_width="wrap_content"
                     android:text="@string/closure"
                     android:layout_gravity="center_horizontal"
-                    android:textColor="@color/black"
+                    android:textColor="@color/dark_grey"
                     android:layout_height="wrap_content" />
                 <TextView
                     android:id="@+id/closure_complaint"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/black"
+                    android:textColor="@color/dark_grey"
                     android:textSize="25sp"
                     android:layout_gravity="center_horizontal"
                     />
@@ -230,10 +235,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_grey"
             android:text="@string/today"
             android:layout_marginBottom="15dp"/>
 
@@ -241,6 +246,8 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:orientation="horizontal"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:weightSum="1"
 
             >
@@ -249,7 +256,7 @@
                 android:layout_height="120dp"
                 android:id="@+id/ll_new_complaint"
                 android:orientation="vertical"
-                android:background="@color/solar_blue"
+                android:background="@drawable/dashboard_sparepart_background_blue"
                 android:layout_weight=".5"
                 >
 
@@ -258,7 +265,8 @@
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/white"
                     android:layout_marginTop="20dp"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
+                    android:layout_marginStart="20dp"
                     android:text="@string/new_complaints_received"
                     android:layout_height="wrap_content" />
                 <TextView
@@ -291,14 +299,14 @@
                 android:id="@+id/ll_complaints_to_be_closed_today"
                 android:orientation="vertical"
                 android:layout_weight=".5"
-                android:background="@color/solar_yellow"
+                android:background="@drawable/dashboard_sparepart_background_yellow"
                 >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/white"
                     android:layout_marginTop="20dp"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:text="Pending For Approval"
                     android:layout_height="wrap_content" />
                 <TextView
@@ -307,6 +315,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:textSize="35sp"
+                    android:layout_marginTop="15sp"
                     android:layout_gravity="center_horizontal"
                     />
             </LinearLayout>
@@ -318,7 +327,10 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:orientation="vertical"
-            android:background="@color/solar_pink"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/dashboard_boxes_background_pink"
 
             >
             <TextView
@@ -326,7 +338,7 @@
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/white"
                 android:layout_marginTop="20dp"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:text="@string/rejected_complaints"
                 android:layout_height="wrap_content" />
             <TextView
@@ -335,6 +347,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:textSize="35sp"
+                android:layout_marginTop="10sp"
                 android:layout_gravity="center_horizontal"
                 />
 
@@ -346,10 +359,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"
+            android:textColor="@color/dark_grey"
             android:text="@string/spare_parts"
             android:layout_marginBottom="15dp"/>
 
@@ -357,6 +370,8 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:orientation="horizontal"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
             android:weightSum="1"
             android:layout_marginBottom="20dp"
 
@@ -367,7 +382,7 @@
                 android:orientation="vertical"
 
                 android:id="@+id/ll_spare_part_request"
-                android:background="@color/solar_blue"
+                android:background="@drawable/dashboard_sparepart_background_blue"
                 android:layout_weight=".5"
                 >
 
@@ -376,7 +391,7 @@
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/white"
                     android:layout_marginTop="20dp"
-                    android:textSize="12sp"
+                    android:textSize="14sp"
                     android:text="@string/spare_parts_requested"
                     android:layout_height="wrap_content" />
                 <TextView
@@ -384,6 +399,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
+                    android:layout_marginTop="15sp"
                     android:textSize="35sp"
                     android:layout_gravity="center_horizontal"
                    />
@@ -408,7 +424,7 @@
                 android:orientation="vertical"
                 android:layout_weight=".5"
                 android:id="@+id/ll_spare_pats_pendingg"
-                android:background="@color/solar_yellow"
+                android:background="@drawable/dashboard_sparepart_background_yellow"
                 >
 
                 <TextView
@@ -416,7 +432,8 @@
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/white"
                     android:layout_marginTop="20dp"
-                    android:textSize="12sp"
+                    android:layout_marginStart="10sp"
+                    android:textSize="14sp"
                     android:text="@string/spare_parts_pending"
                     android:layout_height="wrap_content" />
                 <TextView
@@ -438,7 +455,7 @@
             android:layout_height="120dp"
             android:visibility="gone"
             android:orientation="vertical"
-            android:background="@color/solar_pink"
+            android:background="@drawable/dashboard_boxes_background_pink"
 
             >
             <TextView
@@ -446,7 +463,7 @@
             android:layout_gravity="center_horizontal"
             android:textColor="@color/white"
             android:layout_marginTop="20dp"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:text="@string/to_be_closed_by_today"
             android:layout_height="wrap_content" />
             <TextView

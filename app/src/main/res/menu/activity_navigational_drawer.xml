@@ -8,6 +8,7 @@
         <item
             android:id="@+id/nav_dashboard"
             android:title="           Dashboard"
+
             />
         <item
             android:id="@+id/nav_profile"
@@ -16,23 +17,9 @@
             android:id="@+id/nav_logout"
             android:title="           Logout"
             />
-       <!-- <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />-->
+
     </group>
 
-<!--    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
-        </menu>
-    </item>-->
+
 
 </menu>
