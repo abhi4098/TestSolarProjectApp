@@ -258,9 +258,12 @@ public class NavigationalActivity extends AppCompatActivity
             MenuItem itemid = navigationView.getMenu().findItem(R.id.nav_dashboard);
             if (getFragmentManager().findFragmentById(R.id.fragment_container) == null) {
                //onNavigationItemSelected(itemid);
+                           Log.e("abhi123", " inside null" );
+
                openExitAppDialog();
 
             }
+            Log.e("abhi123", " outside null" );
            tvAppTitle.setText("DASHBOARD");
            // super.onBackPressed();
 
@@ -276,6 +279,7 @@ public class NavigationalActivity extends AppCompatActivity
 
     private void openExitAppDialog() {
         AlertDialog.Builder ab = new AlertDialog.Builder(this);
+        ab.setCancelable(false);
         ab.setTitle("Exit App?");
         ab.setMessage("Are you sure you want to exit?");
         ab.setPositiveButton("yes", new DialogInterface.OnClickListener() {

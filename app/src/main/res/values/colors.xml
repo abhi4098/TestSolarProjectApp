@@ -3,12 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="lighter_gray">#DCDCDC</color>
+    <color name="lighter_gray">#fefbf7</color>
     <color name="off_white">#EFEFEF</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="deep_sky_blue">#00BFFF</color>
     <color name="dark_grey">#808080</color>
+    <color name="shadow_color">#CABBBBBB</color>
 
     <color name="text_color">#7e7e7e</color>
     <color name="theme_primary_dark">#1ea9e1</color>
