@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardUseCompatPadding="true"
-    app:cardElevation="5dp"
+    app:cardElevation="3dp"
+    app:cardMaxElevation="3dp"
     app:cardCornerRadius="15dp">
 
     <LinearLayout
@@ -12,29 +13,28 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp"
         android:orientation="vertical">
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_gravity="center">
+        >
         <TextView
-            android:id="@+id/sparepart_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:textStyle="bold"
             android:textColor="@color/solar_pink"
             android:text="Spare Part : "/>
 
         <TextView
             android:id="@+id/spare_part_name"
-            android:layout_toEndOf="@+id/sparepart_id"
             android:layout_width="wrap_content"
             android:textColor="@color/solar_pink"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             />
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
