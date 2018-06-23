@@ -335,6 +335,7 @@
                 app:cardElevation="5dp"
                 app:cardCornerRadius="15dp"
                 app:cardBackgroundColor="@color/solar_yellow"
+
                 >
 
                 <RelativeLayout

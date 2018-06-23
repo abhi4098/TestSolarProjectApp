@@ -119,6 +119,7 @@
                 app:cardCornerRadius="20dp"
                 app:cardBackgroundColor="@color/solar_pink"
                 android:layout_weight=".5"
+
                 >
 
                 <RelativeLayout
