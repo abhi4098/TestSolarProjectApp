@@ -2,6 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:scrollbars="none"
     android:fillViewport="true"
     android:layout_marginTop="10dp"
@@ -9,7 +10,7 @@
     android:layout_marginStart="10dp"
     android:layout_marginEnd="10dp"
 
-  >
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -35,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="5dp"
-            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <TextView
@@ -72,20 +72,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:layout_marginTop="20dp"
             android:orientation="horizontal"
             android:weightSum="1"
 
             >
 
 
-            <LinearLayout
+            <android.support.v7.widget.CardView
                 android:id="@+id/breakdown"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="160dp"
                 android:orientation="vertical"
                 android:layout_weight=".5"
-                android:background="@color/solar_blue"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/solar_blue"
                 >
                 <ImageView
                     android:layout_width="70dp"
@@ -96,7 +98,7 @@
                     android:layout_height="70dp" />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="40dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="15sp"
@@ -104,42 +106,57 @@
                     android:textColor="@color/white"
                     android:text="Breakdown"/>
 
-            </LinearLayout>
-            <LinearLayout
+            </android.support.v7.widget.CardView>
+
+
+            <android.support.v7.widget.CardView
                 android:id="@+id/preventive_maintainace"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="160dp"
                 android:orientation="vertical"
-                android:background="@color/solar_pink"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="6dp"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/solar_pink"
                 android:layout_weight=".5"
                 >
 
-                <ImageView
-                    android:layout_width="70dp"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/preventivemaintenance"
-                    android:layout_height="70dp" />
+                    android:layout_height="match_parent">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/white"
-                    android:text="Preventive"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
-                    android:textColor="@color/white"
-                    android:layout_height="wrap_content"
-                    android:text="Maintenance"/>
+                    <ImageView
+                        android:id="@+id/preventive_measure_icon"
+                        android:layout_width="70dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/preventivemaintenance"
+                        android:layout_height="70dp" />
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_below="@+id/preventive_measure_icon"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/preventive_maintainace_header"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:text="Preventive"/>
+                    <TextView
+                        android:layout_below="@+id/preventive_maintainace_header"
+                        android:layout_width="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="@color/white"
+                        android:layout_height="wrap_content"
+                        android:text="Maintenance"/>
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
 
 
 
@@ -149,7 +166,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="5dp"
-            android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:orientation="horizontal"
@@ -194,21 +210,21 @@
                 android:layout_height="20dp"
                 android:layout_centerInParent="true"
                 android:src="@drawable/ic_date_range_black_24dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp"
-            android:visibility="gone"
-            android:id="@+id/graphdatatext"
-            android:paddingStart="10dp"
-            android:paddingEnd="10sp"
-            android:layout_marginBottom="5dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/rectangular_button_with_curves"
-            android:textColor="@color/black"
-            android:layout_toEndOf="@+id/test_image"
-            android:textSize="12sp"
-            android:text="04/11/2018 - 04/11/2018"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:visibility="gone"
+                android:id="@+id/graphdatatext"
+                android:paddingStart="10dp"
+                android:paddingEnd="10sp"
+                android:layout_marginBottom="5dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rectangular_button_with_curves"
+                android:textColor="@color/black"
+                android:layout_toEndOf="@+id/test_image"
+                android:textSize="12sp"
+                android:text="04/11/2018 - 04/11/2018"/>
         </RelativeLayout>
 
         <com.github.mikephil.charting.charts.LineChart
@@ -376,71 +392,68 @@
             android:textColor="@color/black"
             android:lines="1"
             android:textSize="18sp"
-              android:visibility="gone"
+            android:visibility="gone"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:text="Preventive Maintenance"/>
 
-    <LinearLayout
+        <LinearLayout
 
-        android:id="@+id/maintenance_data"
-        android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/rectangular_background_curved_edges_consumer"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:textStyle="bold"
-            android:layout_marginTop="5dp"
-            android:textColor="@color/solar_blue"
-            android:text="Upcoming Date for Preventive Maintenance"/>
-
-        <!--<TextView
-            android:id="@+id/selected_complaint_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="50dp"
-            android:layout_marginEnd="50dp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/solar_pink"
-            android:text="Complaint Name"/>-->
-
-        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/calendarView"
+            android:id="@+id/maintenance_data"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="wrap_content"
-            app:mcv_showOtherDates="all"
-            app:mcv_selectionColor="#00F"
-            />
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/rectangular_background_curved_edges_consumer"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/solar_blue"
+                android:text="Upcoming Date for Preventive Maintenance"/>
 
-     <!--<LinearLayout
-         android:id="@+id/ll_complaintList"
-         android:layout_width="match_parent"
-         android:orientation="vertical"
-         android:layout_height="wrap_content"
-         android:layout_margin="10dp"
-         >
+            <!--<TextView
+                android:id="@+id/selected_complaint_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="50dp"
+                android:layout_marginEnd="50dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/solar_pink"
+                android:text="Complaint Name"/>-->
 
-     </LinearLayout>-->
-    </LinearLayout>
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mcv_showOtherDates="all"
+                app:mcv_selectionColor="#00F"
+                />
+
+            <!--<LinearLayout
+                android:id="@+id/ll_complaintList"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                >
+
+            </LinearLayout>-->
+        </LinearLayout>
 
 
     </LinearLayout>
 
 </ScrollView>
-
-
-
