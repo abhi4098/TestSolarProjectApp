@@ -112,7 +112,7 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
 
 
     @BindView(R.id.preventive_maintainace)
-    android.support.v7.widget.CardView llImageMaintenance;
+    LinearLayout llImageMaintenance;
 
    /* @BindView(R.id.breakdown)
     LinearLayout llBreakdown;*/
@@ -144,8 +144,8 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
         {
             Log.e(TAG, "preventiveMaintaince: ........................................................" );
 
-          //  llImageMaintenance.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.solar_pink_gradient));
-            llImageMaintenance.setCardBackgroundColor(ContextCompat.getColor(getActivity(), R.color.solar_pink_gradient));
+         //  llImageMaintenance.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.solar_pink_gradient));
+           // llImageMaintenance.setCardBackgroundColor(ContextCompat.getColor(getActivity(), R.color.solar_pink_gradient));
             llInformation.setVisibility(View.GONE);
             tvInformationData.setVisibility(View.GONE);
 
@@ -157,7 +157,8 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
             showInformation =false;
         }
         else {
-            llImageMaintenance.setCardBackgroundColor(ContextCompat.getColor(getActivity(), R.color.solar_pink));
+           // llImageMaintenance.setCardBackgroundColor(ContextCompat.getColor(getActivity(), R.color.solar_pink));
+            //llImageMaintenance.setBackgroundColor(ContextCompat.getDrawable(getActivity(), R.drawable.circular_overdue_complaints_background));
 
             llInformation.setVisibility(View.VISIBLE);
             tvInformationData.setVisibility(View.VISIBLE);

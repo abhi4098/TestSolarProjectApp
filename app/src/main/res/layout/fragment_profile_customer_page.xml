@@ -5,40 +5,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:scrollbars="none"
     android:fillViewport="true"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
+
 
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:background="@color/complaint_background"
+        android:background="#eeeeee"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/project_owner"
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            android:layout_margin="5dp"
-            android:textColor="@color/solar_blue"
-            android:lines="1"
-            android:text="Project Owner"
 
-            />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
+            android:layout_height="110sp"
+            android:background="@color/header_background"
             android:orientation="horizontal">
-
             <TextView
+                android:visibility="gone"
+                android:id="@+id/project_owner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/white"
+                android:lines="1"
+                android:text="PROJECT OWNER"/>
+
+            <!--<TextView
                 android:id="@+id/project_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,69 +43,147 @@
                 android:textColor="@color/black"
                 android:lines="1"
                 android:textSize="20sp"
-                android:visibility="gone"
                 android:text="Solar Roof Top"
 
-                />
+                />-->
 
             <TextView
                 android:id="@+id/project_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5sp"
                 android:textStyle="normal"
+                android:layout_marginEnd="20sp"
+                android:layout_below="@+id/project_owner"
                 android:layout_alignParentEnd="true"
-                android:textColor="@color/solar_pink"
+                android:textColor="@color/white"
                 android:lines="1"
-                android:layout_marginTop="-5dp"
+                android:textSize="18sp"
                 android:visibility="gone"
 
-                android:text="myWay Solar"
-                android:layout_gravity="center_horizontal"
+
                 />
 
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/project_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/white"
+            android:gravity="center"
+            android:paddingBottom="5sp"
+            android:paddingTop="5sp"
+            android:visibility="gone"
+            android:textColor="@color/heading_color"
+            android:textSize="20sp"
+
+            />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="165dp"
             android:orientation="horizontal"
             android:weightSum="1"
 
             >
 
 
-            <android.support.v7.widget.CardView
+            <LinearLayout
                 android:id="@+id/breakdown"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="165dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10sp"
                 android:orientation="vertical"
                 android:layout_weight=".5"
-                app:cardUseCompatPadding="true"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="20dp"
-                app:cardBackgroundColor="@color/solar_blue"
+
                 >
+
+                <RelativeLayout
+
+                    android:layout_width="140sp"
+                    android:layout_height="140sp"
+                    android:layout_margin="10sp"
+
+                    android:background="@drawable/circular_open_complaints_background"
+
+                    >
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_gravity="center_horizontal"
+                    android:id="@+id/breakdown_icon"
+                    android:layout_width="40dp"
+                    android:layout_marginTop="40dp"
                     android:textColor="@color/white"
+                    android:layout_centerHorizontal="true"
                     android:background="@drawable/braekdown"
-                    android:layout_height="70dp" />
+                    android:layout_height="40dp" />
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="10dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/breakdown_icon"
+                    android:textSize="14sp"
+
                     android:textColor="@color/white"
                     android:text="Breakdown"/>
+                </RelativeLayout>
 
-            </android.support.v7.widget.CardView>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/preventive_maintainace"
+                android:layout_width="match_parent"
+                android:layout_height="165dp"
+                android:layout_marginTop="10sp"
+                android:orientation="vertical"
+                android:layout_weight=".5"
+
+                >
+
+                <RelativeLayout
+                    android:layout_width="140sp"
+                    android:layout_height="140sp"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/circular_overdue_complaints_background"
+
+                    >
+                    <ImageView
+                        android:id="@+id/preventive_icon"
+                        android:layout_width="40dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="@color/white"
+                        android:background="@drawable/preventivemaintenance"
+                        android:layout_height="40dp" />
+                    <TextView
+                        android:id="@+id/preventive_heading"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textSize="14sp"
+
+                        android:layout_centerHorizontal="true"
+                        android:layout_below="@+id/preventive_icon"
+                        android:textColor="@color/white"
+                        android:text="Preventive"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="14sp"
+
+                        android:layout_below="@+id/preventive_heading"
+                        android:textColor="@color/white"
+                        android:text="Maintenance"/>
+                </RelativeLayout>
+
+            </LinearLayout>
 
 
-            <android.support.v7.widget.CardView
+            <!--<android.support.v7.widget.CardView
                 android:id="@+id/preventive_maintainace"
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
@@ -157,44 +231,25 @@
                         android:text="Maintenance"/>
                 </RelativeLayout>
 
-            </android.support.v7.widget.CardView>
+            </android.support.v7.widget.CardView>-->
 
 
 
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:orientation="horizontal"
-            android:weightSum="1"
 
-            >
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="1dp"
                 android:orientation="vertical"
-                android:background="@color/solar_blue"
-                android:layout_weight=".5"
+                android:background="@color/lighter_gray"
+                android:layout_marginTop="10sp"
                 >
 
 
 
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:orientation="vertical"
-                android:layout_weight=".5"
-                android:background="@color/solar_pink"
-                >
-
-
-            </LinearLayout>
 
 
         </LinearLayout>
@@ -202,6 +257,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:gravity="center_horizontal">
 
             <ImageView
@@ -235,31 +291,37 @@
             android:paddingBottom="10dp"
             android:src="@drawable/admingraph680"
             android:layout_width="match_parent"
-            android:layout_height="180dp"  />
+            android:layout_height="220dp"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="20sp"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            android:background="@color/lighter_gray"/>
         <TextView
             android:id="@+id/text_information"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:layout_gravity="center"
-            android:textColor="@color/black"
+            android:textColor="@color/heading_color"
             android:lines="1"
             android:textSize="18sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            android:text="Information"/>
+            android:layout_marginTop="5dp"
+            android:text="INFORMATION"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="50dp"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5sp"
+            android:paddingStart="50sp"
+            android:paddingEnd="30sp"
             android:orientation="vertical"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             android:id="@+id/information"
-            android:background="@drawable/rectangular_background_curved_edges_consumer"
+            android:background="@color/white"
             >
             <RelativeLayout
                 android:layout_width="match_parent"

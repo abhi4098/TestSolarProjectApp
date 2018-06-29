@@ -10,6 +10,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/person_image"
+        android:layout_marginTop="30sp"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center_horizontal"
@@ -23,10 +24,16 @@
         android:layout_height="wrap_content"
        android:layout_gravity="center_horizontal"
         android:text="myWay Solar"
+        android:layout_marginTop="20sp"
         android:textSize="18sp"
         android:layout_marginBottom="20dp"
-        android:textColor="@color/solar_pink"
+        android:textColor="@color/white"
          />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white"
+        android:layout_marginTop="20sp"/>
 
 </LinearLayout>
