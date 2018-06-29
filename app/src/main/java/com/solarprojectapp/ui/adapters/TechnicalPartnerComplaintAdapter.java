@@ -64,11 +64,11 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
         public TextView projectOwner;
         public TextView endConsumer;
         public TextView projectType;
-        public Button viewDetailsBtn;
-        public Button acceptBtn;
-        public Button closeBtn;
-        public Button rejectBtn;
-        public Button requestSparePartBtn;
+        public TextView viewDetailsBtn;
+        public TextView acceptBtn;
+        public TextView closeBtn;
+        public TextView rejectBtn;
+        public TextView requestSparePartBtn;
 
 
 
@@ -93,11 +93,11 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
             viewHolder.endConsumer= (TextView) rowView.findViewById(R.id.end_consumer);
             viewHolder.projectOwner= (TextView) rowView.findViewById(R.id.project_owner);
             viewHolder.projectType= (TextView) rowView.findViewById(R.id.project_type);
-            viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
-            viewHolder.acceptBtn= (Button) rowView.findViewById(R.id.accept_button);
-            viewHolder.rejectBtn= (Button) rowView.findViewById(R.id.reject_button);
-            viewHolder.closeBtn= (Button) rowView.findViewById(R.id.close_button);
-            viewHolder.requestSparePartBtn= (Button) rowView.findViewById(R.id.request_spare_part_button);
+            viewHolder.viewDetailsBtn= (TextView) rowView.findViewById(R.id.view_detail_button);
+            viewHolder.acceptBtn= (TextView) rowView.findViewById(R.id.accept_button);
+            viewHolder.rejectBtn= (TextView) rowView.findViewById(R.id.reject_button);
+            viewHolder.closeBtn= (TextView) rowView.findViewById(R.id.close_button);
+            viewHolder.requestSparePartBtn= (TextView) rowView.findViewById(R.id.request_spare_part_button);
 
 
 

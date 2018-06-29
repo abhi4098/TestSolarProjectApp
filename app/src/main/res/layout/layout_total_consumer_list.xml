@@ -4,7 +4,17 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="5dp"
-    app:cardCornerRadius="15dp">
+    >
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        >
+
+    <LinearLayout
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/solar_pink"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,6 +24,9 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
@@ -36,20 +49,24 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="3dp"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="120sp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_blue"
-            android:text="Email Id: "/>
+            android:text="Email Id"/>
 
         <TextView
             android:id="@+id/consumer_email_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:text="consumer_email_id"
             />
 
     </LinearLayout>
@@ -57,19 +74,24 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="3dp"
+
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="120sp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_blue"
-            android:text="Contact No: "/>
+            android:text="Contact No"/>
 
         <TextView
             android:id="@+id/consumer_contact_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:text="consumer_contact_num"
             />
 
     </LinearLayout>
@@ -77,19 +99,24 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="3dp"
+
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="120sp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_blue"
-            android:text="Project Owner: "/>
+            android:text="Project Owner"/>
 
         <TextView
             android:id="@+id/consumer_project_owner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:text="consumer_project_owner"
             />
 
     </LinearLayout>
@@ -97,43 +124,55 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="3dp"
+
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="120sp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_blue"
-            android:text="Project Type: "/>
+            android:text="Project Type"/>
 
         <TextView
             android:id="@+id/consumer_project_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:text="consumer_project_type"
             />
 
     </LinearLayout>
 
 
     <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="3dp"
+
+        android:orientation="horizontal">
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="120sp"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
                 android:textColor="@color/solar_blue"
-                android:text="Consumer Add: "/>
+                android:text="Consumer Add"/>
 
             <TextView
                 android:id="@+id/consumer_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
+                android:text="consumer_add"
                 />
         </LinearLayout>
 
 
 
 </LinearLayout>
+    </LinearLayout>
 </android.support.v7.widget.CardView>

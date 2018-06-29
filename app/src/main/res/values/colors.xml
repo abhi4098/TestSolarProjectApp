@@ -3,13 +3,25 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="lighter_gray">#fefbf7</color>
+    <color name="lighter_gray">#eeeeee</color>
     <color name="off_white">#EFEFEF</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="deep_sky_blue">#00BFFF</color>
     <color name="dark_grey">#808080</color>
     <color name="shadow_color">#CABBBBBB</color>
+    <color name="heading_color">#0b8a90</color>
+
+    <color name="open_background">#4c6279</color>
+    <color name="overdue_background">#e84c3d</color>
+    <color name="closed_background">#3598db</color>
+
+    <color name="complaint_recieved_background">#e84c3d</color>
+    <color name="approval_pending_background">#dc8329</color>
+    <color name="request_background">#4c6279</color>
+    <color name="requests_pending_background">#10be9b</color>
+    <color name="rejected_background">#3598db</color>
+
 
     <color name="text_color">#7e7e7e</color>
     <color name="theme_primary_dark">#1ea9e1</color>
@@ -17,6 +29,9 @@
     <color name="resister_button_color">#1ea9e1</color>
     <color name="bottom_bar">#2b2b2b</color>
     <color name="silver">#C0C0C0</color>
+    <color name="toolbar_background">#0b8d9d</color>
+    <color name="header_background">#08606a</color>
+
     <color name="solar_blue">#1c7cb2</color>
     <color name="solar_pink">#ea466b</color>
     <color name="solar_pink_gradient">#C73B5B</color>

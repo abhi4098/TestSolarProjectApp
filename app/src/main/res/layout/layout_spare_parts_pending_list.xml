@@ -4,17 +4,28 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="3dp"
-    app:cardMaxElevation="3dp"
-    app:cardCornerRadius="15dp">
 
+    >
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        >
+
+    <LinearLayout
+        android:layout_width="2dp"
+        android:layout_height="match_parent"
+        android:background="@color/solar_pink"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
         android:orientation="vertical">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
         android:orientation="horizontal"
         >
         <TextView
@@ -38,20 +49,24 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10sp"
+        android:layout_marginTop="15sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="3dp"
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="140sp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_blue"
-            android:text="Spare Part Brand : "/>
+            android:text="Spare Part Brand"/>
 
         <TextView
             android:id="@+id/spare_part_brand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:text="spare part brand"
             />
 
     </LinearLayout>
@@ -59,19 +74,24 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="3dp"
+
         android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="140sp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_blue"
-            android:text="Spare Part Id : "/>
+            android:text="Spare Part Id"/>
 
         <TextView
             android:id="@+id/spare_part_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:text="sparepart id"
             />
 
     </LinearLayout>
@@ -82,37 +102,49 @@
         android:orientation="horizontal">-->
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="3dp"
+
+        android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="140sp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_blue"
-            android:text="Status : "/>
+            android:text="Status"/>
 
         <TextView
             android:id="@+id/spare_part_status_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:text="status"
             />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="3dp"
+
+        android:orientation="horizontal">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="140sp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="@color/solar_blue"
-            android:text="Spare Part Price : "/>
+            android:text="Spare Part Price"/>
 
         <TextView
             android:id="@+id/spare_part_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:text="sparepart price"
             />
     </LinearLayout>
 
@@ -139,33 +171,38 @@
 
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_gravity="start"
+        android:background="@color/silver"
         android:layout_marginTop="20dp">
 
 
-        <Button
+        <TextView
             android:id="@+id/approve_button"
             android:layout_width="wrap_content"
             android:layout_toStartOf="@+id/view_detail_button"
             android:layout_centerHorizontal="true"
-            android:textColor="@color/white"
+            android:layout_centerVertical="true"
+            android:textColor="@color/solar_green"
             android:layout_marginStart="20dp"
-            android:background="@drawable/rectangular_button_with_curves_green"
             android:layout_height="25dp"
             android:layout_marginEnd="20dp"
-            android:text="Approve"/>
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="APPROVE"/>
 
-        <Button
+        <TextView
             android:id="@+id/view_detail_button"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:textColor="@color/white"
+            android:textColor="@color/solar_pink"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:background="@drawable/rectangular_button_with_curves_pink"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:text="View Details"/>
+            android:text="VIEW DETAILS"/>
 
         <!--<Button
             android:layout_width="wrap_content"
@@ -175,5 +212,6 @@
             android:layout_height="25dp"
             android:text="Reject"/>-->
     </RelativeLayout>
+    </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

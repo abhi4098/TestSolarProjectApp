@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_alignParentTop="true"
-        android:background="@drawable/toolbar_background"
+        android:background="@color/toolbar_background"
         android:textAlignment="center"
         app:theme="@style/MyToolBar"
         app:titleTextColor="@color/white">

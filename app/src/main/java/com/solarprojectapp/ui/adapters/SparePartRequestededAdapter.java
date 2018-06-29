@@ -62,8 +62,8 @@ public class SparePartRequestededAdapter extends ArrayAdapter<SparepartsrequestL
         public TextView sparePartStatusName;
         public TextView sparePartBrand;
         public TextView sparePartPrice;
-        public Button approveBtn;
-        public Button viewDetailsBtn;
+        public TextView approveBtn;
+        public TextView viewDetailsBtn;
 
 
 
@@ -89,8 +89,8 @@ public class SparePartRequestededAdapter extends ArrayAdapter<SparepartsrequestL
             viewHolder.sparePartBrand= (TextView) rowView.findViewById(R.id.spare_part_brand);
             viewHolder.sparePartStatusName= (TextView) rowView.findViewById(R.id.spare_part_status_name);
             viewHolder.sparePartPrice= (TextView) rowView.findViewById(R.id.spare_part_price);
-            viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
-            viewHolder.approveBtn= (Button) rowView.findViewById(R.id.approve_button);
+            viewHolder.viewDetailsBtn= (TextView) rowView.findViewById(R.id.view_detail_button);
+            viewHolder.approveBtn= (TextView) rowView.findViewById(R.id.approve_button);
 
 
 

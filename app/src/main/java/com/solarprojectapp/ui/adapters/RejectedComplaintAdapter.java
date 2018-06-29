@@ -63,9 +63,9 @@ public class RejectedComplaintAdapter extends ArrayAdapter<RejectedComplaintList
         public TextView projectOwner;
         public TextView endConsumer;
         public TextView projectType;
-        public Button viewDetailsBtn;
-        public Button approveBtn;
-        public Button assignBtn;
+        public TextView viewDetailsBtn;
+        public TextView approveBtn;
+        public TextView assignBtn;
 
 
 
@@ -89,9 +89,9 @@ public class RejectedComplaintAdapter extends ArrayAdapter<RejectedComplaintList
             viewHolder.endConsumer= (TextView) rowView.findViewById(R.id.end_consumer);
             viewHolder.projectOwner= (TextView) rowView.findViewById(R.id.project_owner);
             viewHolder.projectType= (TextView) rowView.findViewById(R.id.project_type);
-            viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
-            viewHolder.approveBtn= (Button) rowView.findViewById(R.id.approve_button);
-            viewHolder.assignBtn= (Button) rowView.findViewById(R.id.assign_button);
+            viewHolder.viewDetailsBtn= (TextView) rowView.findViewById(R.id.view_detail_button);
+            viewHolder.approveBtn= (TextView) rowView.findViewById(R.id.approve_button);
+            viewHolder.assignBtn= (TextView) rowView.findViewById(R.id.assign_button);
 
 
 

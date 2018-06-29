@@ -66,7 +66,7 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
         public TextView techGeoAdd;
         public TextView techContactNum;
         //public Button viewDetailsBtn;
-        public Button approveBtn;
+        public TextView approveBtn;
 
 
 
@@ -91,7 +91,7 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
             viewHolder.techGeoAdd= (TextView) rowView.findViewById(R.id.tech_user_add);
             viewHolder.techContactNum= (TextView) rowView.findViewById(R.id.tech_contact_num);
             //viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
-           viewHolder.approveBtn= (Button) rowView.findViewById(R.id.approve_button);
+           viewHolder.approveBtn= (TextView) rowView.findViewById(R.id.approve_button);
 
 
 

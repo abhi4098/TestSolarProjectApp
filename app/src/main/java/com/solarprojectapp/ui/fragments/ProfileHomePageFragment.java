@@ -64,12 +64,12 @@ public class ProfileHomePageFragment extends Fragment {
     private RetrofitInterface.TotalConsumerCountForClient TotalConsumerCountForClientDataAdapter;
     int openComplaints,overdueComplaints,closureComplaints;
 
-    @BindView(R.id.progress_bar_blue)
+    /*@BindView(R.id.progress_bar_blue)
     ProgressBar progressBlue;
     @BindView(R.id.progress_bar_pink)
     ProgressBar progressPink;
     @BindView(R.id.progress_bar_yellow)
-    ProgressBar progressYellow;
+    ProgressBar progressYellow;*/
 
     @BindView(R.id.total_consumers)
     TextView tvTotalConsumers;
@@ -240,7 +240,7 @@ public class ProfileHomePageFragment extends Fragment {
                                 tvSparePartsRequested.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalSparepartsRequested()));
                                 tvSparePartsPending.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalSparepartsPending()));
                                 tvSparePartsToBeClosedToday.setText(String.valueOf(response.body().getAdminSummary().get(i).getTotalSparepartstobeclosedbytoday()));
-                                setProgressBar(response);
+                                //setProgressBar(response);
 
                                 LoadingDialog.cancelLoading();
                             }
@@ -325,7 +325,7 @@ public class ProfileHomePageFragment extends Fragment {
         getDashboardData();
     }
 
-    private void setProgressBar(Response<DashboardDataResponse> response) {
+  /*  private void setProgressBar(Response<DashboardDataResponse> response) {
          if (openComplaints>overdueComplaints && openComplaints>closureComplaints)
          {
              if(openComplaints == 0)
@@ -448,7 +448,7 @@ public class ProfileHomePageFragment extends Fragment {
 
 
     }
-
+*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -466,7 +466,7 @@ public class ProfileHomePageFragment extends Fragment {
         if (PrefUtils.getUserType(getContext()).equals("Admin"))
         {
             bcAdminGraph.setVisibility(View.VISIBLE);
-            tvGraphDtaText.setVisibility(View.VISIBLE);
+            //tvGraphDtaText.setVisibility(View.VISIBLE);
             setData();
 
             // get the legend (only possible after setting data)
