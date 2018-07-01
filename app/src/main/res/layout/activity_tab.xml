@@ -20,7 +20,7 @@
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/solar_blue"
+            android:background="@color/heading_color"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/solar_pink"
             app:tabMode="fixed"

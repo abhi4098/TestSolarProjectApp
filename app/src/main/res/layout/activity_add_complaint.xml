@@ -2,8 +2,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:fitsSystemWindows="true"
-    android:background="@color/lighter_gray"
-
+    android:background="@color/list_background_color"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
 
@@ -46,7 +45,7 @@
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginTop="20dp"
-            android:textColor="@color/solar_blue"
+            android:textColor="@color/heading_color"
             android:text="NAME OF COMPLAINT"/>
 
     <Spinner
@@ -81,7 +80,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginTop="50dp"
         android:textColor="@color/white"
-        android:background="@color/solar_pink"
+        android:background="@color/overdue_background"
         android:text="SUBMIT"/>
 
     </LinearLayout>

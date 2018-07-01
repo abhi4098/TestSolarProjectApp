@@ -291,9 +291,9 @@
             android:paddingBottom="10dp"
             android:src="@drawable/admingraph680"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="200dp"
             android:layout_marginTop="10sp"
-            android:layout_marginBottom="20sp"/>
+            android:layout_marginBottom="40sp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -303,7 +303,6 @@
             android:id="@+id/text_information"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
             android:layout_gravity="center"
             android:textColor="@color/heading_color"
             android:lines="1"
@@ -350,7 +349,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
                     android:layout_alignParentEnd="true"
-                    android:textColor="@color/solar_pink"
+                    android:textColor="@color/overdue_background"
                     android:lines="1"
                     android:textSize="15sp"
                     android:text="N/A"
@@ -386,7 +385,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
                     android:layout_alignParentEnd="true"
-                    android:textColor="@color/solar_pink"
+                    android:textColor="@color/overdue_background"
                     android:lines="1"
                     android:textSize="15sp"
                     android:text="N/A"
@@ -422,7 +421,7 @@
                     android:layout_height="wrap_content"
                     android:textStyle="normal"
                     android:layout_alignParentEnd="true"
-                    android:textColor="@color/solar_pink"
+                    android:textColor="@color/overdue_background"
                     android:lines="1"
                     android:textSize="15sp"
                     android:text="N/A"

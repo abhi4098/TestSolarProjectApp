@@ -2,6 +2,7 @@ package com.solarprojectapp.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,6 +70,7 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
         public TextView viewDetailsBtn;
         public TextView approveBtn;
         public TextView assignBtn;
+        public LinearLayout llLineColor;
 
 
 
@@ -95,6 +98,7 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
             viewHolder.viewDetailsBtn= (TextView) rowView.findViewById(R.id.view_detail_button);
             viewHolder.approveBtn= (TextView) rowView.findViewById(R.id.approve_button);
             viewHolder.assignBtn= (TextView) rowView.findViewById(R.id.assign_button);
+            viewHolder.llLineColor= (LinearLayout) rowView.findViewById(R.id.ll_line_design);
 
 
 
@@ -264,11 +268,21 @@ public class ComplaintAdapter extends ArrayAdapter<ComplaintListsDatum> {
                     });
 
                 }
+
+
                 }
 
         }
 
-
+        if (position%4 == 0){
+            holder.llLineColor.setBackgroundColor(Color.parseColor("#e84c3d"));
+        } else if (position%4 == 1){
+            holder.llLineColor.setBackgroundColor(Color.parseColor("#3598db"));
+        } else if (position%4 == 2){
+            holder.llLineColor.setBackgroundColor(Color.parseColor("#4c6279"));
+        } else if (position%4 == 3){
+            holder.llLineColor.setBackgroundColor(Color.parseColor("#dc8329"));
+        }
 
         return rowView;
     }

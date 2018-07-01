@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="2dp"
         android:layout_height="match_parent"
-        android:background="@color/solar_pink"/>
+        android:background="@color/list_background_color"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,17 +32,17 @@
             android:id="@+id/sparepart_pending_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="17sp"
             android:textStyle="bold"
-            android:textColor="@color/solar_pink"
+            android:textColor="@color/heading_color"
             android:text="Spare Part :"/>
 
         <TextView
             android:id="@+id/spare_part_name"
             android:layout_width="wrap_content"
-            android:textColor="@color/solar_pink"
+            android:textColor="@color/approval_pending_background"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="17sp"
             />
 
         </LinearLayout>
@@ -59,7 +59,7 @@
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="@color/solar_blue"
+            android:textColor="@color/heading_color"
             android:text="Spare Part Brand"/>
 
         <TextView
@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="spare_part_brand"
+            android:textColor="@color/request_background"
             />
 
     </LinearLayout>
@@ -84,7 +84,7 @@
             android:layout_width="140sp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="@color/solar_blue"
+            android:textColor="@color/heading_color"
             android:text="Spare Part Id"/>
 
         <TextView
@@ -92,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="spare_part_id"
+            android:textColor="@color/request_background"
             />
 
     </LinearLayout>
@@ -113,7 +113,7 @@
             android:layout_width="140sp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="@color/solar_blue"
+            android:textColor="@color/heading_color"
             android:text="Status"/>
 
         <TextView
@@ -121,7 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="spare_part_status_name"
+            android:textColor="@color/request_background"
             />
     </LinearLayout>
 
@@ -137,7 +137,7 @@
             android:layout_width="140sp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="@color/solar_blue"
+            android:textColor="@color/heading_color"
             android:text="Spare Part Price"/>
 
         <TextView
@@ -145,7 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="spare_part_price"
+            android:textColor="@color/request_background"
             />
     </LinearLayout>
 
@@ -174,19 +174,19 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="start"
-        android:background="@color/silver"
+        android:background="@color/list_background_color"
         android:layout_marginTop="20dp">
 
         <TextView
             android:id="@+id/view_detail_button"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:textColor="@color/solar_pink"
+            android:textColor="@color/approval_pending_background"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:text="VIEW DETAILS"/>
         <TextView
@@ -197,7 +197,7 @@
             android:textColor="@color/solar_green"
             android:layout_marginStart="20dp"
             android:layout_height="25dp"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textStyle="bold"
             android:layout_centerVertical="true"
             android:text="APPROVE"/>
