@@ -2,6 +2,7 @@ package com.solarprojectapp.ui.fragments;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.icu.text.RelativeDateTimeFormatter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,6 +85,9 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
     @BindView(R.id.calendarView)
     com.prolificinteractive.materialcalendarview.MaterialCalendarView mCalendarView;
 
+
+    @BindView(R.id.rl_project_owner)
+    RelativeLayout rlProjectOwner;
 
     @BindView(R.id.text_maintainence)
     TextView tvMaintenancedData;
@@ -188,6 +193,7 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
             tvProjectName.setVisibility(View.VISIBLE);
             tvProjectType.setVisibility(View.VISIBLE);
             tvProjectOwner.setVisibility(View.VISIBLE);
+            rlProjectOwner.setVisibility(View.VISIBLE);
             ivEndConsumerGraph.setVisibility(View.VISIBLE);
             tvGraphDtaText.setVisibility(View.VISIBLE);
             ivTestImage.setVisibility(View.VISIBLE);

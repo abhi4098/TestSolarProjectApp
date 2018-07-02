@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -69,6 +70,7 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
         public TextView closeBtn;
         public TextView rejectBtn;
         public TextView requestSparePartBtn;
+        public RelativeLayout rlRequestSparePart;
 
 
 
@@ -98,6 +100,8 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
             viewHolder.rejectBtn= (TextView) rowView.findViewById(R.id.reject_button);
             viewHolder.closeBtn= (TextView) rowView.findViewById(R.id.close_button);
             viewHolder.requestSparePartBtn= (TextView) rowView.findViewById(R.id.request_spare_part_button);
+            viewHolder.rlRequestSparePart= (RelativeLayout) rowView.findViewById(R.id.rl_request_spare_part);
+
 
 
 
@@ -124,6 +128,7 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
                holder.closeBtn.setVisibility(View.GONE);
                holder.rejectBtn.setVisibility(View.VISIBLE);
                holder.requestSparePartBtn.setVisibility(View.GONE);
+               holder.rlRequestSparePart.setVisibility(View.GONE);
 
                holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
                    @Override
@@ -179,6 +184,7 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
                holder.closeBtn.setVisibility(View.VISIBLE);
                holder.rejectBtn.setVisibility(View.GONE);
                holder.requestSparePartBtn.setVisibility(View.VISIBLE);
+               holder.rlRequestSparePart.setVisibility(View.VISIBLE);
                holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {
@@ -232,6 +238,7 @@ public class TechnicalPartnerComplaintAdapter extends ArrayAdapter<ComplaintList
                holder.closeBtn.setVisibility(View.GONE);
                holder.rejectBtn.setVisibility(View.GONE);
                holder.requestSparePartBtn.setVisibility(View.GONE);
+               holder.rlRequestSparePart.setVisibility(View.GONE);
                holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {

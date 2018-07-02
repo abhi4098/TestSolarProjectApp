@@ -30,17 +30,16 @@
             android:id="@+id/complaint_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textColor="@color/solar_pink"
+            android:textSize="17sp"
+            android:textColor="@color/heading_color"
             android:text="Complaint: "/>
 
         <TextView
             android:id="@+id/complaint_name"
             android:layout_width="wrap_content"
-            android:textColor="@color/solar_pink"
+            android:textColor="@color/approval_pending_background"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:textSize="17sp"
             />
 
     </LinearLayout>
@@ -57,7 +56,7 @@
             android:layout_width="130sp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="@color/solar_blue"
+            android:textColor="@color/heading_color"
             android:text="Project Owner"/>
 
         <TextView
@@ -65,7 +64,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="Puja"
+            android:textColor="@color/request_background"
             />
 
     </LinearLayout>
@@ -82,7 +81,7 @@
             android:layout_width="130sp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="@color/solar_blue"
+            android:textColor="@color/heading_color"
             android:text="End Consumer"/>
 
         <TextView
@@ -90,7 +89,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="Anjali Sharma"
+            android:textColor="@color/request_background"
             />
 
     </LinearLayout>
@@ -110,7 +109,7 @@
             android:layout_width="130sp"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:textColor="@color/solar_blue"
+            android:textColor="@color/heading_color"
             android:text="Project Type"/>
 
         <TextView
@@ -118,7 +117,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
-            android:text="Solor roof top"
+            android:textColor="@color/request_background"
             />
     </LinearLayout>
 
@@ -147,7 +146,7 @@
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="start"
-        android:background="@color/silver"
+        android:background="@color/list_background_color"
         android:layout_marginTop="20dp"
         >
         <TextView
@@ -192,7 +191,7 @@
             android:id="@+id/view_detail_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/solar_pink"
+            android:textColor="@color/approval_pending_background"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="16sp"
@@ -208,7 +207,8 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_gravity="start"
-            android:background="@color/silver"
+            android:id="@+id/rl_request_spare_part"
+            android:background="@color/list_background_color"
             >
     <TextView
         android:id="@+id/request_spare_part_button"
