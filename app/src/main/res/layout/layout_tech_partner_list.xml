@@ -13,7 +13,10 @@
         <LinearLayout
             android:layout_width="2dp"
             android:layout_height="match_parent"
-            android:background="@color/solar_pink" />
+            android:id="@+id/ll_line_design"
+            android:orientation="vertical"
+
+            android:background="@color/solar_pink"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,7 +34,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Technical Partner Name: "
+                    android:text="Technical Partner Name - "
                     android:textColor="@color/heading_color"
                     android:textSize="17sp" />
 
@@ -39,7 +42,7 @@
                     android:id="@+id/tech_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/solar_pink"
+                    android:textColor="@color/approval_pending_background"
                     android:textSize="17sp" />
 
             </LinearLayout>

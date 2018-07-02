@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/resister_button_color</item>
         <item name="android:activatedBackgroundIndicator">@drawable/drawer_list_selector</item>
-        <item name="colorControlHighlight">@color/white</item>
+        <item name="colorControlHighlight">@color/request_background</item>
 
     </style>
 

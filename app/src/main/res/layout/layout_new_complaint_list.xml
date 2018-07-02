@@ -40,7 +40,7 @@
             android:textSize="17sp"
 
             android:textColor="@color/heading_color"
-            android:text="Complaint: "/>
+            android:text="Complaint - "/>
 
         <TextView
             android:id="@+id/complaint_name"

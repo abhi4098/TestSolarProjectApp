@@ -2,6 +2,7 @@ package com.solarprojectapp.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +69,7 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
         public TextView techContactNum;
         //public Button viewDetailsBtn;
         public TextView approveBtn;
+        public LinearLayout llLineColor;
 
 
 
@@ -92,6 +95,8 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
             viewHolder.techContactNum= (TextView) rowView.findViewById(R.id.tech_contact_num);
             //viewHolder.viewDetailsBtn= (Button) rowView.findViewById(R.id.view_detail_button);
            viewHolder.approveBtn= (TextView) rowView.findViewById(R.id.approve_button);
+            viewHolder.llLineColor= (LinearLayout) rowView.findViewById(R.id.ll_line_design);
+
 
 
 
@@ -119,32 +124,20 @@ public class TechnicalPartenerAdapter extends ArrayAdapter<TechnicalPartnerList>
 
                 }
             });
-           /* holder.viewDetailsBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent i = new Intent(getContext(), ShowNewComplaintDetailsActivity.class);
-                    i.putExtra("COMPLAINT_DESC",complaintListsDatum.getComplainDescription());
-                    i.putExtra("COMPLAINT_ID",complaintListsDatum.getComplainId());
-                    i.putExtra("COMPLAINT",complaintListsDatum.getComplaint());
-                    i.putExtra("COMPLAINT_END_CONSUMER",complaintListsDatum.getEndConsumer());
-                    i.putExtra("COMPLAINT_PROJECT_OWNER",complaintListsDatum.getProjectOwner());
-                    i.putExtra("COMPLAINT_PROJECT_TYPE",complaintListsDatum.getProjectType());
-                    i.putExtra("COMPLAINT_STATE",complaintListsDatum.getState());
-                    i.putExtra("COMPLAINT_CONTACT",complaintListsDatum.getEndConsumerContactno());
-                    //i.putExtra("INTENT_FROM","EditButton");
 
-                    getContext().startActivity(i);
-
-                }
-            });
-
-
-*/
 
         }
 
 
-
+        if (position%4 == 0){
+            holder.llLineColor.setBackgroundColor(Color.parseColor("#e84c3d"));
+        } else if (position%4 == 1){
+            holder.llLineColor.setBackgroundColor(Color.parseColor("#3598db"));
+        } else if (position%4 == 2){
+            holder.llLineColor.setBackgroundColor(Color.parseColor("#4c6279"));
+        } else if (position%4 == 3){
+            holder.llLineColor.setBackgroundColor(Color.parseColor("#dc8329"));
+        }
         return rowView;
     }
 
