@@ -61,7 +61,8 @@
 
         </activity>
         <activity android:name=".ui.activities.MyProfileActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+          />
         <activity android:name=".ui.activities.AddComplaintActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.activities.BreakdownActivity"

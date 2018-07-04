@@ -109,16 +109,17 @@
                     android:layout_height="140sp"
                     android:layout_margin="10sp"
 
+
                     android:background="@drawable/circular_open_complaints_background"
 
                     >
                 <ImageView
                     android:id="@+id/breakdown_icon"
                     android:layout_width="40dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="25dp"
                     android:textColor="@color/white"
                     android:layout_centerHorizontal="true"
-                    android:background="@drawable/braekdown"
+                    android:background="@drawable/breakdown"
                     android:layout_height="40dp" />
                 <TextView
                     android:layout_width="wrap_content"
@@ -137,7 +138,6 @@
                 android:id="@+id/preventive_maintainace"
                 android:layout_width="match_parent"
                 android:layout_height="165dp"
-                android:layout_marginTop="10sp"
                 android:orientation="vertical"
                 android:layout_weight=".5"
 
@@ -156,7 +156,7 @@
                         android:layout_marginTop="30dp"
                         android:layout_centerHorizontal="true"
                         android:textColor="@color/white"
-                        android:background="@drawable/preventivemaintenance"
+                        android:background="@drawable/preventive_maintenance"
                         android:layout_height="40dp" />
                     <TextView
                         android:id="@+id/preventive_heading"

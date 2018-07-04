@@ -171,7 +171,7 @@
             android:layout_marginEnd="20dp"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:text="APPROVE"/>
+            android:text="Approve"/>
 
         <TextView
             android:id="@+id/view_detail_button"
@@ -184,7 +184,7 @@
             android:textStyle="bold"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:text="VIEW DETAILS"/>
+            android:text="View Details"/>
 
         <!--<Button
             android:layout_width="wrap_content"

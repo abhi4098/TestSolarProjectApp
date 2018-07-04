@@ -190,7 +190,7 @@
             android:layout_alignParentEnd="true"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:text="VIEW DETAILS"/>
+            android:text="View Details"/>
         <TextView
             android:id="@+id/approve_button"
             android:layout_width="wrap_content"
@@ -202,7 +202,7 @@
             android:textSize="14sp"
             android:textStyle="bold"
             android:layout_centerVertical="true"
-            android:text="APPROVE"/>
+            android:text="Approve"/>
 
         <!--<Button
             android:layout_width="wrap_content"

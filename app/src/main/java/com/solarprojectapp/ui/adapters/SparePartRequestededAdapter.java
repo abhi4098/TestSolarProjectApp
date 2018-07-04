@@ -168,11 +168,11 @@ public class SparePartRequestededAdapter extends ArrayAdapter<SparepartsrequestL
         }
 
         if (position%4 == 0){
-            holder.llLineColor.setBackgroundColor(Color.parseColor("#e84c3d"));
+            holder.llLineColor.setBackgroundColor(Color.parseColor("#e74c3c"));
         } else if (position%4 == 1){
-            holder.llLineColor.setBackgroundColor(Color.parseColor("#3598db"));
+            holder.llLineColor.setBackgroundColor(Color.parseColor("#3498db"));
         } else if (position%4 == 2){
-            holder.llLineColor.setBackgroundColor(Color.parseColor("#4c6279"));
+            holder.llLineColor.setBackgroundColor(Color.parseColor("#4b6278"));
         } else if (position%4 == 3){
             holder.llLineColor.setBackgroundColor(Color.parseColor("#dc8329"));
         }

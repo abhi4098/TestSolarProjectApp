@@ -54,17 +54,16 @@
                     android:orientation="vertical"
                     android:layout_toEndOf="@+id/total_consumers"
                     android:layout_width="1dp"
-                    android:layout_height="50dp"
+                    android:layout_height="65dp"
                     android:background="@color/white"/>
 
                 <TextView
                     android:id="@+id/total_consumers"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
                     android:layout_marginEnd="20dp"
                     android:textColor="@color/white"
-                    android:textSize="40sp" />
+                    android:textSize="50sp" />
             </RelativeLayout>
 
         </RelativeLayout>
@@ -300,6 +299,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
 
                         >
 
@@ -319,9 +319,9 @@
                             android:textStyle="bold" />
 
                         <RelativeLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="80sp"
+                            android:layout_centerHorizontal="true"
                             android:layout_centerInParent="true"
                             >
 
@@ -384,6 +384,8 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
+
 
                         >
 
@@ -403,9 +405,9 @@
                             android:textStyle="bold" />
 
                         <RelativeLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="80sp"
+                            android:layout_centerHorizontal="true"
                             android:layout_centerInParent="true"
                             >
 
@@ -456,6 +458,8 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="center"
+
 
                     >
 
@@ -475,9 +479,9 @@
                         android:textStyle="bold" />
 
                     <RelativeLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="280sp"
+                        android:layout_centerHorizontal="true"
                         android:layout_centerInParent="true"
                         >
 
@@ -550,6 +554,8 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
+
 
                         >
 
@@ -569,9 +575,9 @@
                             android:textStyle="bold" />
 
                         <RelativeLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="80sp"
+                            android:layout_centerHorizontal="true"
                             android:layout_centerInParent="true"
                             >
 
@@ -620,6 +626,8 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_gravity="center"
+
 
                         >
 
@@ -639,9 +647,9 @@
                             android:textStyle="bold" />
 
                         <RelativeLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="80sp"
+                            android:layout_centerHorizontal="true"
                             android:layout_centerInParent="true"
                             >
 
