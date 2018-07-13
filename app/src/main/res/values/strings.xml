@@ -27,10 +27,10 @@
     <string name="open">Open</string>
     <string name="overdue">Overdue</string>
     <string name="closure">Closure</string>
-    <string name="new_complaints_received">COMPLAINT RECEIVED</string>
+    <string name="new_complaints_received">COMPLAINTS RECEIVED</string>
     <string name="click_here">Click Here</string>
     <string name="spare_parts_requested"> REQUESTS</string>
-    <string name="spare_parts_pending"> REQUEST PENDING</string>
+    <string name="spare_parts_pending"> REQUESTS PENDING</string>
     <string name="to_be_closed_by_today">APPROVAL PENDING</string>
     <string name="rejected_complaints">REJECTED COMPLAINTS BY TECHNICAL PARTNER</string>
 
