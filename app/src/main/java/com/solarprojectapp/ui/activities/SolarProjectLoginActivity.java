@@ -277,6 +277,7 @@ public class SolarProjectLoginActivity extends AppCompatActivity implements Load
                             for (int i=0; i<response.body().getLoginData().size();i++) {
                                 loginType = response.body().getLoginData().get(i).getUsertype();
                                 PrefUtils.storeUserName(response.body().getLoginData().get(i).getUsername(), SolarProjectLoginActivity.this);
+
                                 PrefUtils.storeUserPassword(response.body().getLoginData().get(i).getPassword(), SolarProjectLoginActivity.this);
                                 PrefUtils.storeUserStatus(response.body().getLoginData().get(i).getUserStatus(), SolarProjectLoginActivity.this);
                                 PrefUtils.storeFkId(response.body().getLoginData().get(i).getFkLoggedid(), SolarProjectLoginActivity.this);

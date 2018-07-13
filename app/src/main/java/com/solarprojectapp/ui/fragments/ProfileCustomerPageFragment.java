@@ -187,7 +187,7 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile_customer_page, container, false);
         ButterKnife.bind(this, view);
-       if( PrefUtils.getUserType(getContext()).equals("End Consumer"))
+        if( PrefUtils.getUserType(getContext()).equals("End Consumer"))
         {
 
             tvProjectName.setVisibility(View.VISIBLE);
@@ -197,6 +197,8 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
             ivEndConsumerGraph.setVisibility(View.VISIBLE);
             tvGraphDtaText.setVisibility(View.VISIBLE);
             ivTestImage.setVisibility(View.VISIBLE);
+            tvProjectOwner.setText("PROJECT OWNER");
+            tvProjectName.setText(PrefUtils.getProjectOwner(getContext()));
 
             tvProjectType.setText(PrefUtils.getProject(getContext()));
             tvProjectName.setText(PrefUtils.getProjectOwner(getContext()));
@@ -251,6 +253,13 @@ public class ProfileCustomerPageFragment extends Fragment implements View.OnClic
 
 
         }
+        else
+        {
+            tvProjectName.setText(PrefUtils.getName(getContext()));
+
+        }
+
+
 
 
         return view;

@@ -25,6 +25,7 @@ public class PrefUtils {
     public static String COMMISION_DATE= "commision_date";
     public static String OM_STARTED= "om_started";
     public static String OTHER_DETAILS= "other_detail";
+    public static String NAME= "NAME";
 
   /*  public static String LOGGED_IN_USER_EMAIL = "user_email";
     public static String LOGGED_IN_USER_ADD = "user_add";
@@ -203,6 +204,20 @@ public class PrefUtils {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
         return sharedPreferences.getString(USER_NAME, "");
     }
+
+    public static void storeName(String name, Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        sharedPreferences.edit()
+                .putString(NAME, name)
+                .apply();
+
+    }
+
+    public static String getName(Context context) {
+        SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);
+        return sharedPreferences.getString(NAME, "");
+    }
+
 
     public static void storeUserPassword(String password, Context context) {
         SharedPreferences sharedPreferences = PrefUtils.getSharedPreferences(context);

@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:fillViewport="true"
+    android:background="#eeeeee"
+
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar_actionbar"
+        layout="@layout/activity_toolbar_complaint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="160sp"
+    android:background="@drawable/solar_profile_background"
+    android:layout_marginBottom="10sp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/person_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/solor_profile"
+        />
+
+</RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="#ffffff"
+        android:layout_marginStart="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textStyle="normal"
+            android:layout_marginTop="5sp"
+            android:layout_marginStart="20sp"
+            android:textColor="@color/text_color"
+            android:fontFamily="sans-serif-light"
+            android:lines="1"
+            android:textSize="15sp"
+            android:text="Name"
+
+            />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_marginStart="20sp"
+            android:textColor="@color/black"
+            android:lines="1"
+            android:textSize="18sp"
+            android:layout_marginTop="3sp"
+            android:fontFamily="sans-serif-light"
+            android:layout_gravity="start"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            >
+
+
+        </LinearLayout>
+
+        <TextView
+
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_gravity="start"
+            android:lines="1"
+            android:layout_marginStart="20sp"
+            android:textSize="15sp"
+            android:text="Contact Details"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/text_color"
+            android:fontFamily="sans-serif-light"
+            />
+        <TextView
+            android:id="@+id/user_phone_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_marginStart="20sp"
+            android:layout_gravity="start"
+            android:textColor="@color/black"
+            android:lines="1"
+            android:textSize="18sp"
+            android:layout_marginTop="3sp"
+            android:fontFamily="sans-serif-light"
+
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            >
+
+
+        </LinearLayout>
+
+        <TextView
+
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:textColor="@color/text_color"
+            android:fontFamily="sans-serif-light"
+            android:lines="1"
+            android:layout_gravity="start"
+            android:textSize="15sp"
+            android:text="Email Id"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:id="@+id/user_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:textColor="@color/black"
+            android:lines="1"
+            android:layout_marginStart="20sp"
+            android:textSize="18sp"
+            android:layout_gravity="start"
+            android:layout_marginTop="3sp"
+            android:fontFamily="sans-serif-light"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            >
+
+
+        </LinearLayout>
+
+        <TextView
+
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_marginStart="20sp"
+            android:textColor="@color/text_color"
+            android:fontFamily="sans-serif-light"
+            android:lines="1"
+            android:textSize="15sp"
+            android:text="Other Details"
+            android:layout_gravity="start"
+            android:layout_marginTop="10dp"
+            />
+
+
+        <TextView
+            android:id="@+id/user_other_Details"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:layout_marginStart="20sp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_marginTop="3sp"
+            android:layout_gravity="start"
+            android:fontFamily="sans-serif-light"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#eeeeee"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+           >
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/change_password_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            android:background="@color/overdue_background"
+            android:text="CHANGE PASSWORD"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

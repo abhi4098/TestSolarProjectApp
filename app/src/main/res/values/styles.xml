@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/resister_button_color</item>
         <item name="android:activatedBackgroundIndicator">@drawable/drawer_list_selector</item>
-        <item name="colorControlHighlight">@color/request_background</item>
+        <item name="colorControlHighlight">#07606a</item>
 
     </style>
 
@@ -17,8 +17,8 @@
     </style>
 
     <style name="NavigationDrawerStyle">
-        <item name="android:textSize">16sp</item><!-- text size in menu-->
-        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">18sp</item><!-- text size in menu-->
+        <item name="android:fontFamily">sans-serif-light</item>
 
         <!--<item name="android:listPreferredItemHeightSmall">40dp</item>&lt;!&ndash; item size in menu&ndash;&gt;
         <item name="listPreferredItemHeightSmall">40dp</item> item size in menu-->

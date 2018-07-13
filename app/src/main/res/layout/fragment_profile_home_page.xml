@@ -24,13 +24,14 @@
 
             android:orientation="vertical">
 
-          <!--  <ImageView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingEnd="10dp"
                 android:paddingStart="70dp"
+                android:layout_alignParentEnd="true"
                 android:paddingTop="20dp"
-                android:src="@drawable/consumerbackground"></ImageView>-->
+                android:src="@drawable/totalcustomer"></ImageView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -62,6 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="20dp"
+                    android:fontFamily="sans-serif"
                     android:textColor="@color/white"
                     android:textSize="50sp" />
             </RelativeLayout>
@@ -114,7 +116,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/open_complaints"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:layout_centerHorizontal="true"
                             android:text="@string/open"
                             android:textColor="@color/white" />
@@ -126,7 +128,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="20sp"
                             android:textColor="@color/white"
-                            android:textSize="25sp" />
+                            android:textSize="30sp" />
 
                     </RelativeLayout>
 
@@ -151,7 +153,7 @@
                             android:layout_below="@+id/overdue_complaint"
                             android:layout_centerHorizontal="true"
                             android:text="@string/overdue"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:textColor="@color/white" />
 
                         <TextView
@@ -161,7 +163,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="20sp"
                             android:textColor="@color/white"
-                            android:textSize="25sp" />
+                            android:textSize="30sp" />
 
 
                     </RelativeLayout>
@@ -185,7 +187,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/closure_complaint"
                             android:layout_centerHorizontal="true"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:text="@string/closure"
                             android:textColor="@color/white" />
 
@@ -197,7 +199,7 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="20sp"
                             android:textColor="@color/white"
-                            android:textSize="25sp" />
+                            android:textSize="30sp" />
 
 
                     </RelativeLayout>
@@ -312,6 +314,7 @@
                             android:layout_marginBottom="10sp"
                             android:layout_marginEnd="2dp"
                             android:layout_marginStart="2dp"
+                            android:fontFamily="sans-serif-light"
                             android:text="@string/new_complaints_received"
                             android:textColor="@color/complaint_recieved_background"
                             android:textSize="14sp"
@@ -348,8 +351,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="20dp"
+                                android:fontFamily="sans-serif"
                                 android:textColor="@color/complaint_recieved_background"
-                                android:textSize="30sp" />
+                                android:textSize="36sp" />
                         </RelativeLayout>
                     </RelativeLayout>
                     <!--<Button
@@ -398,6 +402,7 @@
                             android:layout_marginBottom="10sp"
                             android:layout_marginEnd="2dp"
                             android:layout_marginStart="2dp"
+                            android:fontFamily="sans-serif-light"
                             android:text="@string/to_be_closed_by_today"
                             android:textColor="@color/approval_pending_background"
                             android:textSize="14sp"
@@ -416,7 +421,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20sp"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginTop="8dp"
                                 android:layout_toEndOf="@+id/ll_divider1"
                                 android:src="@drawable/pending"
                                 android:tint="@color/approval_pending_background" />
@@ -433,10 +438,10 @@
                                 android:id="@+id/complaints_to_be_closed_today"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-
                                 android:layout_marginEnd="20dp"
+                                android:fontFamily="sans-serif"
                                 android:textColor="@color/approval_pending_background"
-                                android:textSize="30sp" />
+                                android:textSize="36sp" />
                         </RelativeLayout>
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>
@@ -472,6 +477,7 @@
                         android:layout_marginBottom="10sp"
                         android:layout_marginEnd="2dp"
                         android:layout_marginStart="2dp"
+                        android:fontFamily="sans-serif-light"
                         android:text="@string/rejected_complaints"
                         android:textColor="@color/rejected_background"
                         android:textSize="14sp"
@@ -490,7 +496,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20sp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="8dp"
                             android:layout_toEndOf="@+id/ll_divider4"
                             android:src="@drawable/technical"
                              />
@@ -508,8 +514,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="20dp"
+                            android:fontFamily="sans-serif"
                             android:textColor="@color/rejected_background"
-                            android:textSize="30sp" />
+                            android:textSize="36sp" />
                     </RelativeLayout>
                 </RelativeLayout>
 
@@ -571,7 +578,7 @@
                             android:text="@string/spare_parts_requested"
                             android:textColor="@color/request_background"
                             android:textSize="14sp"
-
+                            android:fontFamily="sans-serif-light"
                             android:textStyle="bold" />
 
                         <RelativeLayout
@@ -586,7 +593,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20sp"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginTop="8dp"
                                 android:layout_toEndOf="@+id/ll_divider2"
                                 android:src="@drawable/request"
                                  />
@@ -604,8 +611,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="20dp"
+                                android:fontFamily="sans-serif"
                                 android:textColor="@color/request_background"
-                                android:textSize="30sp" />
+                                android:textSize="36sp" />
                         </RelativeLayout>
                     </RelativeLayout>
 
@@ -641,6 +649,7 @@
                             android:layout_marginEnd="2dp"
                             android:layout_marginStart="2dp"
                             android:text="@string/spare_parts_pending"
+                            android:fontFamily="sans-serif-light"
                             android:textColor="@color/requests_pending_background"
                             android:textSize="14sp"
 
@@ -658,7 +667,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20sp"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginTop="8dp"
                                 android:layout_toEndOf="@+id/ll_divider3"
                                 android:src="@drawable/pending"
                                 android:tint="@color/requests_pending_background" />
@@ -676,8 +685,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="20dp"
+                                android:fontFamily="sans-serif"
                                 android:textColor="@color/requests_pending_background"
-                                android:textSize="30sp" />
+                                android:textSize="36sp" />
                         </RelativeLayout>
                     </RelativeLayout>
                 </android.support.v7.widget.CardView>

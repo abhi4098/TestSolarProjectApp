@@ -90,12 +90,21 @@ public class NavigationalActivity extends AppCompatActivity
         loginType= getIntent().getStringExtra("LOGIN_TYPE");
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        toggle.setDrawerIndicatorEnabled(false);
 
+        toggle.setToolbarNavigationClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                drawer.openDrawer(GravityCompat.START);
+            }
+        });
+
+        toggle.setHomeAsUpIndicator(R.drawable.hamburger_new);
+        toggle.syncState();
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getMenu().getItem(0).setChecked(true);
@@ -396,6 +405,9 @@ public class NavigationalActivity extends AppCompatActivity
 
                                 PrefUtils.storeProject(response.body().getProfileDetailsData().get(i).get(i).getProjectName(),NavigationalActivity.this);
                                 PrefUtils.storeProjectOwner(response.body().getProfileDetailsData().get(i).get(i).getProjectOwner(),NavigationalActivity.this);
+                                PrefUtils.storeName(response.body().getProfileDetailsData().get(i).get(i).getName(),NavigationalActivity.this);
+
+                                Log.e("abhi", "onResponse: project owner name..........."+ PrefUtils.getProjectOwner(NavigationalActivity.this) );
                                 if (response.body().getProfileDetailsData().get(i).get(i).getDateOfCommission() !=null) {
                                     PrefUtils.storeCommisionDate(parseTodaysDate(response.body().getProfileDetailsData().get(i).get(i).getDateOfCommission()), NavigationalActivity.this);
                                 }
@@ -416,7 +428,7 @@ public class NavigationalActivity extends AppCompatActivity
                                     setProfilePicURL(profilePictureUrlComplete);
                                 }
                                 else {
-                                    personImage.setBackgroundResource(R.drawable.pic_uploader);
+                                    personImage.setBackgroundResource(R.drawable.solor_profile);
                                 }
                             }
 
@@ -455,14 +467,14 @@ public class NavigationalActivity extends AppCompatActivity
             @Override
             public boolean onException(Exception e, String model, Target<Bitmap> target, boolean isFirstResource) {
                 // imageProgressBar.setVisibility(View.GONE);
-                personImage.setBackgroundResource(R.drawable.pic_uploader);
+                personImage.setBackgroundResource(R.drawable.solor_profile);
                 return false;
             }
 
             @Override
             public boolean onResourceReady(Bitmap resource, String model, Target<Bitmap> target, boolean isFromMemoryCache, boolean isFirstResource) {
                 //imageProgressBar.setVisibility(View.GONE);
-                personImage.setBackgroundResource(R.drawable.pic_uploader);
+                personImage.setBackgroundResource(R.drawable.solor_profile);
                 return false;
             }
         })
@@ -497,7 +509,9 @@ public class NavigationalActivity extends AppCompatActivity
                         canvas.drawCircle(r, r, r, paint);
                         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
                         canvas.drawBitmap(bitmap, rect, rect, paint);
-                        personImage.setImageBitmap(output);
+                      //  personImage.setImageBitmap(output);
+                        personImage.setBackgroundResource(R.drawable.solor_profile);
+
                         // imageProgressBar.setVisibility(View.GONE);
 
                     }

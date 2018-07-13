@@ -11,6 +11,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -52,7 +53,13 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     private RetrofitInterface.UserProfileClient UserProfileAdapter;
     Context mContext;
     private String profilePicUrl;
-    @BindView(R.id.back_image)
+    @BindView(R.id.back_icon)
+    ImageView ivBackIcon;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.tv_app_title)
+    TextView tvAppTitle;
+    /*@BindView(R.id.back_image)
     ImageView backImage;
 
     @BindView(R.id.app_user_name)
@@ -60,7 +67,7 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
 
     @BindView(R.id.user_type)
     TextView tvUserType;
-
+*/
     @BindView(R.id.user_name)
     TextView tvUserName;
 
@@ -91,11 +98,12 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        setContentView(R.layout.activity_my_profile);
+        setContentView(R.layout.activity_my_profile1);
         mContext = MyProfileActivity.this;
         ButterKnife.bind(this);
-        backImage.setOnClickListener(this);
-
+       // backImage.setOnClickListener(this);
+        ivBackIcon.setOnClickListener(this);
+        tvAppTitle.setText("PROFILE");
         setUpRestAdapter();
         getProfileDetails();
     }
@@ -119,12 +127,12 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
                         if (response.body().getSuccess().equals("true")) {
                             for (int i = 0; i < response.body().getProfileDetailsData().size(); i++) {
 
-                                tvAppUserName.setText(response.body().getProfileDetailsData().get(i).get(i).getName());
+                               // tvAppUserName.setText(response.body().getProfileDetailsData().get(i).get(i).getName());
                                 tvUserEmail.setText(response.body().getProfileDetailsData().get(i).get(i).getEmailId());
                                 tvUserName.setText(response.body().getProfileDetailsData().get(i).get(i).getName());
                                 tvUserPhoneNum.setText(response.body().getProfileDetailsData().get(i).get(i).getContactDetails());
                                 tvUserOtherDetails.setText(response.body().getProfileDetailsData().get(i).get(i).getOtherDetails());
-                                tvUserType.setText(response.body().getProfileDetailsData().get(i).get(i).getUserType());
+                                //tvUserType.setText(response.body().getProfileDetailsData().get(i).get(i).getUserType());
                                 if (response.body().getProfileDetailsData().get(i).get(i).getImage() != null) {
                                     profilePicUrl = response.body().getProfileDetailsData().get(i).get(i).getImage() ;
                                     String profilePictureUrlComplete = BASE_URL_FOR_IMAGE + profilePicUrl;
@@ -133,7 +141,7 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
                                     setProfilePicURL(profilePictureUrlComplete);
                                 }
                                 else {
-                                    personImage.setBackgroundResource(R.drawable.pic_uploader);
+                                    personImage.setBackgroundResource(R.drawable.solor_profile);
                                 }
                             }
 
@@ -171,14 +179,14 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
             @Override
             public boolean onException(Exception e, String model, Target<Bitmap> target, boolean isFirstResource) {
                // imageProgressBar.setVisibility(View.GONE);
-                personImage.setBackgroundResource(R.drawable.pic_uploader);
+                personImage.setBackgroundResource(R.drawable.solor_profile);
                 return false;
             }
 
             @Override
             public boolean onResourceReady(Bitmap resource, String model, Target<Bitmap> target, boolean isFromMemoryCache, boolean isFirstResource) {
                 //imageProgressBar.setVisibility(View.GONE);
-                personImage.setBackgroundResource(R.drawable.pic_uploader);
+                personImage.setBackgroundResource(R.drawable.solor_profile);
                 return false;
             }
         })
@@ -213,7 +221,8 @@ public class MyProfileActivity extends AppCompatActivity implements View.OnClick
                         canvas.drawCircle(r, r, r, paint);
                         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
                         canvas.drawBitmap(bitmap, rect, rect, paint);
-                        personImage.setImageBitmap(output);
+                        personImage.setBackgroundResource(R.drawable.solor_profile);
+                       // personImage.setImageBitmap(output);
                        // imageProgressBar.setVisibility(View.GONE);
 
                     }
